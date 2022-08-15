@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     root 'homes#top'
     get 'about'=>"homes#about"
@@ -11,7 +15,6 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     put 'customers/information' => 'customers#update'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
-
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -20,6 +23,9 @@ devise_for :customers,controllers: {
   sessions: 'public/sessions',
   passwords: 'public/passwords'
 }
+
+
+
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
