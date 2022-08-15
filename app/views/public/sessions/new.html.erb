@@ -1,0 +1,28 @@
+<div class='container'>
+
+
+  <div class="py-5 body heading">
+    <span class="col-md-3 bg-light" style="font-size : 30pt">ログイン</span>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+
+  <div class="actions">
+             <%= f.submit "ログイン",class:"col-md-4 btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "public/shared/links" %>
+
+  
+</div>

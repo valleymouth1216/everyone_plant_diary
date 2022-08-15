@@ -1,0 +1,2 @@
+class DiaryBook < ApplicationRecord
+end

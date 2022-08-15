@@ -11,6 +11,130 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">ロゴ</a>
+            <% if customer_signed_in? %>
+              <p class="text-right">ようこそ、<%= current_customer.name %>さん！</p>
+            <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <div class="text-right pb-5">
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                会員一覧
+              <!--    < % end %>  -->
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                みんなの日記
+              <!--    < % end %>  -->
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li>
+                  <%= link_to destroy_admin_session_path,:style =>"color:black;",method: :delete do %>
+                  ログアウト
+                  <% end %>
+                </li>
+              </div>
+            <% elsif customer_signed_in? %>
+              <div class="text-right pb-5">
+                <li>
+              <%= link_to my_page_path,:style =>"color:black;" do %>
+                マイページ
+              <% end %>
+                </li>
+              <!--   <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                自分の日記
+              <!--    < % end %>  -->
+                </li>
+              <!--   <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                自分の日記をみる
+              <!--    < % end %>  -->
+                </li>
+              <!--   <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                みんなの日記
+              <!--    < % end %>  -->
+                </li>
+              <!--   <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+                </li>
+              <!--   <span>&emsp;</span>  -->
+                <li>
+                  <%= link_to destroy_customer_session_path,:style =>"color:black;",method: :delete do %>
+                  ログアウト
+                  <% end %>
+                </li>
+              </div>
+            <% else %>
+              <div class="text-right pb-5">
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                みんなの日記
+              <!--    < % end %>  -->
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_customer_registration_path,:style =>"color:black;" do %>
+                  新規登録
+                  <% end %>
+                </li>
+              <!--  <span>&emsp;</span>  -->
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_customer_session_path,:style =>"color:black;" do %>
+                  ログイン
+                  <% end %>
+                </li>
+             <!--    <span>&emsp;</span>  -->
+               <li class="btn btn-light btn-lg" >
+                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
+                  管理ログイン用(後で消す！！！)
+                  <% end %>
+                </li>
+              </div>
+            <% end %>
+          </ul>
+          </div>
+        </div>
+    </header>
+
+
+    <main>
+      <% if flash[:notice] %>
+        <div class='container'>
+          <div class="flash">
+            <p class="font-weight-bold pt-4" style="font-size : 20pt" id="notice"><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>
