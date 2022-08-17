@@ -1,0 +1,48 @@
+<div class='container'>
+
+  <div class="py-5 body heading">
+    <span class="col-md-3 bg-light" style="font-size : 30pt">日記帳詳細</span>
+  </div>
+
+  <p><%= @diary_book.title %></p>
+
+
+  <p>日記を作成する</p>
+  <p>この日記帳の日記をみる</p>
+</div>
+
+
+<div class='container'>
+
+  <div class="py-5 body heading">
+    <span class="col-md-3 bg-light" style="font-size : 30pt">詳細内容</span>
+      <% @diary_book.tags.each do |tag| %>
+        ▶<%= tag.name %>
+      <% end %>
+  </div>
+
+    <p>作成日付<%= @diary_book.created_at.strftime('%Y/%m/%d') %></p>
+    <p>更新日付<%= @diary_book.updated_at.strftime('%Y/%m/%d') %></p>
+    <p>日記の公開設定
+      <% if @diary_book.status == true %>
+        公開する
+      <% else %>
+        公開しない
+      <% end %>
+    </p>
+      <%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %>
+
+</div>
+
+<div class='container'>
+
+  <div class="py-5 body heading">
+    <span class="col-md-3 bg-light" style="font-size : 30pt">日記帳の削除</span>
+  </div>
+
+  <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
+   <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+
+</div>
+
+<%= link_to "日記帳の一覧に戻る", diary_books_path %>

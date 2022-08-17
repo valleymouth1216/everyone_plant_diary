@@ -1,8 +1,8 @@
 class CreateDiaries < ActiveRecord::Migration[6.1]
   def change
     create_table :diaries do |t|
-      t.integer :diary_book_id,null: false, default: ""
-      t.datetime :date,null: false, default: ""
+      t.integer :diary_book_id,null: false
+      t.datetime :date,null: false
       t.integer :weather,default: 0, null: false
       t.integer :temperature
       t.text :body,null: false, default: ""

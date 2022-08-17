@@ -1,0 +1,38 @@
+<div class='container'>
+
+  <div class="py-5 body heading">
+    <span class="col-md-3 bg-light" style="font-size : 30pt">日記帳の編集</span>
+  </div>
+
+  <%= form_with model: @diary_book do |f| %>
+
+    <div class="form-group">
+      <%= f.label :title,"タイトル" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-5"  %>
+    </div>
+
+    <div class="form-group">
+    <p>  <%= f.label :tag_ids,"タグ" ,class:"col-lg-2 col-form-label font-weight-bold" %></p>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+       <%= tag.label do %>
+         <%= tag.check_box %>
+         <%= tag.text %>
+       <% end %>
+   <% end %>
+
+    <div class="form-group">
+      日記帳の公開
+    <div>
+      <%= f.radio_button :status, true %>
+      <%= f.label :status, '公開する', value: true %>
+      <%= f.radio_button :status, false %>
+      <%= f.label :status, '公開しない', value: false %>
+    </div>
+  </div>
+    </div>
+
+  <%= f.submit '更新する', class: "btn btn-success ml2"  %>
+
+<% end %>
+
+</div>
