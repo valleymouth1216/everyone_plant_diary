@@ -2,17 +2,19 @@ Rails.application.routes.draw do
 
 
 
-  
+
+
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   scope module: :public do
     root 'homes#top'
-    resources :diary_books
+    resources :diary_books do
+    resources :diaries
+  end
     get 'about'=>"homes#about"
     get 'customers/my_page' => 'customers#show', as: 'my_page'
-    # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'

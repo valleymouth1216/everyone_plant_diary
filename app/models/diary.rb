@@ -1,3 +1,3 @@
 class Diary < ApplicationRecord
-    belongs_to :diray_book_id
+    belongs_to :diary_book
 end

@@ -8,6 +8,7 @@
 
 
   <p>日記を作成する</p>
+   <p><%= link_to "日記を作成する", new_diary_book_diary_path(@diary_book) %></p>
   <p>この日記帳の日記をみる</p>
 </div>
 
@@ -20,6 +21,7 @@
         ▶<%= tag.name %>
       <% end %>
   </div>
+
 
     <p>作成日付<%= @diary_book.created_at.strftime('%Y/%m/%d') %></p>
     <p>更新日付<%= @diary_book.updated_at.strftime('%Y/%m/%d') %></p>

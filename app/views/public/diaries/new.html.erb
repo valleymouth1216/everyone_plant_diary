@@ -1,0 +1,36 @@
+
+<h1>日記の作成</h1>
+<%= form_with model: @diary,url: diary_book_diaries_path(@diary_book) do |f| %>
+
+
+    <div class="form-group">
+      <%= f.label :date,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.date_field :date ,placeholder:"あさがお",class: "col-lg-5"  %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :body,"内容" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.text_area :body ,placeholder:"入力してください",class: "col-lg-5"  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :temperature,"気温" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.number_field :temperature ,placeholder:"入力してください",class: "col-lg-5"  %>
+    </div>
+
+    <div class="form-group">
+      日記の公開
+    <div>
+      <%= f.radio_button :status, true %>
+      <%= f.label :status, '公開する', value: true %>
+      <%= f.radio_button :status, false %>
+      <%= f.label :status, '公開しない', value: false %>
+    </div>
+  </div>
+    </div>
+
+  <%= f.submit '投稿' %>
+
+<% end %>
+
