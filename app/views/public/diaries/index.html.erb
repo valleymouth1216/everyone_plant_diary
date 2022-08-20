@@ -1,2 +1,16 @@
-<h1>Public::Diarys#index</h1>
-<p>Find me in app/views/public/diarys/index.html.erb</p>
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @diary_books.title %>の日記一覧</h2>
+
+
+      <% @diarys.each do |diary| %>
+        <p><%= diary.id  %>:<%= diary.date.strftime('%Y/%m/%d')  %> <%= link_to "日記を見る",diary_book_diary_path(@diary_books,diary) %>&ensp;<%= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>&ensp;<%= link_to '日記帳に戻る', diary_books_path(@diary_books) %></p>
+      <% end %>
+
+
+</div>
+
+</div>

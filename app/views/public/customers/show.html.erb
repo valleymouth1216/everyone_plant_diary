@@ -1,26 +1,35 @@
 <div class='container'>
 
-
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">登録基本情報</span>
-  </div>
+<div class="content">
 
 
+    <h2 class="section-ttl">登録基本情報</h2>
 
-<table class="mb-5" border="1" cellpadding="10">
-  <tr>
-    <th colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></th>
-  </tr>
-  <tr>
-    <th>ユーザ名</th>
-    <td><%= @customer.name %></td>
-  </tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
-</table>
-
+      <table class="customer_info customer_form" border="1">
+        <thead>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></td>
+          </tr>
+          <tr>
+            <td>ユーザ名</td>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+        </table>
 
   <%= link_to "基本情報編集をする", edit_information_path, class: "btn btn-success ml2" %>
   <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success ml2" %>
+
+
+</div>
+
 </div>

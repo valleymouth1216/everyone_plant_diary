@@ -1,8 +1,14 @@
+<div class='container'>
 
-<h1>日記の作成</h1>
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @diary_book.title %>日記の作成</h2>
+
+
 <%= form_with model: @diary,url: diary_book_diaries_path(@diary_book) do |f| %>
 
-
+		    <%= render 'layouts/error_messages', resource: @diary %>
     <div class="form-group">
       <%= f.label :date,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
       <%= f.date_field :date ,placeholder:"あさがお",class: "col-lg-5"  %>
@@ -21,16 +27,25 @@
 
     <div class="form-group">
       日記の公開
-    <div>
+      <div>
       <%= f.radio_button :status, true %>
       <%= f.label :status, '公開する', value: true %>
       <%= f.radio_button :status, false %>
       <%= f.label :status, '公開しない', value: false %>
-    </div>
-  </div>
+      </div>
     </div>
 
-  <%= f.submit '投稿' %>
+    <div class="form-group">
+      <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.select :weather, Diary.weathers.keys.map {|k| [I18n.t("enums.diary.weather.#{k}"), k]} %>
+    </div>
+
+
+
+  <%= f.submit '投稿',class:"btn btn-lg btn-success" %>
 
 <% end %>
 
+</div>
+
+</div>

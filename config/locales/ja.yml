@@ -1,4 +1,13 @@
 ja:
+  enums:
+    diary:
+      weather:
+        not_set: "未設定"
+        sunny: "晴れ"
+        cloudy: "曇り"
+        rain: "雨"
+        snow: "雪"
+        typhoon: "台風"
   views:
     pagination:
       first: First<i class="fas fa-angle-double-left"></i>
@@ -6,12 +15,26 @@ ja:
       previous: Previous<i class="fas fa-angle-left"></i>
       next: Next<i class="fas fa-angle-right"></i>
       truncate: "..."
+  activerecord:
+    models:
+      diary_book: "日記帳"
+      diary: "日記"
+    attributes:
+      diary_book:
+        title: "タイトル"
+        tag_ids: "タグ(1つ以上)"
+      diary:
+        date: "日付"
+        body: "内容"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+        not_saved:
+          one: "エラーが発生しました。以下ご確認お願いいたします。"
+          other: "エラーが発生しました。以下ご確認お願いいたします。"
   date:
     abbr_day_names:
     - 日

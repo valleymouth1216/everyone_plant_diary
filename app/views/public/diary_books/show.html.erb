@@ -1,50 +1,72 @@
 <div class='container'>
 
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">日記帳詳細</span>
-  </div>
-
-  <p><%= @diary_book.title %></p>
+<div class="content">
 
 
-  <p>日記を作成する</p>
-   <p><%= link_to "日記を作成する", new_diary_book_diary_path(@diary_book) %></p>
-  <p>この日記帳の日記をみる</p>
+    <h2 class="section-ttl">日記帳詳細</h2>
+
+      <table class="customer_info customer_form" border="1">
+        <thead>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+          <tr>
+            <td><%= @diary_book.title %></td>
+          </tr>
+        </tbody>
+        </table>
+      <p><%= link_to "日記を作成する", new_diary_book_diary_path(@diary_book), class: "btn btn-success ml2" %></p>
+      <p><%= link_to "この日記帳の日記をみる", diary_book_diaries_path(@diary_book, class: "btn btn-success ml2") %></p>
 </div>
 
 
-<div class='container'>
+<div class='content'>
 
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">詳細内容</span>
+    <h2 class="section-ttl">詳細内容</h2>
       <% @diary_book.tags.each do |tag| %>
         ▶<%= tag.name %>
       <% end %>
-  </div>
+      <table class="customer_info customer_form" >
+        <thead>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>作成日付</td>
+            <td><%= @diary_book.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td>更新日付</td>
+            <td><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+          <tr>
+            <td>日記の公開設定</td>
+            <td>        <% if @diary_book.status == true %>
+          公開する
+        <% else %>
+          公開しない
+        <% end %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %></td>
+          </tr>
+        </tbody>
+        </table>
+ 
+      
 
+    <h2 class="section-ttl">日記帳の削除</h2>
 
-    <p>作成日付<%= @diary_book.created_at.strftime('%Y/%m/%d') %></p>
-    <p>更新日付<%= @diary_book.updated_at.strftime('%Y/%m/%d') %></p>
-    <p>日記の公開設定
-      <% if @diary_book.status == true %>
-        公開する
-      <% else %>
-        公開しない
-      <% end %>
-    </p>
-      <%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %>
-
-</div>
-
-<div class='container'>
-
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">日記帳の削除</span>
-  </div>
-
-  <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
-   <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+      <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
+      <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
 
 </div>
 
 <%= link_to "日記帳の一覧に戻る", diary_books_path %>
+
+</div>
+
+</div>

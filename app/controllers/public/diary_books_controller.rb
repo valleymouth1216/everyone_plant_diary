@@ -6,7 +6,7 @@ class Public::DiaryBooksController < ApplicationController
   def create
     @diary_book = DiaryBook.new(diary_book_params)
     @diary_books = current_customer.diary_books
-    #byebug 
+    #byebug
     #binding.pry
     @diary_book.customer_id = current_customer.id
     if @diary_book.save
@@ -37,8 +37,7 @@ class Public::DiaryBooksController < ApplicationController
   end
 
   def update
-    @diary_books = current_customer.diary_books
-        @diary_book = current_customer.diary_books.find(params[:id])
+    @diary_book = current_customer.diary_books.find(params[:id])
       if @diary_book.update(diary_book_params)
       flash[:notice] = "日記帳を更新しました。"
       redirect_to diary_book_path(@diary_book)

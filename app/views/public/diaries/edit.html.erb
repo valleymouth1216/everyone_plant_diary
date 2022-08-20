@@ -1,2 +1,49 @@
-<h1>Public::Diarys#edit</h1>
-<p>Find me in app/views/public/diarys/edit.html.erb</p>
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @diary_book.title %>日記の編集</h2>
+
+
+<%= form_with model: @diary,url: diary_book_diary_path(@diary_book,@diary), method: :patch  do |f| %>
+
+		    <%= render 'layouts/error_messages', resource: @diary %>
+    <div class="form-group">
+      <%= f.label :date,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.date_field :date ,placeholder:"あさがお",class: "col-lg-5"  %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :body,"内容" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.text_area :body ,placeholder:"入力してください",class: "col-lg-5"  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :temperature,"気温" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.number_field :temperature ,placeholder:"入力してください",class: "col-lg-5"  %>
+    </div>
+
+    <div class="form-group">
+      日記の公開
+      <div>
+        <%= f.radio_button :status, true %>
+        <%= f.label :status, '公開する', value: true %>
+        <%= f.radio_button :status, false %>
+        <%= f.label :status, '公開しない', value: false %>
+      </div>
+      </div>
+    <div class="form-group">
+      <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.select :weather, Diary.weathers.keys.map {|k| [I18n.t("enums.diary.weather.#{k}"), k]} %>
+    </div>
+
+
+  <%= f.submit '更新する',class:"btn btn-lg btn-success" %>
+
+<% end %>
+
+</div>
+
+</div>

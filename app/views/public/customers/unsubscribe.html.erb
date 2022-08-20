@@ -1,13 +1,17 @@
 <div class='container'>
 
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">本当に退会しますか？</span>
-  </div>
-  <div class="py-5 text-center">
-    <p class="pb-3">退会すると、会員登録情報や</br>日記の作成やほかのユーザの日記が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</p>
-    <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary" %>
-    &emsp;
-    <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger" %>
-  </div>
+<div class="content">
+
+
+    <h2 class="section-ttl">本当に退会しますか？</h2>
+
+      <div class="text-center"> 退会すると、会員登録情報や</br>日記の作成やほかのユーザの日記が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</div>
+  	  <div class="flex justify-around mt2">
+  	    <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary" %>
+  	    <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger" %>
+  	  </div>
+
+
+</div>
 
 </div>

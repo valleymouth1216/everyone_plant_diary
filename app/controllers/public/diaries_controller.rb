@@ -6,11 +6,12 @@ class Public::DiariesController < ApplicationController
 
   def create
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+    @diarys = @diary_book.diaries
     @diary = Diary.new(diary_params)
     #byebug
     @diary.diary_book_id = @diary_book.id
     # params[:id]
-    #  binding.pry
+    # binding.pry
     if @diary.save
       flash[:notice] = "日記を作成しました。"
       redirect_to diary_book_diaries_path(@diary_book)
@@ -20,19 +21,35 @@ class Public::DiariesController < ApplicationController
   end
 
   def index
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary = Diary.new(diary_params)
+    @diary_books = current_customer.diary_books.find(params[:diary_book_id])
+    #@diary_books = current_customer.diary_books.where(:id => params[:diary_book_id]).first
+    @diarys = @diary_books.diaries
   end
 
   def show
+    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+    @diary =@diary_book.diaries.find(params[:id])
   end
 
   def edit
+    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+    @diary =@diary_book.diaries.find(params[:id])
+  end
+
+  def update
+    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+    @diary =@diary_book.diaries.find(params[:id])
+      if @diary.update(diary_params)
+      flash[:notice] = "日記を更新しました。"
+      redirect_to diary_book_diaries_path(@diary_book)
+      else
+      render :edit
+      end
   end
 
     private
     def diary_params
-      params.require(:diary).permit(:date,:status,:body,:temperature)
+      params.require(:diary).permit(:date,:status,:body,:temperature,:weather)
     end
 end
 

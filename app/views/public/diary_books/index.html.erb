@@ -1,14 +1,11 @@
 <div class='container'>
 
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">詳細内容</span>
-  </div>
+<div class="content">
 
 
+    <h2 class="section-ttl">日記帳一覧</h2>
 
-
-
-<h1>日記帳一覧</h1><%= link_to "日記帳作成する",new_diary_book_path %>
+<%= link_to "日記帳作成する",new_diary_book_path %>
        <% if @diary_books.present? %>
         <% @diary_books.each do |diary_book| %>
           <div class="card col-md-3">
@@ -19,4 +16,8 @@
   <% else %>
 <h3>日記帳がありません。</h3>
 <% end %>
+
+
+</div>
+
 </div>

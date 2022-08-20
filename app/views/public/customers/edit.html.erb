@@ -1,73 +1,52 @@
 <div class='container'>
 
+<div class="content">
 
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">会員情報編集</span>
-  </div>
+    <h2 class="section-ttl">会員情報編集</h2>
 
-
-    <% if  @customer.errors.any? %>
-      <div class="alert alert-danger" role="alert">
-        <div id="error_explanation">
-          <ul>
-            <% @customer.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    <% end %>
-
-
-  <%= form_with model:@customer, url: update_information_path, method: :patch do |f| %>
-
-    <div class="mx-5" >
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <%= f.label :name,"ユーザ名",class:"font-weight-bold"  %>
-        </div>
-        <div class="colo-md-10">
-          <%= f.text_field :name %>
-        </div>
-      </div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <%= f.label :email,"メールアドレス",class:"font-weight-bold" %>
-        </div>
-        <div class="colo-md-10">
-          <%= f.text_field :email ,:size => "50*30" %>
-        </div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <%= f.label :profile_image,"プロフィール画像",class:"font-weight-bold" %>
-        </div>
-        <div class="colo-md-10">
-          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        </div>
-      </div>
-
-    </div>
-
-      <div class="col-md-10 mt-3  text-center">
-        <div class="col-md-10">
-          <%= f.submit "編集内容を保存",class:"btn btn-lg btn-success" %>
+      <% if  @customer.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <div id="error_explanation">
+            <ul>
+              <% @customer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
           </div>
-      </div>
-    </div>
+        </div>
+      <% end %>
 
-  <% end %>
+      <%= form_with model:@customer, url: update_information_path, method: :patch do |f| %>
+        <table class="customer_info customer_form"  border="1">
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :name,"ユーザ名",class:"font-weight-bold"  %></td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :email,"メールアドレス",class:"font-weight-bold" %></td>
+              <td><%= f.email_field :email, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :profile_image,"プロフィール画像",class:"font-weight-bold" %></td>
+              <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><%= f.submit "編集内容を保存",class:"btn btn-lg btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
 
-<div>
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">退会する場合</span>
-  </div>
+    <h2 class="section-ttl">退会する場合</h2>
+      <%= link_to "こちら",confirm_unsubscribe_path %>&emsp;をクリックしてください。
+      <p>退会されると日記の閲覧、作成が使用できなくなります。</p>
 
-  <%= link_to "こちら",confirm_unsubscribe_path %>をクリックしてください。
-  <p>退会されると日記の閲覧、作成が使用できなくなります。</p>
 
 </div>
 
