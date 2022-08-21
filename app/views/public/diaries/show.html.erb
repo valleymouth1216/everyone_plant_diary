@@ -61,7 +61,7 @@
 <% if @diary.diary_images.present? %>
 
 <% @diary.diary_images.each do |diary_image|%>
-    <%= image_tag diary_image.variant(resize: '300x100').processed %>
+    <%= image_tag diary_image.diary_image.variant(resize: '300x100').processed %>
 <% end %>
 
 

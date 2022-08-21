@@ -2,6 +2,7 @@ class Public::DiariesController < ApplicationController
   def new
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
     @diary =Diary.new
+    @errors =[]
     @diary_image = @diary.diary_images.build
   end
 
@@ -15,22 +16,30 @@ class Public::DiariesController < ApplicationController
     # binding.pry
     @diary.diary_book_id = @diary_book.id
 
-    if @diary.save
-#      if params[diary_images:[]].present?
-#        params[diary_images:[]].each do |diary_image|
-#          diary_image.id=@diary_book.id
-#      binding.pry
-#          diary_image.save
-#        end
-#      end
+    ActiveRecord::Base.transaction do
+      @diary.save!
+      if params[:images].present?
+        params[:images].each do |image|
+          diary_image = DiaryImage.new(diary_id:@diary.id)
+          diary_image.diary_image.attach(image)
+      #binding.pry
+         diary_image.save!
+        end
+      end
+    end
 
       flash[:notice] = "日記を作成しました。"
       redirect_to diary_book_diaries_path(@diary_book)
-    else
+
+      rescue ActiveRecord::RecordInvalid => e
+      @errors=[]
+      e.record.errors.full_messages.each do |error|
+        @errors << error
+      end
+
       render :new
-    end
   end
-  
+
 
   def index
     @diary_books = current_customer.diary_books.find(params[:diary_book_id])
@@ -64,8 +73,10 @@ class Public::DiariesController < ApplicationController
 
     private
     def diary_params
-      params.require(:diary).permit(:date,:status,:body,:temperature,:weather,diary_images:[])
+      params.require(:diary).permit(:date,:status,:body,:temperature,:weather)
       #params.require(:diary).permit(:date,:status,:body,:temperature,:weather,diary_images_attributes: [diary_images:[]])
     end
+
+
 end
 

@@ -6,9 +6,13 @@
     <h2 class="section-ttl"><%= @diary_book.title %>日記の作成</h2>
 
 
-<%= form_with model: @diary,url: diary_book_diaries_path(@diary_book) do |f| %>
+<%= form_with model: @diary,url: diary_book_diaries_path(@diary_book), multipart: true do |f| %>
+<ul>
+ <% @errors.each do |error|%>
 
-		    <%= render 'layouts/error_messages', resource: @diary %>
+<li><%= error %></li>
+ <% end %>
+ </ul>
     <div class="form-group">
       <%= f.label :date,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
       <%= f.date_field :date ,placeholder:"あさがお",class: "col-lg-5"  %>
@@ -41,9 +45,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :diary_images, '画像' %>
-      <%= f.file_field :diary_images, multiple: true, accept: "image/*" %>
-
+      <label for="image">画像</label>
+      <%= file_field_tag "images[]", multiple: true, accept: "image/*",id:"image" %>
     </div>
 
   <%= f.submit '投稿',class:"btn btn-lg btn-success" %>
