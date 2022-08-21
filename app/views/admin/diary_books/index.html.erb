@@ -1,0 +1,21 @@
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2>
+
+      <% if @diary_books.present? %>
+        <% @diary_books.each do |diary_book| %>
+          <div class="card col-md-3">
+            <p><%= link_to diary_book.title,admin_customer_diary_book_path(@customer,diary_book) %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <h3>日記帳がありません。</h3>
+      <% end %>
+
+
+</div>
+
+</div>

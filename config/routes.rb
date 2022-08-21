@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :admin do
-  resources:customers,only:[:edit,:show,:index,:update]
+  resources:customers,only:[:edit,:show,:index,:update] do
+    resources :diary_books,only:[:edit,:show,:index,:update]
+    end
   end
 
   devise_scope :customer do

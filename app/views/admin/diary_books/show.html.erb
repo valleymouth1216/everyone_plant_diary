@@ -3,8 +3,7 @@
 <div class="content">
 
 
-    <h2 class="section-ttl">日記帳詳細</h2>
-
+    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳詳細</h2>
       <table class="customer_info customer_form" border="1">
         <thead>
           <th></th>
@@ -16,10 +15,9 @@
           </tr>
         </tbody>
         </table>
-      <p><%= link_to "日記を作成する", new_diary_book_diary_path(@diary_book), class: "btn btn-success ml2" %></p>
-      <p><%= link_to "この日記帳の日記をみる", diary_book_diaries_path(@diary_book, class: "btn btn-success ml2") %></p>
+      <p>日記を作成する</p>
+      <p>この日記帳の日記をみる</p>
 </div>
-
 
 <div class='content'>
 
@@ -51,7 +49,7 @@
         <% end %></td>
           </tr>
           <tr>
-            <td colspan="2"><%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %></td>
+            <td colspan="2"><%= link_to "日記帳を編集する", edit_admin_customer_diary_book_path(@customer,@diary_book), class: "btn btn-success ml2" %></td>
           </tr>
         </tbody>
         </table>
@@ -61,12 +59,14 @@
     <h2 class="section-ttl">日記帳の削除</h2>
 
       <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
-      <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+削除リンク
 
 </div>
 
-<%= link_to "日記帳の一覧に戻る", diary_books_path %>
+<%= link_to "日記帳の一覧に戻る", admin_customer_diary_books_path(@customer), class: "btn btn-success ml2" %>
 
 </div>
 
 </div>
+
+
