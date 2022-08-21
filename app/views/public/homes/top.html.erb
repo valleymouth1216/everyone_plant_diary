@@ -1,2 +1,19 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl">みんなの植物日記</h2>
+
+      <div class="text-center"> ようこそ、みんなの植物日記へ！</br>このサイトはご自身が育てた植物の日記を作成したり、</br>他の人が書いた日記を閲覧することができるコミュニティサイトです。</div>
+      <div class="text-center"> 日記一覧は閲覧できますが</br>日記の内容を閲覧する際は会員登録が必要になります。</div>
+  	  <div class="flex justify-around mt2">
+  	    <%= link_to "新規登録",new_customer_registration_path,class:"btn btn-sm btn-primary" %>
+  	    <%= link_to "ログイン",new_customer_session_path,class:"btn btn-sm btn-primary" %>
+  	    <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post,class:"btn btn-sm btn-success" %>
+  	  </div>
+
+
+</div>
+
+</div>

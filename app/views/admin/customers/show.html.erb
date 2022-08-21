@@ -1,0 +1,46 @@
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl">登録基本情報</h2>
+
+      <table class="customer_info customer_form" border="1">
+          <tr>
+            <th colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></th>
+          </tr>          <tr>
+            <td>ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <td>ユーザ名</td>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <td>
+              <% if @customer.is_deleted? %>
+                <span class="text-invalid">退会済み</span>
+              <% else %>
+               <span class="text-active">有効</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= link_to "基本情報編集をする", edit_admin_customer_path(@customer), class: "btn btn-success ml2" %></td>
+          </tr>
+        </tbody>
+      </table>
+
+    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧へ</h2>
+    こちらをクリック
+
+
+
+</div>
+
+</div>

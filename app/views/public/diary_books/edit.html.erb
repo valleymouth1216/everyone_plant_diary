@@ -6,7 +6,7 @@
     <h2 class="section-ttl">日記帳の編集</h2>
 
       <%= form_with model: @diary_book do |f| %>
-		    <%= render 'layouts/error_messages', resource: @diary_book %>
+      <%= render 'layouts/error_messages', resource: @diary_book %>
 
         <div class="form-group">
          <%= f.label :title,"タイトル" ,class:"col-lg-2 col-form-label font-weight-bold" %>
@@ -24,10 +24,8 @@
         <div class="form-group">
           日記帳の公開
           <div>
-            <%= f.radio_button :status, true %>
-            <%= f.label :status, '公開する', value: true %>
-            <%= f.radio_button :status, false %>
-            <%= f.label :status, '公開しない', value: false %>
+            <%= f.radio_button :status, true %><%= f.label :status, '公開する', value: true %>
+            <%= f.radio_button :status, false %><%= f.label :status, '公開しない', value: false %>
           </div>
         </div>
 

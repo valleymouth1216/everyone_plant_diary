@@ -5,10 +5,6 @@ class Diary < ApplicationRecord
 
     enum weather: { not_set: 0, sunny: 1, cloudy: 2, rain: 3, snow: 4, typhoon: 5}
 
-
-    has_many :diary_images, dependent: :destroy
-    accepts_nested_attributes_for :diary_images
-
     validates :date, presence: true, uniqueness: { scope: :diary_book_id }
     validates :body, presence: true
     validate :image_type
@@ -16,8 +12,6 @@ class Diary < ApplicationRecord
 #  def get_diary_image(width, height)
 #  return self.diary_images[input].variant(resize_to_limit: [width, height]).processed
 #  end
-
-
 
   private
 

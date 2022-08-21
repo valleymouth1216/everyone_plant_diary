@@ -38,7 +38,10 @@
       <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
       <%= f.select :weather, Diary.weathers.keys.map {|k| [I18n.t("enums.diary.weather.#{k}"), k]} %>
     </div>
-
+    <div class="form-group">
+      <%= f.label :diary_images, '画像' %>
+      <%= f.file_field :diary_images, multiple: true, accept: "image/*" %>
+    </div>
 
   <%= f.submit '更新する',class:"btn btn-lg btn-success" %>
 
