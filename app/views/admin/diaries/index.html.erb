@@ -1,0 +1,19 @@
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @diary_books.customer.name %>さんの<%= @diary_books.title %>の日記一覧</h2>
+
+<%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_books) %>
+      <% @diaries.each do |diary| %>
+        <p><%= diary.id  %>:<%= diary.date.strftime('%Y/%m/%d')  %>
+           <%= link_to "日記を見る",admin_diary_book_diary_path(@diary_books,diary) %>&ensp;
+           <%= link_to '日記を編集する', edit_admin_diary_book_diary_path(@diary_books,diary) %>&ensp;
+           </p>
+      <% end %>
+
+
+</div>
+
+</div>

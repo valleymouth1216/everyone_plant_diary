@@ -1,4 +1,6 @@
 class Public::DiaryBooksController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @diary_book=DiaryBook.new
   end

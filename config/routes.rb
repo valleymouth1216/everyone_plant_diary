@@ -5,11 +5,14 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :admin do
-  resources:customers,only:[:edit,:show,:index,:update] do
-    resources :diary_books,only:[:edit,:show,:index,:update]
-    end
+  resources:customers,only:[:edit,:show,:index,:update]
+  resources :diary_books,only:[:edit,:show,:update]do
+  resources :diaries,only:[:edit,:show,:update,:index,:destroy]
   end
+  end
+
 
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'

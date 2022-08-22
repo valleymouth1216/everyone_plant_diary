@@ -1,9 +1,10 @@
+
 <div class='container'>
 
 <div class="content">
 
 
-    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳詳細</h2>
+    <h2 class="section-ttl"><%= @diary_book.customer.name %>さんの日記帳詳細</h2>
       <table class="customer_info customer_form" border="1">
         <thead>
           <th></th>
@@ -15,8 +16,7 @@
           </tr>
         </tbody>
         </table>
-      <p>日記を作成する</p>
-      <p>この日記帳の日記をみる</p>
+      <p><%= link_to "日記を見る",admin_diary_book_diaries_path(@diary_book) %></p>
 </div>
 
 <div class='content'>
@@ -42,14 +42,14 @@
           <tr>
           <tr>
             <td>日記の公開設定</td>
-            <td>        <% if @diary_book.status == true %>
-          公開する
-        <% else %>
-          公開しない
-        <% end %></td>
+            <td><% if @diary_book.status? %>公開する<% else %>公開しない<% end %></td>
           </tr>
           <tr>
-            <td colspan="2"><%= link_to "日記帳を編集する", edit_admin_customer_diary_book_path(@customer,@diary_book), class: "btn btn-success ml2" %></td>
+            <td>管理者側の日記の公開設定</td>
+            <td><% if @diary_book.status_admin? %>公開しない<% else %>公開する<% end %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= link_to "日記帳を編集する",  edit_admin_diary_book_path(@diary_book), class: "btn btn-success ml2" %></td>
           </tr>
         </tbody>
         </table>
@@ -63,10 +63,8 @@
 
 </div>
 
-<%= link_to "日記帳の一覧に戻る", admin_customer_diary_books_path(@customer), class: "btn btn-success ml2" %>
+<%= link_to "戻る",admin_customer_path(@diary_book.customer_id), class: "btn btn-success ml2" %>
 
 </div>
 
 </div>
-
-
