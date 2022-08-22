@@ -5,6 +5,8 @@
 
     <h2 class="section-ttl"><%= @diary_books.title %>日記一覧</h2>
 
+      <p><%= link_to "日記を作成する", new_diary_book_diary_path(@diary_books), class: "btn btn-success ml2" %></p>
+      <p><%= link_to 'この日記帳の詳細を見る', diary_book_path(@diary_books), class: "btn btn-success ml2" %></p>
 
       <% @diarys.each do |diary| %>
         <p><%= diary.id  %>:<%= diary.date.strftime('%Y/%m/%d')  %> <%= link_to "日記を見る",diary_book_diary_path(@diary_books,diary) %>&ensp;<%= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>&ensp;</p>
