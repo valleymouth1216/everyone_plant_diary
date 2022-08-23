@@ -17,7 +17,7 @@
         <tbody>
           <tr>
             <td>日付</td>
-            <td><%= @diary.date.strftime('%Y/%m/%d') %></td>
+            <td><%= @diary.start_time.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <td>天気</td>
@@ -33,7 +33,9 @@
             <td>
               <% if @diary.diary_images.attached? %>
                   <% @diary.diary_images.each do |diary_image|%>
-                    <%= image_tag diary_image.variant(resize: '500x200').processed %>
+                    <%#= image_tag diary_image.variant(resize_to_limit: [500, 200]).processed %>
+                    <%#= image_tag diary_image.variant(resize: '500x200').processed %>
+                    <%= image_tag diary_image.representation(resize_to_limit: [500, 200]).processed %>
                   <% end %>
               <% else %>
                   画像がありません

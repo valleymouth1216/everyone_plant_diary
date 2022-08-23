@@ -63,7 +63,7 @@ class Public::DiariesController < ApplicationController
 
     private
     def diary_params
-      params.require(:diary).permit(:date,:status,:body,:temperature,:weather,diary_images: [])
+      params.require(:diary).permit(:start_time,:status,:body,:temperature,:weather,diary_images: [])
     end
 end
 

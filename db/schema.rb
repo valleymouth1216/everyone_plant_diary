@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_16_135313) do
+ActiveRecord::Schema.define(version: 2022_08_23_145307) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_135313) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "diary_book_id", null: false
-    t.datetime "date", null: false
+    t.datetime "start_time", null: false
     t.integer "weather", default: 0, null: false
     t.integer "temperature"
     t.text "body", default: "", null: false

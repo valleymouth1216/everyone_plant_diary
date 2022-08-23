@@ -5,7 +5,7 @@ class Diary < ApplicationRecord
 
     enum weather: { not_set: 0, sunny: 1, cloudy: 2, rain: 3, snow: 4, typhoon: 5}
 
-    validates :date, presence: true, uniqueness: { scope: :diary_book_id }
+    validates :start_time, presence: true, uniqueness: { scope: :diary_book_id }
     validates :body, presence: true
    # validate :image_type
 
