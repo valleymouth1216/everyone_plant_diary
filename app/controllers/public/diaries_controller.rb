@@ -28,6 +28,7 @@ class Public::DiariesController < ApplicationController
     @diary_books = current_customer.diary_books.find(params[:diary_book_id])
     #@diary_books = current_customer.diary_books.where(:id => params[:diary_book_id]).first
     @diarys = @diary_books.diaries
+    @number= 0
 
   end
 
@@ -39,6 +40,14 @@ class Public::DiariesController < ApplicationController
   def edit
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
     @diary =@diary_book.diaries.find(params[:id])
+  end
+
+  def destroy
+    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+    @diary =@diary_book.diaries.find(params[:id])
+    @diary.destroy
+    flash[:notice] = "日記を削除しました。"
+    redirect_to diary_book_diaries_path(@diary_book)
   end
 
   def update
@@ -54,7 +63,7 @@ class Public::DiariesController < ApplicationController
 
     private
     def diary_params
-      params.require(:diary).permit(:date,:status,:body,:temperature,:weather,diary_images:[])
+      params.require(:diary).permit(:date,:status,:body,:temperature,:weather,diary_images: [])
     end
 end
 

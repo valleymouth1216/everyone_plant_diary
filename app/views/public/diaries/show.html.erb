@@ -3,7 +3,7 @@
 <div class="content">
 
 
-    <h2 class="section-ttl"><%= @diary_book.title %>の日記詳細</h2>
+    <h2 class="section-ttl"><%= @diary_book.title %>の日記</h2>
 
       <% @diary_book.tags.each do |tag| %>
         ▶<%= tag.name %>
@@ -31,9 +31,9 @@
           <tr>
             <td>画像</td>
             <td>
-              <% if @diary.diary_images.present? %>
+              <% if @diary.diary_images.attached? %>
                   <% @diary.diary_images.each do |diary_image|%>
-                    <%= image_tag diary_image.variant(resize: '300x100').processed %>
+                    <%= image_tag diary_image.variant(resize: '500x200').processed %>
                   <% end %>
               <% else %>
                   画像がありません

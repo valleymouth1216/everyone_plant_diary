@@ -61,3 +61,7 @@ gem 'pry-byebug'
 gem 'image_processing', '~>1.2'
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'mini_magick', '~> 4.8'
+
+gem 'simple_calendar', '~> 2.0'

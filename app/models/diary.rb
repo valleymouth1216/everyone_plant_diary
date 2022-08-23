@@ -7,11 +7,7 @@ class Diary < ApplicationRecord
 
     validates :date, presence: true, uniqueness: { scope: :diary_book_id }
     validates :body, presence: true
-    validate :image_type
-
-#  def get_diary_image(width, height)
-#  return self.diary_images[input].variant(resize_to_limit: [width, height]).processed
-#  end
+   # validate :image_type
 
   private
 

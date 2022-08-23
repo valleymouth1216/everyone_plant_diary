@@ -42,7 +42,8 @@
 
     <div class="form-group">
       <%= f.label :diary_images, '画像' %>
-      <%= f.file_field :diary_images, multiple: true, accept: "image/*" %>
+      <%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png' %>
+      <p>JPEGまたはPNG形式を選択してアップロードしてください</br>※サポートされていない形式のファイルは投稿しないでください。</p>
     </div>
 
   <%= f.submit '投稿',class:"btn btn-lg btn-success" %>

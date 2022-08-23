@@ -9,7 +9,11 @@
       <p><%= link_to 'この日記帳の詳細を見る', diary_book_path(@diary_books), class: "btn btn-success ml2" %></p>
 
       <% @diarys.each do |diary| %>
-        <p><%= diary.id  %>:<%= diary.date.strftime('%Y/%m/%d')  %> <%= link_to "日記を見る",diary_book_diary_path(@diary_books,diary) %>&ensp;<%= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>&ensp;</p>
+       <% @number= @number+1 %>
+        <p><%= @number %>:<%= diary.date.strftime('%Y/%m/%d')  %>
+        <%= link_to "日記を見る",diary_book_diary_path(@diary_books,diary) %>&ensp;
+        <%= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>&ensp;
+        <%= link_to "削除", diary_book_diary_path(@diary_books,diary), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %></p>
       <% end %>
 
 
