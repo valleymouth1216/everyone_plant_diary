@@ -23,7 +23,7 @@
           <% end %>
         <% else %>
             <%= link_to diary_book_diary_path(@diary_books,diary) do %>
-              <%= diary.body.truncate(10, omission: '...') %>
+              <%= diary.body.truncate(10, omission: '...続き') %>
         　　<% end %></br>
           <%#= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>
           <%#= link_to "削除", diary_book_diary_path(@diary_books,diary), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>

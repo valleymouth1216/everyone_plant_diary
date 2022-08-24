@@ -53,12 +53,19 @@ class Public::DiariesController < ApplicationController
   def update
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
     @diary =@diary_book.diaries.find(params[:id])
-      if @diary.update(diary_params)
-      flash[:notice] = "日記を更新しました。"
-      redirect_to diary_book_diaries_path(@diary_book)
-      else
-      render :edit
-      end
+
+    if params[:diary][:image_ids]
+       params[:diary][:image_ids].each do |image_id|
+        image = @diary.diary_images.find(image_id)
+        image.purge
+       end
+    end
+    if @diary.update(diary_params)
+        flash[:notice] = "日記を更新しました。"
+        redirect_to diary_book_diaries_path(@diary_book)
+    else
+        render :edit
+    end
   end
 
     private

@@ -19,11 +19,18 @@ class Admin::DiariesController < ApplicationController
   def update
     @diary_book = DiaryBook.find(params[:diary_book_id])
     @diary = @diary_book.diaries.find(params[:id])
+
+    if params[:diary][:image_ids]
+       params[:diary][:image_ids].each do |image_id|
+        image = @diary.diary_images.find(image_id)
+        image.purge
+       end
+    end
     if @diary.update(diary_params)
-      flash[:notice] = "日記を更新しました。"
-      redirect_to admin_diary_book_diary_path(@diary_book,@diary)
+        flash[:notice] = "日記を更新しました。"
+        redirect_to admin_diary_book_diary_path(@diary_book,@diary)
     else
-      render :edit
+        render :edit
     end
   end
 
