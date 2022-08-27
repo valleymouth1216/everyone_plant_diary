@@ -10,11 +10,10 @@
 
 
 
-<%= month_calendar events: @diarys do |date, diarys| %>
+<%= month_calendar events: @diaries do |date, diaries| %>
   <%= date.day %>
 
-
-  <% diarys.each do |diary| %>
+  <% diaries.each do |diary| %>
     <div>
     <%# if diary.status? %>
         <% if diary.diary_images.attached? %>
@@ -28,15 +27,9 @@
           <%#= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>
           <%#= link_to "削除", diary_book_diary_path(@diary_books,diary), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
         <% end %>
-
-    <%# end %>
-
     </div>
   <% end %>
-
-<% end %>
-
-
+  <% end %>
 </div>
 
 </div>
