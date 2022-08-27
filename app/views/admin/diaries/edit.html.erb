@@ -10,8 +10,8 @@
 
 		    <%= render 'layouts/error_messages', resource: @diary %>
     <div class="form-group">
-      <%= f.label :date,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.date_field :date ,placeholder:"あさがお",class: "col-lg-5"  %>
+      <%= f.label :start_time,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
+      <%= f.date_field :start_time ,placeholder:"あさがお",class: "col-lg-5"  %>
     </div>
 
 
@@ -47,7 +47,7 @@
 
     <div class="form-group">
       <%= f.label :diary_images, '画像' %>
-      <%= f.file_field :diary_images, multiple: true, accept: "image/*" %>
+      <%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png' %>
     <% if @diary.diary_images.attached? %>
        <p>現在登録されている画像（削除するものはチェックしてください）</p>
        <% @diary.diary_images.each do |image| %>

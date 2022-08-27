@@ -41,8 +41,8 @@
 
     <div class="form-group">
       <%= f.label :diary_images, '画像' %>
-      <%= f.file_field :diary_images, multiple: true, accept: "image/*" %>
-    <% if @diary.diary_images.attached? %>  
+      <%= f.file_field :diary_images, multiple: true,accept: 'image/jpeg, image/png' %>
+    <% if @diary.diary_images.attached? %>
        <p>現在登録されている画像（削除するものはチェックしてください）</p>
        <% @diary.diary_images.each do |image| %>
          <%= f.check_box :image_ids, {:multiple => true}, image.id, false %>

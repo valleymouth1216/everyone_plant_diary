@@ -6,13 +6,31 @@
     <h2 class="section-ttl"><%= @diary_books.customer.name %>さんの<%= @diary_books.title %>の日記一覧</h2>
 
 <%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_books) %>
-      <% @diaries.each do |diary| %>
-        <p><%= diary.id  %>:<%= diary.date.strftime('%Y/%m/%d')  %>
-           <%= link_to "日記を見る",admin_diary_book_diary_path(@diary_books,diary) %>&ensp;
-           <%= link_to '日記を編集する', edit_admin_diary_book_diary_path(@diary_books,diary) %>&ensp;
-           </p>
-      <% end %>
 
+
+<%= month_calendar events: @diaries do |date, diaries| %>
+  <%= date.day %>
+
+  <% diaries.each do |diary| %>
+    <div>
+    <%# if diary.status? %>
+        <% if diary.diary_images.attached? %>
+          <%= link_to admin_diary_book_diary_path(@diary_books,diary) do %>
+            <%= image_tag diary.diary_images[0].representation(resize_to_limit: [200, 180]).processed, class: "review-img"%>
+          <% end %>
+        <% else %>
+            <%= link_to edit_admin_diary_book_diary_path(@diary_books,diary) do %>
+              <%= diary.body.truncate(10, omission: '...続き') %>
+        　　<% end %></br>
+          <%#= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>
+          <%#= link_to "削除", diary_book_diary_path(@diary_books,diary), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+        <% end %>
+    </div>
+  <% end %>
+  <% end %>
+</div>
+
+</div>
 
 </div>
 
