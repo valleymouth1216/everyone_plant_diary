@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :admin do
   resources:customers,only:[:edit,:show,:index,:update]
   resources :diary_books,only:[:edit,:show,:update]do
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
+    get 'my_diary' =>"my_diaries#my_diary"
     resources :diary_books do
     resources :diaries
   end

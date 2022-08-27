@@ -1,0 +1,35 @@
+<div class='container'>
+
+  <div class="row mt-5">
+
+    <div class='mb-5 col-md-2' >
+      <table class="table" style="border:2px solid silver">
+        <thead>
+          <tr><th>日記帳一覧</th></tr>
+        </thead>
+        <tbody style="border-bottom: 1px solid silver;">
+        <% @diary_books.each do |diary_book| %>
+          <tr>
+              <% if diary_book.id.present? %>
+            <td>
+              <%= link_to diary_book.title, my_diary_path(diary_book: diary_book.id), class: "text-secondary" %>
+              <% end %>
+            </td>
+            <% end %>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+
+
+    <div class='col-md-10'>
+      <h1 class="mb-3"><%= @diary_book.title %>の日記</h1>
+        <% @diaries.each do |diary| %>
+            <%= diary.start_time %>
+            <% end %>
+        </div>
+    </div>
+
+
+
+</div>
