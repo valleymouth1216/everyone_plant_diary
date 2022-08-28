@@ -8,6 +8,9 @@ class Diary < ApplicationRecord
     validates :start_time, presence: true, uniqueness: { scope: :diary_book_id }
     validates :body, presence: true
    # validate :image_type
+    def self.count_by_date(date)
+       where(start_time: Time.zone.parse(date.to_s), status: true).count
+    end
 
   private
 

@@ -1,0 +1,8 @@
+<p>の日記</p>
+
+<% @diaries.each do |diary|%>
+<div>
+      <%= diary.diary_book.title %>
+      <%= diary.diary_book.customer.name %>さん
+</div>
+<% end %>

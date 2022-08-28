@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     put 'customers/information' => 'customers#update'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+    get 'calendar_diaries' => 'calendar_diaries#index'
+    get 'calendar_diaries_date' =>'calendar_diaries#filter_by_date', as: "date"
+    #get 'calendar_diaries/:id' =>"calendar_diaries#show"
+    #get 'calendar_diaries/:year/:month/:day' =>"calendar_diaries#show"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
