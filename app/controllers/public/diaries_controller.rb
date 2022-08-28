@@ -2,6 +2,7 @@ class Public::DiariesController < ApplicationController
   before_action :authenticate_customer!
 
   def new
+    #binding.pry
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
     @diary =Diary.new
   end
