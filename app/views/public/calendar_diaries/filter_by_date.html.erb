@@ -1,8 +1,25 @@
-<p>の日記</p>
+<div class='container'>
 
-<% @diaries.each do |diary|%>
-<div>
-      <%= diary.diary_book.title %>
-      <%= diary.diary_book.customer.name %>さん
+<div class="content">
+
+
+    <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
+
+      <% @diaries.each do |diary|%>
+        <div>
+          <table border="0">
+            <tr>
+              <td><%= image_tag diary.diary_book.customer.get_profile_image(100,100) %></td>
+              <td>名前:</td>
+              <td><%= diary.diary_book.customer.name %>さん</td>
+              <td>&emsp;</td>
+              <td>日記帳名:</td>
+              <td><%= diary.diary_book.title %></td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+
 </div>
-<% end %>
+
+</div>

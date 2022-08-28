@@ -5,24 +5,22 @@
 
     <h2 class="section-ttl">みんなの日記</h2>
 
-
-
-<%= month_calendar events: @diaries do |date, diaries| %>
-  <%= link_to date.day , date_path(date: date) %></br>
-  <%#= link_to date.day,controller:"calendar_diaries",action: 'filter_by_date',date: date) %></br>
-  <% unless Diary.count_by_date(date) == 0 %>
-  <%= Diary.count_by_date(date) %>件
-  <% end %>
-  <% diaries.each do |diary| %>
-    <div>
-      <% if diary.status?%>
-      <%= diary.diary_book.title %>
-      <%= diary.diary_book.customer.name %>さん
+      <%= month_calendar events: @diaries do |date, diaries| %>
+        <%= link_to date.day , date_path(date: date) %></br>
+          <% unless Diary.count_by_date(date) == 0 %>
+            <%= Diary.count_by_date(date) %>件
+          <% end %>
+        <% diaries.each do |diary| %>
+        <div>
+          <% if diary.status?%>
+            <%= diary.diary_book.title %>
+            <%= diary.diary_book.customer.name %>さん
+          <% end %>
+        </div>
+        <% end %>
       <% end %>
-    </div>
-  <% end %>
 
-<% end %>
+
 
 </div>
 
