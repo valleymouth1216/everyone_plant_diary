@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :admin do
   resources:customers,only:[:edit,:show,:index,:update]
   resources :diary_books,only:[:edit,:show,:update]do
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
   end
     get 'about'=>"homes#about"
     get 'customers/my_page' => 'customers#my_page', as: 'my_page'
-    resources :customers,only:[:index,:show]
+    resources :customers,only:[:index,:show] do
+    resources:customer_diaries,only:[:show,:index]
+  end
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'

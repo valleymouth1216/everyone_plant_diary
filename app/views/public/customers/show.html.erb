@@ -12,11 +12,13 @@
           </tr>
         </table>
 
+<%= link_to "#{@customer.name}さん日記へ",customer_customer_diaries_path(@customer)%>
 
        <% if @customer_diary_booKs.present? %>
+       <p>日記一覧</p>
         <% @customer_diary_booKs.each do |diary_book| %>
           <div class="card col-md-3">
-            <p><%= diary_book.title %></p>
+            <p><%= link_to diary_book.title,customer_customer_diaries_path(@customer,diary_book: diary_book.id) %></p>
           </div>
         <% end %>
 
