@@ -21,6 +21,7 @@ class Public::DiaryBooksController < ApplicationController
 
   def index
      @diary_books = current_customer.diary_books
+     #@diary_books = current_customer.diary_books.includes(:customer)
   end
 
   def show

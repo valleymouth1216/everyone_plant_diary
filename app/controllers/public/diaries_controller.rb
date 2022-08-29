@@ -29,7 +29,6 @@ class Public::DiariesController < ApplicationController
     @diary_books = current_customer.diary_books.find(params[:diary_book_id])
     #@diary_books = current_customer.diary_books.where(:id => params[:diary_book_id]).first
     @diaries = @diary_books.diaries
-    @number= 0
 
   end
 

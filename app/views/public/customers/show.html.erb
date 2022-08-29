@@ -3,32 +3,26 @@
 <div class="content">
 
 
-    <h2 class="section-ttl">登録基本情報</h2>
+    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2>
 
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
+
+        <table class="customer_info customer_form" border="1">
           <tr>
             <td colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></td>
           </tr>
-          <tr>
-            <td>ユーザ名</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-        </tbody>
         </table>
 
-  <%= link_to "基本情報編集をする", edit_information_path, class: "btn btn-success ml2" %>
-  <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success ml2" %>
 
+       <% if @customer_diary_booKs.present? %>
+        <% @customer_diary_booKs.each do |diary_book| %>
+          <div class="card col-md-3">
+            <p><%= diary_book.title %></p>
+          </div>
+        <% end %>
+
+  <% else %>
+<h3>日記帳がありません。</h3>
+<% end %>
 
 </div>
 

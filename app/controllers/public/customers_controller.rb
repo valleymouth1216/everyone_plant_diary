@@ -1,7 +1,21 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
+  def index
+    @customers = Customer.all
+  end
+
   def show
+    #byebug
+    if params[:id]==current_customer.id.to_s
+       redirect_to my_page_path
+    else
+      @customer=Customer.find(params[:id])
+      @customer_diary_booKs=@customer.diary_books
+    end
+  end
+
+  def my_page
     @customer=current_customer
   end
 

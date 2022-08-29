@@ -52,6 +52,11 @@
             <% elsif customer_signed_in? %>
               <div class="text-right pb-5">
                 <li>
+              <%= link_to customers_path,:style =>"color:black;" do %>
+                会員一覧
+              <% end %>
+                </li>
+              <!--   <span>&emsp;</span>  -->                <li>
               <%= link_to my_page_path,:style =>"color:black;" do %>
                 マイページ
               <% end %>
