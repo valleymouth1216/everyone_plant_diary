@@ -3,6 +3,8 @@ class Diary < ApplicationRecord
 
     has_many_attached:diary_images
 
+    #has_one :customer, through: :diary_book
+
     enum weather: { not_set: 0, sunny: 1, cloudy: 2, rain: 3, snow: 4, typhoon: 5}
 
     validates :start_time, presence: true, uniqueness: { scope: :diary_book_id }

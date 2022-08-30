@@ -14,9 +14,18 @@ class Public::CustomerDiariesController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:customer_id])
+    @customer =Customer.find(params[:customer_id])
     @diary= Diary.find(params[:id])
+    redirect_to(customers_path) unless @customer.id == @diary.diary_book.customer.id
   end
 
+  #private
+
+  #def correct_user
+   # @customer =Customer.find(params[:customer_id])
+   # @diary= Diary.find(params[:id])
+   # redirect_to(customers_path) unless @customer.id == @diary.diary_book.customer.id
+  #end
+  #end
 
 end
