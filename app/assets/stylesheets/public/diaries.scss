@@ -3,14 +3,14 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .simple-calendar {
  .day {}
- .today {background: #F3FFD8}
- .wday-0 {background: 	#FFD5EC;}
+ .today {background: #ffffd5}
+ .wday-0 {background: 	#ffaaaa;}
  .wday-1 {}
  .wday-2 {}
  .wday-3 {}
  .wday-4 {}
  .wday-5 {}
- .wday-6 {background: #FFDBC9;}
+ .wday-6 {background: #ffd5aa;}
  .past {}
  .future {}
  .start-date {}
@@ -18,16 +18,16 @@
  .next-month { }
  .current-month {}
  .has-events {
-   background: #CBFFD3;
+   background: #CCFF99;
  }
 }
 
 .table-striped tr td:hover {
-  background-color: #F0FFF0;
+  background-color: #ffff00;
 }
 
 .table-striped thead tr th{
- background: #CBFFD3;
+ background: #FFFF99;
  border-color: #000;
  border-style: solid;
 }
