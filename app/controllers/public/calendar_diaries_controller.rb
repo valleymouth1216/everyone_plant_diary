@@ -1,4 +1,6 @@
 class Public::CalendarDiariesController < ApplicationController
+    before_action :authenticate_customer!,except: [:index]
+
   def index
     @diaries = Diary.all
   end
