@@ -10,10 +10,6 @@ class Admin::DiaryBooksController < ApplicationController
     @diary_book =DiaryBook.find(params[:id])
   end
 
-  def edit
-    @diary_book =DiaryBook.find(params[:id])
-  end
-
   def update
     @diary_book = DiaryBook.find(params[:id])
       if @diary_book.update(diary_book_params)

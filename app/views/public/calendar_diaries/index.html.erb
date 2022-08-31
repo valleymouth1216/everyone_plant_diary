@@ -12,9 +12,11 @@
           <% end %>
         <% diaries.each do |diary| %>
         <div>
-          <% if diary.status?%>
-            <%= diary.diary_book.title %>
-            <%= diary.diary_book.customer.name %>さん
+          <% if diary.diary_book.status == true && diary.diary_book.status_admin == false %>
+            <% if diary.status == true && diary.status_admin == false %>
+             <%= diary.diary_book.title %>
+             <%= diary.diary_book.customer.name %>さん
+            <% end %>
           <% end %>
         </div>
         <% end %>

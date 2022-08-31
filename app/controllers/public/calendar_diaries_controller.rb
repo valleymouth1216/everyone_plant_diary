@@ -5,9 +5,6 @@ class Public::CalendarDiariesController < ApplicationController
     @diaries = Diary.all
   end
 
-  def show
-  end
-
   def filter_by_date
     date_arr = params[:date].split("-")
     @date_year = date_arr[0]
@@ -16,7 +13,7 @@ class Public::CalendarDiariesController < ApplicationController
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
     #byebug
     @diaries = Diary.select do |d|
-     d.start_time.to_date == date && d.status ==true
+     d.start_time.to_date == date && d.status ==true && d.status_admin ==false && d.diary_book.status ==true && d.diary_book.status_admin ==false
    end
 
   #arr = []

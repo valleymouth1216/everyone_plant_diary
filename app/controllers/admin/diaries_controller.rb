@@ -1,23 +1,17 @@
 class Admin::DiariesController < ApplicationController
-    before_action :authenticate_admin!
+  before_action :authenticate_admin!
+  before_action :set_diary_book, only: [:show,:index,:update]
 
   def index
-    @diary_books = DiaryBook.find(params[:diary_book_id])
-    @diaries = @diary_books.diaries
+    @diaries = @diary_book.diaries
   end
 
   def show
-    @diary_book = DiaryBook.find(params[:diary_book_id])
     @diary =@diary_book.diaries.find(params[:id])
   end
 
-  def edit
-    @diary_book = DiaryBook.find(params[:diary_book_id])
-    @diary =@diary_book.diaries.find(params[:id])
-  end
 
   def update
-    @diary_book = DiaryBook.find(params[:diary_book_id])
     @diary = @diary_book.diaries.find(params[:id])
 
     if params[:diary][:image_ids]
@@ -35,6 +29,10 @@ class Admin::DiariesController < ApplicationController
   end
 
   private
+
+  def set_diary_book
+    @diary_book = DiaryBook.find(params[:diary_book_id])
+  end
 
   def diary_params
   params.require(:diary).permit(:date,:weather,:status,:status_admin,:temperature,:body,diary_images:[])

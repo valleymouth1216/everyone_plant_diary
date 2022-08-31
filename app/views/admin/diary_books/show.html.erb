@@ -49,19 +49,22 @@
             <td><% if @diary_book.status_admin? %>公開しない<% else %>公開する<% end %></td>
           </tr>
           <tr>
-            <td colspan="2"><%= link_to "日記帳を編集する",  edit_admin_diary_book_path(@diary_book), class: "btn btn-success ml2" %></td>
+            <td>管理者側の日の公開設定</td>
+            <td>
+              <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
+                <%= render 'layouts/error_messages', resource: @diary_book %>
+                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開する', value: false %>
+                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開しない', value: true %>
+                <%= f.submit '更新する', class: "btn btn-success ml2"  %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
         </table>
 
 
 
-    <h2 class="section-ttl">日記帳の削除</h2>
 
-      <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
-削除リンク
-
-</div>
 
 <%= link_to "戻る",admin_customer_path(@diary_book.customer_id), class: "btn btn-success ml2" %>
 

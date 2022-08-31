@@ -63,12 +63,22 @@
             <td>管理者日記の公開設定</td>
             <td><% if @diary.status_admin? %>公開しない<% else %>公開する<% end %></td>
           </tr>
-
+          <tr>
+            <td>管理者側の日の公開設定</td>
+            <td>
+              <%= form_with model: @diary,url: admin_diary_book_diary_path(@diary_book,@diary), method: :patch  do |f| %>
+                <%= render 'layouts/error_messages', resource: @diary %>
+                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開する', value: false %>
+                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開しない', value: true %>
+                <%= f.submit '更新する',class:"btn btn-lg btn-success" %></br>
+              <% end %>
+            </td>
+          </tr>
         </tbody>
         </table>
 
 
-        <p><%= link_to '日記を編集する', edit_admin_diary_book_diary_path(@diary_book,@diary) %>&ensp;<%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_book) %>&ensp;<%= link_to '日記一覧へ', admin_diary_book_diaries_path(@diary_book) %></p>
+        <p><%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_book) %>&ensp;<%= link_to '日記一覧へ', admin_diary_book_diaries_path(@diary_book) %></p>
 
 
 

@@ -1,14 +1,13 @@
 class Public::DiariesController < ApplicationController
   before_action :authenticate_customer!
+  before_action :set_diary_book, only: [:new, :create,:show,:edit,:destroy,:update,:index]
+
 
   def new
-    #binding.pry
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary =Diary.new
+    @diary = Diary.new
   end
 
   def create
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
     @diary = Diary.new(diary_params)
 
     @diarys = @diary_book.diaries
@@ -26,34 +25,26 @@ class Public::DiariesController < ApplicationController
 
 
   def index
-    @diary_books = current_customer.diary_books.find(params[:diary_book_id])
-    #@diary_books = current_customer.diary_books.where(:id => params[:diary_book_id]).first
-    @diaries = @diary_books.diaries
-
+    @diaries = @diary_book.diaries
   end
 
   def show
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary =@diary_book.diaries.find(params[:id])
+    @diary = @diary_book.diaries.find(params[:id])
   end
 
   def edit
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary =@diary_book.diaries.find(params[:id])
+    @diary = @diary_book.diaries.find(params[:id])
   end
 
   def destroy
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary =@diary_book.diaries.find(params[:id])
+    @diary = @diary_book.diaries.find(params[:id])
     @diary.destroy
     flash[:notice] = "日記を削除しました。"
     redirect_to diary_book_diaries_path(@diary_book)
   end
 
   def update
-    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
-    @diary =@diary_book.diaries.find(params[:id])
-
+    @diary = @diary_book.diaries.find(params[:id])
     if params[:diary][:image_ids]
        params[:diary][:image_ids].each do |image_id|
         image = @diary.diary_images.find(image_id)
@@ -68,9 +59,16 @@ class Public::DiariesController < ApplicationController
     end
   end
 
-    private
-    def diary_params
-      params.require(:diary).permit(:start_time,:status,:body,:temperature,:weather,diary_images: [])
-    end
+
+  private
+
+
+  def set_diary_book
+    @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+  end
+
+  def diary_params
+    params.require(:diary).permit(:start_time,:status,:body,:temperature,:weather,diary_images: [])
+  end
 end
 
