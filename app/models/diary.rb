@@ -14,6 +14,11 @@ class Diary < ApplicationRecord
        where(start_time: Time.zone.parse(date.to_s), status: true,status_admin: false).count
     end
 
+    def self.count_by_date_admin(date)
+       where(start_time: Time.zone.parse(date.to_s)).count
+    end
+
+
   private
 
   def image_type

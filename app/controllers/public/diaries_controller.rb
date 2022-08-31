@@ -1,6 +1,6 @@
 class Public::DiariesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_diary_book, only: [:new, :create,:show,:edit,:destroy,:update,:index]
+  before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update, :index]
 
 
   def new
@@ -22,7 +22,6 @@ class Public::DiariesController < ApplicationController
       render :new
     end
   end
-
 
   def index
     @diaries = @diary_book.diaries

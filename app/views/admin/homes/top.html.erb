@@ -1,0 +1,30 @@
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl">みんなの日記</h2>
+
+      <%= month_calendar events: @diaries do |date, diaries| %>
+        <%= link_to date.day,admin_date_path(date: date) %></br>
+          <% unless Diary.count_by_date_admin(date) == 0 %>
+            全<%= Diary.count_by_date_admin(date) %>件</br>
+            日記の公開<%= Diary.count_by_date(date) %>件
+          <% end %>
+        <% diaries.each do |diary| %>
+        <div>
+          <% if diary.diary_book.status == true && diary.diary_book.status_admin == false %>
+            <% if diary.status == true && diary.status_admin == false %>
+             <%= diary.diary_book.title %>
+             <%= diary.diary_book.customer.name %>さん
+            <% end %>
+          <% end %>
+        </div>
+        <% end %>
+      <% end %>
+
+
+
+</div>
+
+</div>

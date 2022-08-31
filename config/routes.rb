@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+
 devise_for :customers,controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions',
@@ -12,6 +13,9 @@ devise_for :customers,controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+
+  get 'admin'=>"admin/homes#top"
+  get 'admin/calendar_diaries_date' =>'admin/homes#filter_by_date', as: "admin_date"
 
   namespace :admin do
   resources:customers,only:[:edit,:show,:index,:update]
