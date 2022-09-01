@@ -33,10 +33,13 @@
           <tr>
             <td colspan="2"><%= link_to "基本情報編集をする", edit_admin_customer_path(@customer), class: "btn btn-success ml2" %></td>
           </tr>
+          <tr>
+            <td colspan="2"><%= link_to "このユーザの日記一覧をみる",admin_customer_diary_books_path(@customer) %></td>
+          </tr>
         </tbody>
       </table>
 
-    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧へ</h2>
+    <h2 class="section-ttl">日記帳の詳細を見る</h2>
 
 
       <% if @diary_books.present? %>
@@ -50,7 +53,7 @@
       <% end %>
 
 
-<%= link_to "このユーザの日記一覧をみる",admin_customer_diary_books_path(@customer) %>
+
 </div>
 
 </div>
