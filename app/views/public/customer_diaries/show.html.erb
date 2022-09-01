@@ -38,7 +38,7 @@
                    <a href="<%= url_for(diary_image) %>">
                     <%#= image_tag diary_image.variant(resize_to_limit: [500, 200]).processed %>
                     <%#= image_tag diary_image.variant(resize: '500x200').processed %>
-                    <%= image_tag diary_image.representation(resize_to_limit: [500, 200]).processed %>
+                    <%= image_tag diary_image.representation(resize_to_limit: [100, 50]).processed %>
                   <% end %>
               <% else %>
                   画像がありません
@@ -68,7 +68,7 @@
         </tbody>
         </table>
 
-
+<%= link_to "このユーザの他の日記をみる", customer_path(@diary.diary_book.customer.id) %>
 
 
 

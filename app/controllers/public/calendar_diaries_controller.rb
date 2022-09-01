@@ -2,7 +2,7 @@ class Public::CalendarDiariesController < ApplicationController
     before_action :authenticate_customer!,except: [:index]
 
   def index
-    @diaries = Diary.all
+    @diaries = Diary.where(status_admin: false,status: true).joins(:diary_book).where(status_admin: false,status: true)
   end
 
   def filter_by_date

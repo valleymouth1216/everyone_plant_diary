@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
        redirect_to my_page_path
     else
       @customer=Customer.find(params[:id])
-      @customer_diary_booKs=@customer.diary_books
+      @customer_diary_booKs=@customer.diary_books.where(status_admin: false,status: true)
     end
   end
 
