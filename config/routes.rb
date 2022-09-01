@@ -18,8 +18,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get 'admin/calendar_diaries_date' =>'admin/homes#filter_by_date', as: "admin_date"
 
   namespace :admin do
-  resources:customers,only:[:edit,:show,:index,:update]
-  resources :diary_books,only:[:index,:show,:update] do
+  resources:customers,only:[:edit,:show,:index,:update] do
+   resources :diary_books,only:[:index]
+   end
+  resources :diary_books,only:[:show,:update] do
    resources :diaries,only:[:show,:update,:index]
   end
   end

@@ -4,6 +4,10 @@ class Admin::DiaryBooksController < ApplicationController
   def index
     @customer=Customer.find(params[:customer_id])
     @diary_books =@customer.diary_books
+    if params[:diary_book].present?
+      @diary_book =@customer.diary_books.find(params[:diary_book])
+      @diaries= @diary_book.diaries
+    end
   end
 
   def show
@@ -13,12 +17,13 @@ class Admin::DiaryBooksController < ApplicationController
   def update
     @diary_book = DiaryBook.find(params[:id])
       if @diary_book.update(diary_book_params)
-      flash[:notice] = "日記帳を更新しました。"
+      flash[:notice] = "日記帳の公開ステータスを更新しました。"
       redirect_to admin_diary_book_path(@diary_book)
       else
       render :edit
       end
   end
+
 
   private
     def diary_book_params

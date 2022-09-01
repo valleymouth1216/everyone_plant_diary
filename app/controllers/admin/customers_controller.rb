@@ -7,7 +7,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer =Customer.find(params[:id])
-        @diary_books =@customer.diary_books
+    @diary_books =@customer.diary_books
 
   end
 
@@ -26,7 +26,9 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
+
   private
+
 
   def customer_params
     params.require(:customer).permit(:email,:name,:profile_image,:is_deleted)

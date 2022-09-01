@@ -1,21 +1,64 @@
 <div class='container'>
 
-<div class="content">
+  <div class="row mt-5">
 
-
-    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2>
-
-      <% if @diary_books.present? %>
+    <div class='mb-5 col-md-2' >
+      <table class="table" style="border:2px solid silver">
+        <thead>
+          <tr><th><%= @customer.name %>さんの日記帳一覧</th></tr>
+        </thead>
+        <tbody style="border-bottom: 1px solid silver;">
         <% @diary_books.each do |diary_book| %>
-          <div class="card col-md-3">
-            <p><%= link_to diary_book.title,admin_customer_diary_book_path(@customer,diary_book) %></p>
-          </div>
+          <tr>
+              <% if diary_book.id.present? %>
+            <td>
+              <%= link_to diary_book.title, admin_customer_diary_books_path(diary_book: diary_book.id), class: "text-secondary" %>
+              <% end %>
+            </td>
+            <% end %>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+
+<% if @diary_book.present? %>
+
+    <div class='col-md-10'>
+      <h1 class="mb-3"><%= @diary_book.title %>の日記</h1>
+
+
+        <%= month_calendar events: @diaries do |date, diaries| %>
+          <%= date.day %>
+            <% diaries.each do |diary| %>
+            <div>
+              <%# if diary.status? %>
+              <% if diary.diary_images.attached? %>
+                <%= link_to admin_diary_book_diary_path(@diary_book,diary) do %>
+                  <%= image_tag diary.diary_images[0].representation(resize_to_limit: [200, 180]).processed, class: "review-img"%>
+                <% end %>
+              <% else %>
+                <%= link_to admin_diary_book_diary_path(@diary_book,diary) do %>
+                  <%= diary.body.truncate(10, omission: '...続き') %>
+        　       <% end %></br>
+                <%#= link_to '日記を編集する', edit_diary_book_diary_path(@diary_books,diary) %>
+               <%#= link_to "削除", diary_book_diary_path(@diary_books,diary), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+              <% end %>
+            </div>
+            <% end %>
         <% end %>
-      <% else %>
-        <h3>日記帳がありません。</h3>
-      <% end %>
+    </div>
+ <% else %>
+<p>日記帳を選択してください</p>
+        <%#= month_calendar events: @diaries do |date, diaries| %>
+          <%#= date.day %>
+            <%# diaries.each do |diary| %>
+            <div>
+            <%#= diary.diary_book.title %>
+            </div>
+            <%# end %>
+        <%# end %>
+ <% end %>
 
-
-</div>
+  </div>
 
 </div>
