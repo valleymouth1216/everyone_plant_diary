@@ -33,9 +33,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root 'homes#top'
-    get 'my_diary' =>"my_diaries#my_diary"
-    resources :diary_books do
-     resources :diaries
+    get 'diary_books/diaries' =>"diaries#index"
+    resources :diary_books  do
+     resources :diaries,only:[:edit,:show,:destroy,:update,:new,:create,]
     end
     get 'about'=>"homes#about"
     get 'customers/my_page' => 'customers#my_page', as: 'my_page'

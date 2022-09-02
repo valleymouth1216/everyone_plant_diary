@@ -1,6 +1,6 @@
 class Public::DiariesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update, :index]
+  before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update]
 
 
   def new
@@ -17,14 +17,23 @@ class Public::DiariesController < ApplicationController
 
     if @diary.save
       flash[:notice] = "日記を作成しました。"
-      redirect_to diary_book_diaries_path(@diary_book)
+      redirect_to diary_book_diary_path(@diary_book,@diary)
     else
       render :new
     end
   end
 
   def index
-    @diaries = @diary_book.diaries
+    @diary_books=current_customer.diary_books
+    #@diaries= Diary.all
+    #@diaries= current_customer.diaries
+    #@diary= current_customer.diary
+       # binding.pry
+    if params[:diary_book].present?
+      @diary_book =current_customer.diary_books.find(params[:diary_book])
+      @diaries= @diary_book.diaries
+    end
+
   end
 
   def show
@@ -37,9 +46,10 @@ class Public::DiariesController < ApplicationController
 
   def destroy
     @diary = @diary_book.diaries.find(params[:id])
+    @diary_redirect = @diary_book.diaries.find(params[:id])
     @diary.destroy
     flash[:notice] = "日記を削除しました。"
-    redirect_to diary_book_diaries_path(@diary_book)
+    redirect_to diary_books_diaries_path(diary_book: @diary_redirect.diary_book.id)
   end
 
   def update
@@ -52,7 +62,7 @@ class Public::DiariesController < ApplicationController
     end
     if @diary.update(diary_params)
         flash[:notice] = "日記を更新しました。"
-        redirect_to diary_book_diaries_path(@diary_book)
+        redirect_to  diary_book_diary_path(@diary_book,@diary)
     else
         render :edit
     end
