@@ -16,7 +16,7 @@
           </tr>
         </tbody>
         </table>
-      <p><%= link_to "日記を見る",admin_diary_book_diaries_path(@diary_book) %></p>
+      <p><%= link_to "日記を見る",admin_diary_book_diary_dates_path(@diary_book) %></p>
 </div>
 
 <div class='content'>
@@ -46,15 +46,15 @@
           </tr>
           <tr>
             <td>管理者側の日記の公開設定</td>
-            <td><% if @diary_book.status_admin? %>公開しない<% else %>公開する<% end %></td>
+            <td><% if @diary_book.status_admin? %>公開する<% else %>公開しない<% end %></td>
           </tr>
           <tr>
             <td>管理者側の日の公開設定</td>
             <td>
               <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
                 <%= render 'layouts/error_messages', resource: @diary_book %>
-                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開する', value: false %>
-                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開しない', value: true %>
+                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
+                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
                 <%= f.submit '更新する', class: "btn btn-success ml2"  %>
               <% end %>
             </td>

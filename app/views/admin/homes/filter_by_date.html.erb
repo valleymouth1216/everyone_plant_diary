@@ -5,20 +5,20 @@
 
     <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
 
-      <% @diaries.each do |diary|%>
+      <% @diary_dates.each do |diary_date|%>
         <div>
           <table border="0">
             <tr>
-              <td><%= image_tag diary.diary_book.customer.get_profile_image(100,100) %></td>
+              <td><%= image_tag diary_date.diary_book.customer.get_profile_image(100,100) %></td>
               <td>名前:</td>
-              <td><%= link_to diary.diary_book.customer.name,admin_customer_path(diary.diary_book.customer.id) %>さん</td>
+              <td><%= link_to diary_date.diary_book.customer.name,admin_customer_path(diary_date.diary_book.customer.id) %>さん</td>
               <td>&emsp;</td>
               <td>日記名:</td>
-              <td><%= link_to diary.diary_book.title,admin_diary_book_diary_path(diary.diary_book.id,diary) %></td>
+              <td><%= link_to diary_date.diary_book.title,admin_diary_book_diary_date_path(diary_date.diary_book.id,diary_date) %></td>
               <td>&emsp;</td>
               <td>日記帳の公開ステータス:</td>
               <td>
-                <% if diary.diary_book.status == true && diary.diary_book.status_admin == false %>
+                <% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true %>
                 公開
                 <% else %>
                 非公開
@@ -27,7 +27,7 @@
               <td>&emsp;</td>
               <td>日記の公開ステータス:</td>
               <td>
-                <% if diary.status == true && diary.status_admin == false %>
+                <% if diary_date.status == true && diary_date.status_admin == true %>
                 公開
                 <% else %>
                 非公開

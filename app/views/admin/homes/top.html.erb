@@ -5,18 +5,18 @@
 
     <h2 class="section-ttl">みんなの日記</h2>
 
-      <%= month_calendar events: @diaries do |date, diaries| %>
+      <%= month_calendar events: @diary_dates do |date, diary_dates| %>
         <%= link_to date.day,admin_date_path(date: date) %></br>
-          <% unless Diary.count_by_date_admin(date) == 0 %>
-            全<%= Diary.count_by_date_admin(date) %>件</br>
-            日記の公開<%= Diary.count_by_date(date) %>件
+          <% unless DiaryDate.count_by_date_admin(date) == 0 %>
+            全<%= DiaryDate.count_by_date_admin(date) %>件</br>
+            日記の公開<%= DiaryDate.count_by_date(date) %>件
           <% end %>
-        <% diaries.each do |diary| %>
+        <% diary_dates.each do |diary_date| %>
         <div>
-          <% if diary.diary_book.status == true && diary.diary_book.status_admin == false %>
-            <% if diary.status == true && diary.status_admin == false %>
-             <%= diary.diary_book.title %>
-             <%= diary.diary_book.customer.name %>さん
+          <% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == false %>
+            <% if diary_date.status == true && diary_date.status_admin == false %>
+             <%= diary_date.diary_book.title %>
+             <%= diary_date.diary_book.customer.name %>さん
             <% end %>
           <% end %>
         </div>
