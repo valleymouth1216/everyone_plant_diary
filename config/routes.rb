@@ -47,7 +47,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'calendar_diaries' => 'calendar_diaries#index'
     get 'calendar_diaries_date' =>'calendar_diaries#filter_by_date', as: "date"
     resources :customers,only:[:index,:show] do
-     resources:customer_diary_books,only:[:show,:index]
+     resources:customer_diary_books,only:[:show,:index] do
+      resources :diary_comments, only: [:create,:destroy]
+      end
     end
 
 

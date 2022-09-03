@@ -5,6 +5,10 @@
 
     <h2 class="section-ttl"><%= @diary_book.title %>の日記</h2>
 
+    <% unless @diary_date.status_admin? %>
+      <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
+     <% end %>
+
       <% @diary_book.tags.each do |tag| %>
         ▶<%= tag.name %>
       <% end %>
@@ -72,6 +76,29 @@
         <%= link_to '日記一覧へ', diary_books_diaries_path(diary_book: @diary_book.id) %></p>
 <%= link_to "削除", diary_book_diary_date_path(@diary_book,@diary_date), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
 
-
+      <% if @diary_date.diary_comments.present? %>
+        <table class="customer_info customer_form" border="1">
+          <thead>
+            <th colspan="2">コメント一覧(全<%= @diary_date.diary_comments.count %>件)</th>
+          </thead>
+          <tbody>
+            <% @diary_date.diary_comments.each do |diary_comment| %>
+            <tr>
+              <td colspan="2"><%= diary_comment.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag diary_comment.customer.get_profile_image(70,50) %></td>
+              <td><%= diary_comment.customer.name %>さんのコメント</td>
+            </tr>
+            <tr>
+              <td colspan="2"><%= diary_comment.comment %></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
 </div>
 </div>

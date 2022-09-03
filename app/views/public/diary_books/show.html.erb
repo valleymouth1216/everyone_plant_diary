@@ -20,6 +20,9 @@
       <p><%= link_to "この日記帳の日記をみる", diary_books_diaries_path(diary_book: @diary_book.id), class: "btn btn-success ml2" %></p>
 </div>
 
+    <% unless @diary_book.status_admin? %>
+      <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
+     <% end %>
 
 <div class='content'>
 

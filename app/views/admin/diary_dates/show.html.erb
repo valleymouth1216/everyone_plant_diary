@@ -83,6 +83,30 @@
 
 
 
+      <% if @diary_date.diary_comments.present? %>
+        <table class="customer_info customer_form" border="1">
+          <thead>
+            <th colspan="2">コメント一覧(全<%= @diary_date.diary_comments.count %>件)</th>
+          </thead>
+          <tbody>
+            <% @diary_date.diary_comments.each do |diary_comment| %>
+            <tr>
+              <td colspan="2"><%= diary_comment.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag diary_comment.customer.get_profile_image(70,50) %></td>
+              <td><%= diary_comment.customer.name %>さんのコメント</td>
+            </tr>
+            <tr>
+              <td colspan="2"><%= diary_comment.comment %></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
 
 </div>
 </div>

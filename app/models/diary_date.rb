@@ -1,8 +1,8 @@
 class DiaryDate < ApplicationRecord
-      belongs_to :diary_book
 
+    belongs_to :diary_book
     has_many_attached:diary_images
-
+    has_many :diary_comments, dependent: :destroy
     #has_one :customer, through: :diary_book
 
     enum weather: { not_set: 0, sunny: 1, cloudy: 2, rain: 3, snow: 4, typhoon: 5}

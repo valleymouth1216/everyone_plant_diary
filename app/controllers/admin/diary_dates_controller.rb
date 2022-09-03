@@ -14,7 +14,7 @@ class Admin::DiaryDatesController < ApplicationController
   def update
     @diary_date = @diary_book.diary_dates.find(params[:id])
 
-    if @diary_dates.update(diary_params)
+    if @diary_date.update(diary_params)
         flash[:notice] = "日記の公開ステータスを更新しました"
         redirect_to admin_diary_book_diary_date_path(@diary_book,@diary_date)
     else

@@ -1,0 +1,28 @@
+class Public::DiaryCommentsController < ApplicationController
+
+  def create
+   # binding.pry
+    @diary_date = DiaryDate.find(params[:customer_diary_book_id])
+    diary_comment = current_customer.diary_comments.new(diary_comment_params)
+    #binding.pry
+    diary_comment.diary_date_id = @diary_date.id
+    if diary_comment.save
+    redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+    else
+     redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+     flash[:notice] = "コメントを入力してください"
+    end
+  end
+
+  def destroy
+    DiaryComment.find(params[:id]).destroy
+    redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
+  end
+
+  private
+
+  def diary_comment_params
+    params.require(:diary_comment).permit(:comment)
+  end
+
+end
