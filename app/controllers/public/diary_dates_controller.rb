@@ -37,6 +37,7 @@ class Public::DiaryDatesController < ApplicationController
 
   def show
     @diary_date = @diary_book.diary_dates.find(params[:id])
+    @diary_comment = DiaryComment.new
   end
 
   def edit

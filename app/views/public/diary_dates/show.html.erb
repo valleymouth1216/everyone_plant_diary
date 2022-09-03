@@ -94,11 +94,22 @@
               <td colspan="2"><%= diary_comment.comment %></td>
             </tr>
             <tr>
-              <td></td>
+              <td>
+                <% if diary_comment.customer == current_customer %>
+                  <%= link_to "コメントを削除する", customer_customer_diary_book_diary_comment_path(@diary_book.customer_id,@diary_date.id, diary_comment), "data-confirm" => "本当にコメントを削除しますか？", method: :delete %>
+                <% end %>
+              </td>
             </tr>
             <% end %>
           </tbody>
         </table>
+      　<p>コメント欄</p>
+     　    <%= form_with model: @diary_comment,url: customer_customer_diary_book_diary_comments_path(@diary_book.customer_id,@diary_date.id) do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "コメントを返信する" %>
+          <% end %>
       <% end %>
+
+
 </div>
 </div>

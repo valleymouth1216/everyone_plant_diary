@@ -7,16 +7,30 @@ class Public::DiaryCommentsController < ApplicationController
     #binding.pry
     diary_comment.diary_date_id = @diary_date.id
     if diary_comment.save
-    redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+      if current_customer.id ==  @diary_date.diary_book.customer.id
+        redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+      else
+        redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+      end
     else
-     redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+      if current_customer.id == diary_comment.customer_id
+        redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+      else
+        redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+      end
      flash[:notice] = "コメントを入力してください"
     end
   end
 
   def destroy
+    @diary_date = DiaryDate.find(params[:customer_diary_book_id])
     DiaryComment.find(params[:id]).destroy
-    redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
+      if current_customer.id ==  @diary_date.diary_book.customer.id
+        redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+      else
+        redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
+      end
+
   end
 
   private
