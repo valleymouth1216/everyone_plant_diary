@@ -6,9 +6,9 @@
     <h2 class="section-ttl"><%= @diary_book.title %>日記の作成</h2>
 
 
-<%= form_with model: @diary,url: diary_book_diaries_path(@diary_book) do |f| %>
+<%= form_with model: @diary_date,url: diary_book_diary_dates_path(@diary_book) do |f| %>
 
-		    <%= render 'layouts/error_messages', resource: @diary %>
+		    <%= render 'layouts/error_messages', resource:  @diary_date %>
     <div class="form-group">
       <%= f.label :start_time,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
       <%= f.date_field :start_time , :value => Time.now.strftime('%Y-%m-%d') %>
@@ -37,7 +37,7 @@
 
     <div class="form-group">
       <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.select :weather, Diary.weathers.keys.map {|k| [I18n.t("enums.diary.weather.#{k}"), k]} %>
+      <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
     </div>
 
     <div class="form-group">

@@ -6,9 +6,9 @@
     <h2 class="section-ttl"><%= @diary_book.title %>日記の編集</h2>
 
 
-<%= form_with model: @diary,url: diary_book_diary_path(@diary_book,@diary), method: :patch  do |f| %>
+<%= form_with model: @diary_date,url: diary_book_diary_date_path(@diary_book,@diary_date), method: :patch  do |f| %>
 
-		    <%= render 'layouts/error_messages', resource: @diary %>
+		    <%= render 'layouts/error_messages', resource: @diary_date %>
     <div class="form-group">
       <%= f.label :start_time,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
       <%= f.date_field :start_time ,placeholder:"あさがお",class: "col-lg-5"  %>
@@ -36,15 +36,15 @@
       </div>
     <div class="form-group">
       <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.select :weather, Diary.weathers.keys.map {|k| [I18n.t("enums.diary.weather.#{k}"), k]} %>
+      <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
     </div>
 
     <div class="form-group">
       <%= f.label :diary_images, '画像' %>
       <%= f.file_field :diary_images, multiple: true,accept: 'image/jpeg, image/png' %>
-    <% if @diary.diary_images.attached? %>
+    <% if @diary_date.diary_images.attached? %>
        <p>現在登録されている画像（削除するものはチェックしてください）</p>
-       <% @diary.diary_images.each do |image| %>
+       <% @diary_date.diary_images.each do |image| %>
          <%= f.check_box :image_ids, {:multiple => true}, image.id, false %>
          <%= image_tag image.representation(resize_to_limit: [200, 180]).processed %> <br>
        <% end %>

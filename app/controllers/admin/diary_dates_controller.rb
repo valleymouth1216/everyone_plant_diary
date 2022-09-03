@@ -1,4 +1,4 @@
-class Admin::DiariesController < ApplicationController
+class Admin::DiaryDatesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_diary_book, only: [:show,:index,:update]
 

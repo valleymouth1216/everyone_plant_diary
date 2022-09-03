@@ -1,6 +1,6 @@
 ja:
   enums:
-    diary:
+    diary_date:
       weather:
         not_set: "未設定"
         sunny: "晴れ"
@@ -18,13 +18,13 @@ ja:
   activerecord:
     models:
       diary_book: "日記帳"
-      diary: "日記"
+      diary_date: "日記"
     attributes:
       diary_book:
         title: "タイトル"
         tag_ids: "タグ(1つ以上)"
-      diary:
-        date: "日付"
+      diary_date:
+        start_time: "日付"
         body: "内容"
     errors:
       messages:

@@ -22,7 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    resources :diary_books,only:[:index]
    end
   resources :diary_books,only:[:show,:update] do
-   resources :diaries,only:[:show,:update,:index]
+   resources :diary_dates,only:[:show,:update,:index]
   end
   end
 
@@ -33,9 +33,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root 'homes#top'
-    get 'my_diary' =>"my_diaries#my_diary"
-    resources :diary_books do
-     resources :diaries
+    get 'diary_books/diaries' =>"diary_dates#index"
+    resources :diary_books  do
+     resources :diary_dates,only:[:edit,:show,:destroy,:update,:new,:create,]
     end
     get 'about'=>"homes#about"
     get 'customers/my_page' => 'customers#my_page', as: 'my_page'
@@ -47,7 +47,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'calendar_diaries' => 'calendar_diaries#index'
     get 'calendar_diaries_date' =>'calendar_diaries#filter_by_date', as: "date"
     resources :customers,only:[:index,:show] do
-     resources:customer_diaries,only:[:show,:index]
+     resources:customer_diary_books,only:[:show,:index]
     end
 
 

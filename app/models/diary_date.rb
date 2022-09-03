@@ -1,5 +1,5 @@
-class Diary < ApplicationRecord
-    belongs_to :diary_book
+class DiaryDate < ApplicationRecord
+      belongs_to :diary_book
 
     has_many_attached:diary_images
 
@@ -11,7 +11,7 @@ class Diary < ApplicationRecord
     validates :body, presence: true
    # validate :image_type
     def self.count_by_date(date)
-       where(start_time: Time.zone.parse(date.to_s), status: true,status_admin: false).joins(:diary_book).where(status_admin: false,status: true).count
+       where(start_time: Time.zone.parse(date.to_s), status: true,status_admin: true).joins(:diary_book).where(status_admin: true,status: true).count
     end
 
     def self.count_by_date_admin(date)
@@ -29,5 +29,6 @@ class Diary < ApplicationRecord
       end
     end
   end
+
 
 end
