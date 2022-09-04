@@ -38,6 +38,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :diary_dates,only:[:edit,:show,:destroy,:update,:new,:create,]
     end
     get 'about'=>"homes#about"
+    get 'favorite_diary'   => 'favorites#index', as: 'favorite'
     get 'customers/my_page' => 'customers#my_page', as: 'my_page'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
@@ -49,6 +50,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :customers,only:[:index,:show] do
      resources:customer_diary_books,only:[:show,:index] do
       resources :diary_comments, only: [:create,:destroy]
+      resource :favorites, only: [:create, :destroy]
       end
     end
 

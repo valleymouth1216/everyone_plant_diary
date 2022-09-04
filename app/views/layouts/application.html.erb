@@ -56,13 +56,20 @@
                 会員一覧
               <% end %>
                 </li>
-              <!--   <span>&emsp;</span>  -->                <li>
+              <!--   <span>&emsp;</span>  -->
+              <li>
               <%= link_to my_page_path,:style =>"color:black;" do %>
                 マイページ
               <% end %>
                 </li>
               <!--   <span>&emsp;</span>  -->
-                <li>
+              <li>
+              <%= link_to favorite_path,:style =>"color:black;" do %>
+                いいねした日記
+              <% end %>
+                </li>
+              <!--   <span>&emsp;</span>  -->
+              <li>
               <%= link_to diary_books_path,:style =>"color:black;" do %>
                 日記帳
               <% end %>

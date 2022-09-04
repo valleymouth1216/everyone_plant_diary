@@ -1,0 +1,38 @@
+<div class='container'>
+
+<div class="content">
+
+
+    <h2 class="section-ttl">いいねした日記一覧</h2>
+
+<% if @favorites.present? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>投稿者名</th>
+      <th>日記帳名</th>
+      <th>日付</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
+        <td><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
+        <td><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+
+いいねした日記がありません。
+  <% end %>
+
+
+
+
+</div>
+</div>

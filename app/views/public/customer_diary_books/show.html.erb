@@ -111,6 +111,20 @@
       <% end %>
     </div>
 
+
+  <% if @diary_date.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to customer_customer_diary_book_favorites_path(@customer.id,@diary_date.id), method: :delete do %>
+        ♥<%= @diary_date.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to customer_customer_diary_book_favorites_path(@customer.id,@diary_date.id), method: :post do %>
+        ♡<%= @diary_date.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
 </div>
 
 </div>

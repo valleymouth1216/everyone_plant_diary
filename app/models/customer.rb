@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
   has_one_attached :profile_image
   has_many :diary_books, dependent: :destroy
   has_many :diary_comments, dependent: :destroy
-
+  has_many :favorites, dependent: :destroy
 
 
   def get_profile_image(width, height)

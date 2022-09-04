@@ -10,6 +10,7 @@ class Public::CustomerDiaryBooksController < ApplicationController
      @customer = Customer.find(params[:customer_id])
      @diary_book = @customer.diary_books.find(params[:diary_book])
      @diary_dates = @diary_book.diary_dates.where(status_admin: true,status: true)
+     redirect_to(customers_path) if current_customer.id == @diary_book.customer.id
      redirect_to calendar_diaries_path , notice: "この日記帳は非公開のため表示出来ません。" unless @diary_book.status_admin == true && @diary_book.status == true
     end
   end
