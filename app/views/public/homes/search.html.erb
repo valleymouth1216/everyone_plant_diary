@@ -1,0 +1,44 @@
+<section class="inner">
+  <h2 class="section-ttl">検索結果</h2>
+  <% if @result.first %> <!-- @result.exists?と同義 -->
+  	<% if @model == 'customer' %>
+      <table>
+        <thead>
+          <th></th>
+          <th>ユーザ名</th>
+        </thead>
+        <tbody>
+          <% @result.each do |customer| %>
+          <tr>
+            <td><%= image_tag customer.get_profile_image(100,100) %></td>
+            <td><%= link_to customer.name,customer_path(customer) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  	<% else %>
+      <table>
+        <thead>
+          <th>日記帳名</th>
+          <th>ユーザ名</th>
+          <th>作成日付</th>
+        </thead>
+        <tbody>
+          <% @result.each do |diary_book| %>
+          <tr>
+            <% if diary_book.customer_id==current_customer.id %>
+            <td><%=link_to diary_book.title,diary_books_diaries_path(diary_book: diary_book.id) %></td></td>
+            <% else %>
+            <td><%=link_to diary_book.title,customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) %></td>
+            <% end %>
+            <td><%= diary_book.customer.name %>さん</td>
+            <td><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  	<% end %>
+  <% else %>
+  	<h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+  <% end %>
+</section>

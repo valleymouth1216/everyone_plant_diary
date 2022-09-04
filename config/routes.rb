@@ -35,6 +35,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root 'homes#top'
+    get 'search' => 'homes#search', as: 'search'
     get 'diary_books/diaries' =>"diary_dates#index"
     resources :diary_books  do
      resources :diary_dates,only:[:edit,:show,:destroy,:update,:new,:create,]
