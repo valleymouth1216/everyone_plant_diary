@@ -101,7 +101,7 @@
               <td colspan="2"><%= diary_comment.comment %></td>
             </tr>
             <tr>
-              <td></td>
+              <td><%= link_to "コメントを削除する", admin_diary_book_diary_date_diary_comment_path(@diary_date.diary_book.id,@diary_date.id, diary_comment), "data-confirm" => "本当にコメントを削除しますか？", method: :delete %></td>
             </tr>
             <% end %>
           </tbody>
