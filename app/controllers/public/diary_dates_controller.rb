@@ -24,7 +24,7 @@ class Public::DiaryDatesController < ApplicationController
   end
 
   def index
-    @diary_books = current_customer.diary_books
+    @diary_books = current_customer.diary_books.page(params[:page]).per(10)
     #@diaries= Diary.all
     #@diaries= current_customer.diaries
     #@diary= current_customer.diary
@@ -32,6 +32,7 @@ class Public::DiaryDatesController < ApplicationController
     if params[:diary_book].present?
       @diary_book =current_customer.diary_books.find(params[:diary_book])
       @diary_dates = @diary_book.diary_dates
+     @diary_date = @diary_book.diary_dates.order(:updated_at).last
     end
   end
 

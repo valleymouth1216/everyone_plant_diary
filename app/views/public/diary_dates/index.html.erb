@@ -17,6 +17,7 @@
             </td>
             <% end %>
           </tr>
+          <%= paginate @diary_books %>
           </tbody>
       </table>
     </div>
@@ -27,6 +28,12 @@
       <h1 class="mb-3"><%= @diary_book.title %>の日記</h1>
 
       <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success ml2" %>
+
+      <% if @diary_date.present? %>
+       <p>最新記録日付：<%= @diary_date.start_time.strftime('%Y/%m/%d') %></p>
+       <% else %>
+       <p>この日記帳は何も投稿されていません。</p>
+      <% end %>
 
         <%= month_calendar events: @diary_dates do |date, diary_dates| %>
           <%= date.day %>
