@@ -19,6 +19,11 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer =Customer.find(params[:id])
     if @customer.update(customer_params)
+      if @customer.is_deleted ==true
+         @customer.diary_comments.destroy_all
+         @customer.favorites.destroy_all
+         @customer.diary_books.update_all(status_admin: false)
+      end
     flash[:notice] = "登録情報を更新しました。"
     redirect_to admin_customer_path(@customer)
     else

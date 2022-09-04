@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @customers = Customer.all
+    @customers = Customer.where(is_deleted: false)
   end
 
   def show
@@ -35,9 +35,17 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
     @customer = current_customer
-    @diary_booKs = current_customer.diary_books
-    @diary_booKs.update_all(status_admin: false)
+    @customer.diary_comments.destroy_all
+    @customer.favorites.destroy_all
     @customer.update(is_deleted: true)
+    @diary_books =  @customer.diary_books
+    #@diary_books.diary_dates.each do |diary_dates|
+    #diary_dates.update_all(status_admin: false)
+    #end
+    @diary_books.update_all(status_admin: false)
+
+
+
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path

@@ -7,7 +7,7 @@
 
     <% unless @diary_date.status_admin? %>
       <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
-     <% end %>
+    <% end %>
 
       <% @diary_book.tags.each do |tag| %>
         ▶<%= tag.name %>
