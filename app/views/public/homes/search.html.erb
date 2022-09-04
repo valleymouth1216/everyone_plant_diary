@@ -31,7 +31,7 @@
             <% else %>
             <td><%=link_to diary_book.title,customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) %></td>
             <% end %>
-            <td><%= diary_book.customer.name %>さん</td>
+            <td><%= link_to diary_book.customer.name,customer_path(diary_book.customer_id)%>さん</td>
             <td><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <% end %>
