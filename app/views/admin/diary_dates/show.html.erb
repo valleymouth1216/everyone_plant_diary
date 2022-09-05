@@ -79,7 +79,7 @@
 
 
         <p><%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_book) %>&ensp;
-           <%= link_to '日記一覧へ', admin_diary_book_diary_dates_path(@diary_book) %></p>
+           <%= link_to '日記一覧へ', admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id) %></p>
 
 
 

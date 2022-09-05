@@ -22,7 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    resources :diary_books,only:[:index]
    end
   resources :diary_books,only:[:show,:update] do
-   resources :diary_dates,only:[:show,:update,:index] do
+   resources :diary_dates,only:[:show,:update] do
     resources :diary_comments, only: [:destroy]
     end
    end

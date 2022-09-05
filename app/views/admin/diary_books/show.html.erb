@@ -16,7 +16,7 @@
           </tr>
         </tbody>
         </table>
-      <p><%= link_to "日記を見る",admin_diary_book_diary_dates_path(@diary_book) %></p>
+      <p><%= link_to "日記を見る",admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id) %></p>
 </div>
 
 <div class='content'>

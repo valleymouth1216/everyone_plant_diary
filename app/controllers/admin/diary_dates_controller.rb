@@ -1,10 +1,6 @@
 class Admin::DiaryDatesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_diary_book, only: [:show,:index,:update]
-
-  def index
-    @diary_dates = @diary_book.diary_dates
-  end
+  before_action :set_diary_book, only: [:show,:update]
 
   def show
     @diary_date = @diary_book.diary_dates.find(params[:id])
