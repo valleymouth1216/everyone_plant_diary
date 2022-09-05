@@ -38,14 +38,11 @@ class Public::CustomersController < ApplicationController
     @customer.diary_comments.destroy_all
     @customer.favorites.destroy_all
     @customer.update(is_deleted: true)
-    @diary_books =  @customer.diary_books
-    #@diary_books.diary_dates.each do |diary_dates|
-    #diary_dates.update_all(status_admin: false)
-    #end
-    @diary_books.update_all(status_admin: false)
-
-
-
+    diary_books =  @customer.diary_books.where(customer_id: current_customer.id)
+    diary_books.each do |diary_book|
+     diary_book.update(status_admin: false)
+     diary_book.diary_dates.update_all(status_admin: false)
+    end
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path

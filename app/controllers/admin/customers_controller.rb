@@ -22,7 +22,11 @@ class Admin::CustomersController < ApplicationController
       if @customer.is_deleted ==true
          @customer.diary_comments.destroy_all
          @customer.favorites.destroy_all
-         @customer.diary_books.update_all(status_admin: false)
+         diary_books =  @customer.diary_books.where(customer_id: @customer.id)
+         diary_books.each do |diary_book|
+           diary_book.update(status_admin: false)
+           diary_book.diary_dates.update_all(status_admin: false)
+         end
       end
     flash[:notice] = "登録情報を更新しました。"
     redirect_to admin_customer_path(@customer)
