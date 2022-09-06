@@ -5,11 +5,20 @@
 
     <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
 
+
+ <h3>並べ替え</h3>
+ <%= form_tag({controller:"calendar_diaries",action:"filter_by_date"}, method: :get) do %>
+   <%= select_tag("search", options_for_select([['---並べ替え選択---', ''], ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost']])) %>
+   <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
+   <%= submit_tag '並べ替える'  %>
+ <% end %>
+
       <% @diary_dates.each do |diary_date|%>
         <div>
           <table border="0">
             <tr>
               <td><%= image_tag diary_date.diary_book.customer.get_profile_image(100,100) %></td>
+              <td>作成日<%= diary_date.created_at.strftime('%Y/%m/%d') %></td>
               <td>名前:</td>
               <td><%= link_to diary_date.diary_book.customer.name,customer_path(diary_date.diary_book.customer.id) %>さん</td>
               <td>&emsp;</td>

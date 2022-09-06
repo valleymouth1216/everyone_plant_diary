@@ -5,6 +5,7 @@
 
     <h2 class="section-ttl">みんなの日記</h2>
 
+ 
       <%= month_calendar events: @diary_dates do |date, diary_dates| %>
         <%= link_to date.day , date_path(date: date) %></br>
           <% unless DiaryDate.count_by_date(date) == 0 %>
