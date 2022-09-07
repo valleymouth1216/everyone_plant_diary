@@ -7,14 +7,14 @@
 
       <%= month_calendar events: @diary_dates do |date, diary_dates| %>
         <%= link_to date.day,admin_date_path(date: date) %></br>
-          <% unless DiaryDate.count_by_date_admin(date) == 0 %>
-            全<%= DiaryDate.count_by_date_admin(date) %>件</br>
-            日記の公開<%= DiaryDate.count_by_date(date) %>件
+          <% unless diary_dates.length == 0 %>
+            全<%= diary_dates.length %>件</br>
+            公開中の日記<%= DiaryDate.count_by_date(date).count %>件
           <% end %>
         <% diary_dates.each do |diary_date| %>
         <div>
-          <% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == false %>
-            <% if diary_date.status == true && diary_date.status_admin == false %>
+          <% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true %>
+            <% if diary_date.status == true && diary_date.status_admin == true %>
              <%= diary_date.diary_book.title %>
              <%= diary_date.diary_book.customer.name %>さん
             <% end %>
