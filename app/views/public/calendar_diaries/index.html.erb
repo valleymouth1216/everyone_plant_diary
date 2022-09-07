@@ -5,18 +5,16 @@
 
     <h2 class="section-ttl">みんなの日記</h2>
 
- 
+
       <%= month_calendar events: @diary_dates do |date, diary_dates| %>
         <%= link_to date.day , date_path(date: date) %></br>
-          <% unless DiaryDate.count_by_date(date) == 0 %>
-            <%= DiaryDate.count_by_date(date) %>件
+          <% unless diary_dates.length == 0 %>
+            <%= diary_dates.length %>件
           <% end %>
         <% diary_dates.each do |diary_date| %>
         <div>
-          <% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true  %>
              <%= diary_date.diary_book.title %>
              <%= diary_date.diary_book.customer.name %>さん
-          <% end %>
         </div>
         <% end %>
       <% end %>
