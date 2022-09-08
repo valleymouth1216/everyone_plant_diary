@@ -17,6 +17,9 @@ class Public::CalendarDiariesController < ApplicationController
 
   if params[:search] == 'oldpost'
     @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC")
+  elsif params[:search] == 'favoritepost'
+    @diary_dates = DiaryDate.joins(:diary_book,:favorite).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("count(diary_date_id) ASC")
+    #@diary_dates = DiaryDate.find(Favorite.group(:diary_date_id).order("count(diary_date_id) ASC").pluck(:diary_date_id))
   else
     @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC")
   end

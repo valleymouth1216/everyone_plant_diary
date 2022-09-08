@@ -1,6 +1,7 @@
 <section class="inner">
   <h2 class="section-ttl">検索結果</h2>
   <% if @result.first %> <!-- @result.exists?と同義 -->
+  <p>検索結果:<%= @result.count %>件</p>
   	<% if @model == 'customer' %>
       <table>
         <thead>
