@@ -15,6 +15,10 @@ ja:
       previous: Previous<i class="fas fa-angle-left"></i>
       next: Next<i class="fas fa-angle-right"></i>
       truncate: "..."
+    newdate: '最新の日付順'
+    olddate: '古い日付順'
+    newpost: '最新の投稿順'
+    oldpost: '古い投稿順'
   activerecord:
     models:
       diary_book: "日記帳"

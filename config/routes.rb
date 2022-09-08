@@ -49,6 +49,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     put 'customers/information' => 'customers#update'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     get 'calendar_diaries' => 'calendar_diaries#index'
+    get 'search_date' => 'calendar_diaries#search_date', as: 'search_date'
     get 'calendar_diaries_date' =>'calendar_diaries#filter_by_date', as: "date"
     resources :customers,only:[:index,:show] do
      resources:customer_diary_books,only:[:show,:index] do
