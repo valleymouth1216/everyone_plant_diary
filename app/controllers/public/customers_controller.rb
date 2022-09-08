@@ -40,8 +40,8 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     diary_books =  @customer.diary_books.where(customer_id: current_customer.id)
     diary_books.each do |diary_book|
-     diary_book.update(status_admin: false)
-     diary_book.diary_dates.update_all(status_admin: false)
+     diary_book.update(status: false)
+     diary_book.diary_dates.update_all(status: false)
     end
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
