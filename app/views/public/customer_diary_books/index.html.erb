@@ -46,7 +46,6 @@
           <%= date.day %>
             <% diary_dates.each do |diary_date| %>
             <div>
-              <%# if diary.status? %>
               <% if diary_date.diary_images.attached? %>
                 <%= link_to customer_customer_diary_book_path(@customer,diary_date) do %>
                   <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [200, 180]).processed, class: "review-img"%>
@@ -62,17 +61,9 @@
             <% end %>
         <% end %>
     </div>
- <% else %>
-<p>日記帳を選択してください</p>
-        <%#= month_calendar events: @diaries do |date, diaries| %>
-          <%#= date.day %>
-            <%# diaries.each do |diary| %>
-            <div>
-            <%#= diary.diary_book.title %>
-            </div>
-            <%# end %>
-        <%# end %>
- <% end %>
+  <% else %>
+    <p>日記帳を選択してください</p>
+  <% end %>
 
   </div>
 

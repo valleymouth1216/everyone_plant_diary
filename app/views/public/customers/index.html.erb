@@ -16,7 +16,11 @@
         </table>
       <% end %>
       <% end %>
-
+    <% if @customers.present? %>
+      <%= paginate @customers %>
+    <% else %>
+      <p>ユーザが登録されていません。</p>
+    <% end %>
 
 </div>
 

@@ -5,17 +5,17 @@
 
     <h2 class="section-ttl">日記帳一覧</h2>
 
-<%= link_to "日記帳作成する",new_diary_book_path %>
-       <% if @diary_books.present? %>
+      <%= link_to "日記帳作成する",new_diary_book_path %>
+      <% if @diary_books.present? %>
         <% @diary_books.each do |diary_book| %>
           <div class="card col-md-3">
             <p><%= link_to diary_book.title,diary_book_path(diary_book.id) %></p>
           </div>
         <% end %>
-
-  <% else %>
-<h3>日記帳がありません。</h3>
-<% end %>
+        <%= paginate @diary_books %>
+      <% else %>
+        <h3>日記帳がありません。</h3>
+      <% end %>
 
 
 </div>

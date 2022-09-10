@@ -12,19 +12,19 @@
           </tr>
         </table>
 
-<%= link_to "#{@customer.name}さん日記へ",customer_customer_diary_books_path(@customer)%>
+        <%= link_to "#{@customer.name}さん日記へ",customer_customer_diary_books_path(@customer)%>
 
        <% if @customer_diary_booKs.present? %>
-       <p>日記一覧</p>
+        <p>日記一覧</p>
         <% @customer_diary_booKs.each do |diary_book| %>
           <div class="card col-md-3">
             <p><%= link_to diary_book.title,customer_customer_diary_books_path(@customer,diary_book: diary_book.id) %></p>
           </div>
         <% end %>
-
-  <% else %>
-<h3>日記帳がありません。</h3>
-<% end %>
+        <%= paginate @customer_diary_booKs %>
+      <% else %>
+        <h3>日記帳がありません。</h3>
+      <% end %>
 
 </div>
 

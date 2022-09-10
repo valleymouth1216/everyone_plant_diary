@@ -5,39 +5,37 @@
 
     <h2 class="section-ttl">いいねした日記一覧</h2>
 
-<% if @favorites.present? %>
+      <% if @favorites.present? %>
 
- <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
- <%= form_tag({controller:"favorites",action:"index"}, method: :get) do %>
-   <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
-   <%= submit_tag '並べ替える'  %>
- <% end %>
+        <h3>全<%=@favorites_count.count %>件</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>投稿者名</th>
-      <th>日記帳名</th>
-      <th>日付</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
-        <td><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
-        <td><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% else %>
-
-いいねした日記がありません。
-  <% end %>
-
-
+        <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
+          <%= form_tag({controller:"favorites",action:"index"}, method: :get) do %>
+            <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
+            <%= submit_tag '並べ替える'  %>
+          <% end %>
+        <table>
+          <thead>
+            <tr>
+              <th>投稿者名</th>
+              <th>日記帳名</th>
+              <th>日付</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @favorites.each do |favorite| %>
+            <tr>
+              <td><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
+              <td><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
+              <td><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= paginate @favorites %>
+      <% else %>
+        <p><いいねした日記がありません。</p>
+      <% end %>
 
 
 </div>

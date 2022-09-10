@@ -29,9 +29,13 @@
         <% end %>
         </tbody>
       </table>
+    <% if @customers.present? %>
+      <%= paginate @customers %>
+    <% else %>
+      <p>ユーザが登録されていません。</p>
+    <% end %>
 
 
-<%= paginate @customers %>
 </div>
 
 </div>

@@ -14,13 +14,13 @@ class Public::CalendarDiariesController < ApplicationController
     #binding.pry
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
     if params[:order] == 'oldpost'
-      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC")
+      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
     elsif params[:order] == 'favoritepost'
-      @diary_dates = DiaryDate.joins(:diary_book,:favorite).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("count(diary_date_id) ASC")
-      #@diary_dates = DiaryDate.find(Favorite.group(:diary_date_id).order("count(diary_date_id) ASC").pluck(:diary_date_id))
+      @diary_dates = DiaryDate.joins(:diary_book,:favorite).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("count(diary_date_id) ASC").page(params[:page]).per(10)
     else
-      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC")
+      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
     end
+      @diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true})
       @order = params[:order]
   end
 
@@ -32,19 +32,20 @@ class Public::CalendarDiariesController < ApplicationController
      # binding.pry
       @start_date = params[:start_date]
       @end_date = params[:end_date]
-      @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC")
+      @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
       #@search_diary_date = DiaryDate.joins(:diary_book).where(start_time: start_time..end_time).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC")
 
       @order_diary_date = params[:order]
       if params[:order] == 'olddate'
-        @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time ASC")
+        @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time ASC").page(params[:page]).per(10)
       elsif params[:order] == 'newpost'
-        @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC")
+        @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
       elsif params[:order] == 'oldpost'
-        @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC")
+        @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
       else
-        @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC")
+        @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
       end
+      @search_diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true})
     end
   end
 

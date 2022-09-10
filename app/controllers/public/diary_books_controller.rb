@@ -20,7 +20,7 @@ class Public::DiaryBooksController < ApplicationController
   end
 
   def index
-     @diary_books = current_customer.diary_books
+     @diary_books = current_customer.diary_books.page(params[:page]).per(10)
      #@diary_books = current_customer.diary_books.includes(:customer)
   end
 

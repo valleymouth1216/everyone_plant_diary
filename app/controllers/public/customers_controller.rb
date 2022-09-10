@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @customers = Customer.where(is_deleted: false)
+    @customers = Customer.where(is_deleted: false).page(params[:page]).per(10)
   end
 
   def show
@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
        redirect_to my_page_path
     else
       @customer = Customer.find(params[:id])
-      @customer_diary_booKs = @customer.diary_books.where(status_admin: true,status: true)
+      @customer_diary_booKs = @customer.diary_books.where(status_admin: true,status: true).page(params[:page]).per(10)
     end
   end
 
