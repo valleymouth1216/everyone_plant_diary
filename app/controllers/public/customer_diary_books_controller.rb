@@ -12,7 +12,7 @@ class Public::CustomerDiaryBooksController < ApplicationController
      @diary_dates = @diary_book.diary_dates.where(status_admin: true,status: true)
      #binding.pry
      @diary_date = @diary_book.diary_dates.where(status_admin: true,status: true).order(:updated_at).last
-     redirect_to(customers_path) if current_customer.id == @diary_book.customer.id
+     redirect_to(diary_books_diaries_path(diary_book: @diary_book.id)) if current_customer.id == @diary_book.customer.id
      redirect_to calendar_diaries_path , notice: "この日記帳は非公開のため表示出来ません。" unless @diary_book.status_admin == true && @diary_book.status == true
     end
   end
@@ -23,7 +23,7 @@ class Public::CustomerDiaryBooksController < ApplicationController
     @diary_date = DiaryDate.find(params[:id])
     @diary_comment = DiaryComment.new
     #binding.pry
-    redirect_to(customers_path) if current_customer.id == @diary_date.diary_book.customer.id
+    redirect_to(diary_book_diary_date_path(@diary_date.diary_book,@diary_date)) if current_customer.id == @diary_date.diary_book.customer.id
     redirect_to calendar_diaries_path , notice: "この日記帳の日付の内容は非公開のため表示出来ません。" unless @diary_date.status_admin == true && @diary_date.status == true
   end
 
