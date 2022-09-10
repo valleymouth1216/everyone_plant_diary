@@ -1,0 +1,40 @@
+<div id="search_result">
+    <% if @search_diary_date.present? %>
+      <h3><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果全<%=@search_diary_dates_count.count %>件</h3>
+      <p><%#=@search_diary_dates_release_count.count %>件公開中</p>
+      <h3>並べ替え</h3><% if params[:order].present? %><%=@order_diary_date %>の順 <% end %>
+      <%= form_tag({controller:"homes",action:"search_date"}, method: :get) do %>
+        <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
+        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+        <%= submit_tag '並べ替える'  %>
+      <% end %>
+      <table>
+        <thead>
+          <th>日記帳名</th>
+          <th>ユーザ名</th>
+          <th>日付</th>
+          <th>公開・非公開</th>
+        </thead>
+        <tbody>
+          <% @search_diary_dates.each do |diary_date| %>
+          <tr>
+            <td><%= link_to diary_date.diary_book.title,admin_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id)%></td>
+            <td><%= link_to "#{diary_date.diary_book.customer.name}さん",admin_customer_path(diary_date.diary_book.customer.id) %></td>
+            <td><%= link_to diary_date.start_time.strftime('%Y/%m/%d'),admin_diary_book_diary_date_path(diary_date.diary_book,diary_date)%></td>
+            <td><% if diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true && diary_date.status == true && diary_date.status_admin == true%>
+                公開中
+                <% else %>
+                非公開
+                <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @search_diary_dates %>
+    <% else %>
+      <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
+    <% end %>
+    <%= link_to "みんなの日記へ戻る",root_path %>
+
+</div>

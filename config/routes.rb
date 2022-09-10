@@ -16,6 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   get 'admin'=>"admin/homes#top"
   get 'admin/calendar_diaries_date' =>'admin/homes#filter_by_date', as: "admin_date"
+  get 'admin/search_date' => 'admin/homes#search_date', as: 'admin_search_date'
 
   namespace :admin do
   resources:customers,only:[:edit,:show,:index,:update] do
