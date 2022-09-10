@@ -4,16 +4,18 @@ class Public::FavoritesController < ApplicationController
 
   def index
     #@favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at DESC")
-    if params[:search] == 'oldfavorite'
+
+    if params[:order] == 'oldfavorite'
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at ASC")
-    elsif params[:search] == 'newpost'
+    elsif params[:order] == 'newpost'
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("start_time DESC")
       #@diary_dates = DiaryDate.find(Favorite.group(:diary_date_id).order("count(diary_date_id) ASC").pluck(:diary_date_id))
-    elsif params[:search] == 'oldpost'
+    elsif params[:order] == 'oldpost'
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("start_time ASC")
     else
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at DESC")
     end
+    @order = params[:order]
   end
 
   def create

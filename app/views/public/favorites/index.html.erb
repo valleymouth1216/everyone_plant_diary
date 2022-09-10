@@ -7,9 +7,9 @@
 
 <% if @favorites.present? %>
 
- <h3>並べ替え</h3><% if params[:search].present? %><%=@search_result %>の順 <% end %>
+ <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
  <%= form_tag({controller:"favorites",action:"index"}, method: :get) do %>
-   <%= select_tag("search", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
+   <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
    <%= submit_tag '並べ替える'  %>
  <% end %>
 

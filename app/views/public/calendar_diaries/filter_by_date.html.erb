@@ -6,9 +6,9 @@
     <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
 
 
- <h3>並べ替え</h3>
+ <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
  <%= form_tag({controller:"calendar_diaries",action:"filter_by_date"}, method: :get) do %>
-   <%= select_tag("search", options_for_select([ ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost'], ['いいね投稿', 'favoritepost']])) %>
+   <%= select_tag("order", options_for_select([ ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost'], ['いいね投稿', 'favoritepost']])) %>
    <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
    <%= submit_tag '並べ替える'  %>
  <% end %>
