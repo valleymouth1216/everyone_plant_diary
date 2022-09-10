@@ -3,7 +3,7 @@ class Admin::DiaryBooksController < ApplicationController
 
   def index
     @customer = Customer.find(params[:customer_id])
-    @diary_books = @customer.diary_books
+    @diary_books = @customer.diary_books.page(params[:page]).per(10)
     if params[:diary_book].present?
       @diary_book = @customer.diary_books.find(params[:diary_book])
       @diary_dates = @diary_book.diary_dates

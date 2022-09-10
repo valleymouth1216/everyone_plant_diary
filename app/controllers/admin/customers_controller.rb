@@ -7,7 +7,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer =Customer.find(params[:id])
-    @diary_books =@customer.diary_books
+    @diary_books =@customer.diary_books.page(params[:page]).per(10)
 
   end
 
