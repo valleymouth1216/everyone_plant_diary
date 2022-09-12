@@ -30,6 +30,13 @@
       </table>
     </div>
 
+    <%= form_tag({controller:"customer_diary_books",action:"index"}, method: :get) do %>
+      <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      <% end %>
+      <%= submit_tag '検索' %>
+    <% end %>
+
 
 <% if @diary_book.present? %>
 

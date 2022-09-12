@@ -25,6 +25,18 @@ class Public::DiaryDatesController < ApplicationController
 
   def index
     @diary_books = current_customer.diary_books.page(params[:page]).per(10)
+    #binding.pry
+    if params[:tag_ids]
+      @diary_books = []
+      params[:tag_ids].each do |key, value|
+        #binding.pry
+        @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: current_customer.id) if value == "1"
+      end
+      @diary_books.uniq!
+      @diary_books = Kaminari.paginate_array(@diary_books).page(params[:page])
+    #else params[:tag_ids].all? {|key,value| value =="0"}
+    #   @diary_books = current_customer.diary_books.page(params[:page]).per(10)
+    end
     if params[:diary_book].present?
       @diary_book =current_customer.diary_books.find(params[:diary_book])
       @diary_dates = @diary_book.diary_dates
