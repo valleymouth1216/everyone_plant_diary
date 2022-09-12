@@ -13,6 +13,18 @@ class Public::CalendarDiariesController < ApplicationController
     @date_date = date_arr[2]
     #binding.pry
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
+    #binding.pry
+    if params[:tag_ids]
+      @diary_dates = []
+      params[:tag_ids].each do |key, value|
+        #binding.pry
+        @diary_dates += Tag.find_by(name: key).DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}) if value == "1"
+      end
+      @diary_dates.uniq!
+      @diary_dates = Kaminari.paginate_array(@diary_dates).page(params[:page])
+    #else params[:tag_ids].all? {|key,value| value =="0"}
+    #   @diary_books = current_customer.diary_books.page(params[:page]).per(10)
+    end
     if params[:order] == 'oldpost'
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
     elsif params[:order] == 'favoritepost'
