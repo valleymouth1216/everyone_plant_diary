@@ -14,6 +14,16 @@
       <table class="table" style="border:2px solid silver">
         <thead>
           <tr><th>日記帳一覧</th></tr>
+            <% if params[:tag_ids].present? %>
+              <tr><th>
+                <% params[:tag_ids].each do |key, value| %>
+                  <% if value == "1" %>
+                    <span>"<%= key %>"</span>
+                  <% end %>
+                <% end %>
+                のタグ一覧
+               </th></tr>
+          <% end %>
         </thead>
         <tbody style="border-bottom: 1px solid silver;">
         <% @diary_books.each do |diary_book| %>
@@ -32,7 +42,7 @@
 
     <%= form_tag({controller:"customer_diary_books",action:"index"}, method: :get) do %>
       <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+        <%= check_box :tag_ids, t.name %><%= t.name %>
       <% end %>
       <%= submit_tag '検索' %>
     <% end %>
