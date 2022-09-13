@@ -11,7 +11,7 @@ class Admin::DiaryBooksController < ApplicationController
       end
       @diary_books.uniq!
       if @diary_books == []
-        @diary_books = @customer.diary_books.where(status_admin: true,status: true).page(params[:page]).per(10)
+        @diary_books = @customer.diary_books.page(params[:page]).per(10)
       else
         @diary_books = Kaminari.paginate_array(@diary_books).page(params[:page])
       end
