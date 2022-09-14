@@ -24,16 +24,17 @@ class Public::DiaryDatesController < ApplicationController
   end
 
   def index
-    @diary_books = current_customer.diary_books.page(params[:page]).per(10)
+    @diary_books = current_customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
     #binding.pry
     if params[:tag_ids]
       @diary_books = []
       params[:tag_ids].each do |key, value|
-        @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: current_customer.id) if value == "1"
+        @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: current_customer.id).order(created_at: :desc) if value == "1"
       end
       @diary_books.uniq!
       if @diary_books == []
-        @diary_books = current_customer.diary_books.page(params[:page]).per(10)
+        @diary_books = current_customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
+        flash[:notice] = "タグが設定されていませんので、すべて表示します。"
       else
         @diary_books = Kaminari.paginate_array(@diary_books).page(params[:page])
       end

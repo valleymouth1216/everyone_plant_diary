@@ -3,15 +3,17 @@ class Admin::DiaryBooksController < ApplicationController
 
   def index
     @customer = Customer.find(params[:customer_id])
-    @diary_books = @customer.diary_books.page(params[:page]).per(10)
+    @diary_books = @customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
     if params[:tag_ids]
       @diary_books = []
       params[:tag_ids].each do |key, value|
-        @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: @customer) if value == "1"
+        @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: @customer).order(created_at: :desc) if value == "1"
       end
       @diary_books.uniq!
+             # binding.pry
       if @diary_books == []
-        @diary_books = @customer.diary_books.page(params[:page]).per(10)
+        @diary_books = @customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
+        flash[:notice] = "タグが設定されていませんので、すべて表示します。"
       else
         @diary_books = Kaminari.paginate_array(@diary_books).page(params[:page])
       end

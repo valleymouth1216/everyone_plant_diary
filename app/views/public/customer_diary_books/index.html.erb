@@ -41,6 +41,7 @@
     </div>
 
     <%= form_tag({controller:"customer_diary_books",action:"index"}, method: :get) do %>
+      <h3>タグ検索</h3>
       <% Tag.all.each do |t| %>
         <%= check_box :tag_ids, t.name %><%= t.name %>
       <% end %>
@@ -51,6 +52,9 @@
 <% if @diary_book.present? %>
 
     <div class='col-md-10'>
+      <% @diary_book.tags.each do |tag| %>
+        <span>▶<%= tag.name %></span>
+      <% end %>
       <h1 class="mb-3"><%= @diary_book.title %>の日記</h1>
 
       <% if @diary_date.present? %>
