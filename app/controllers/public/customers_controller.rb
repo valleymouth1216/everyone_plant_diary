@@ -6,7 +6,6 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    #byebug
     if params[:id]== current_customer.id.to_s
        redirect_to my_page_path
     else
