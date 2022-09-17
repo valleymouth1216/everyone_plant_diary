@@ -27,6 +27,10 @@ class Public::CalendarDiariesController < ApplicationController
       end
       @diary_dates.uniq!
       @diary_dates = Kaminari.paginate_array(@diary_dates).page(params[:page]).per(10)
+        if @diary_dates == []
+          @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
+          flash[:notice] = "タグ検索したタグがありませんので、すべて表示します。"
+        end
     else
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
     end
@@ -71,6 +75,10 @@ class Public::CalendarDiariesController < ApplicationController
         @search_diary_dates += diary_book.diary_dates.where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date),status_admin: true,status: true)
       end
       @search_diary_dates.uniq!
+        if @search_diary_dates == []
+          @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
+          flash[:notice] = "タグ検索したタグがありませんので、すべて表示します。"
+        end
       @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
     else
       @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)

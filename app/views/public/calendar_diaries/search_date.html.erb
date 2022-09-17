@@ -11,6 +11,16 @@
       <%= submit_tag '検索' %>
     <% end %>
 
+            <% if params[:tag_ids].present? %>
+              <tr><th>
+                <% params[:tag_ids].each do |key, value| %>
+                  <% if value == "1" %>
+                    <span>"<%= key %>"</span>
+                  <% end %>
+                <% end %>
+               </th></tr>
+          <% end %>
+
       <h3><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果全<%=@search_diary_dates_count.count %>件</h3>
       <h3>並べ替え</h3><% if params[:order].present? %><%=@order_diary_date %> <% end %>
       <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
