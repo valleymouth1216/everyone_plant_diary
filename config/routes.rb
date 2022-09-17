@@ -19,6 +19,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get 'admin/search_date' => 'admin/homes#search_date', as: 'admin_search_date'
 
   namespace :admin do
+  get 'search' => 'homes#search'
   resources:customers,only:[:edit,:show,:index,:update] do
    resources :diary_books,only:[:index]
    end

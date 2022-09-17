@@ -6,6 +6,16 @@
     <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
     <h3>全<%=@diary_dates_count.count %>件</h3>
 
+            <% if params[:tag_ids].present? %>
+              <tr><th>
+                <% params[:tag_ids].each do |key, value| %>
+                  <% if value == "1" %>
+                    <span>"<%= key %>"</span>
+                  <% end %>
+                <% end %>
+              </th></tr>
+          <% end %>
+
     <%= form_tag({controller:"calendar_diaries",action:"filter_by_date"}, method: :get) do %>
     <p>タグ検索</p>
       <% Tag.all.each do |t| %>
@@ -16,7 +26,7 @@
     <% end %>
 
 
-    <h3>並べ替え</h3><% if params[:order].present? %><%=@order %> <% end %>
+    <h3>並べ替え</h3><% if params[:order].present? %><%=@order %><% end %>
     <%= form_tag({controller:"calendar_diaries",action:"filter_by_date"}, method: :get) do %>
       <%= select_tag("order", options_for_select([ ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost'], ['いいね投稿', 'favoritepost']])) %>
       <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>

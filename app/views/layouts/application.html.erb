@@ -164,6 +164,27 @@
               <%#= submit_tag '検索', class: "btn btn-primary" %>
             <%# end %>
           <% end %>
+
+          <% if admin_signed_in? %>
+            <%= form_with(scope: "search", url: admin_search_path, method: 'get') do |form| %>
+              <p>キーワード検索</p>
+              <span>キーワード：</span>
+              <%= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
+              <span>検索対象：</span>
+              <%= form.label "[model]","日記帳", value: "diary_books" %>
+              <%= form.radio_button "[model]", "diary_books", checked: true %>
+              <span>,</span>
+              <%= form.label "[model]","ユーザ", value: "customer" %>
+              <%= form.radio_button "[model]", "customer"	 %>
+              <span>検索条件：</span>
+              <%= form.label "[method]","部分一致", value: "partial" %>
+              <%= form.radio_button "[method]", "partial", checked: true %>
+              <span>,</span>
+              <%= form.label "[method]","完全一致", value: "perfect" %>
+              <%= form.radio_button "[method]", "perfect"	 %>
+              <%= submit_tag '検索', class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
           </div>
         </div>
     </header>

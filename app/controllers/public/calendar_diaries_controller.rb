@@ -12,8 +12,6 @@ class Public::CalendarDiariesController < ApplicationController
     @date_date = date_arr[2]
     #binding.pry
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
-    @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
-
 
     if params[:tag_ids]&.values&.include?("1")
       @diary_books = []
@@ -23,7 +21,7 @@ class Public::CalendarDiariesController < ApplicationController
       @diary_books.uniq!
       @diary_dates = []
       @diary_books.each do |diary_book|
-        @diary_dates += diary_book.diary_dates.where(start_time: date.at_beginning_of_day...date.at_end_of_day,status_admin: true,status: true)
+        @diary_dates += diary_book.diary_dates.where(start_time: date.at_beginning_of_day...date.at_end_of_day,status_admin: true,status: true).order("created_at DESC")
       end
       @diary_dates.uniq!
       @diary_dates = Kaminari.paginate_array(@diary_dates).page(params[:page]).per(10)
@@ -32,7 +30,7 @@ class Public::CalendarDiariesController < ApplicationController
           flash[:notice] = "タグ検索したタグがありませんので、すべて表示します。"
         end
     else
-      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
+      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
     end
 
     if params[:order] == 'oldpost'
@@ -46,7 +44,6 @@ class Public::CalendarDiariesController < ApplicationController
       @order = "新しい順"
     end
       @diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true})
-
 
   # binding.pry
 
@@ -81,7 +78,7 @@ class Public::CalendarDiariesController < ApplicationController
         end
       @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
     else
-      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
+      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).order("start_time DESC").per(10)
     end
 
       if params[:order] == 'olddate'

@@ -4,7 +4,17 @@
 
 
     <h2 class="section-ttl"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記一覧</h2>
+    <h3>全<%=@diary_dates_count.count %>件</h3>
 
+    <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get) do %>
+
+    <p>タグ検索</p>
+      <% Tag.all.each do |t| %>
+        <%= check_box :tag_ids, t.name %><%= t.name %>
+      <% end %>
+      <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
+      <%= submit_tag '検索' %>
+    <% end %>
 
     <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
     <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get) do %>
@@ -23,6 +33,17 @@
               <td>&emsp;</td>
               <td>日記名:</td>
               <td><%= link_to diary_date.diary_book.title,admin_diary_book_diary_date_path(diary_date.diary_book.id,diary_date) %></td>
+              <td>&emsp;</td>
+              <td>作成日<%= diary_date.created_at.strftime('%Y/%m/%d') %></td>
+            　<td>タグ:</td>
+              <td>
+                  <% diary_date.diary_book.tags.each do |tag| %>
+                    ▶<%= tag.name %>
+                  <% end %>
+              </td>
+              <td>&emsp;</td>
+            　<td>いいね回数:</td>
+            　<td><%= diary_date.favorites.count %></td>
               <td>&emsp;</td>
               <td>日記帳の公開ステータス:</td>
               <td>
