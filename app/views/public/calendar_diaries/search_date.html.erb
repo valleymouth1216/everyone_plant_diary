@@ -1,5 +1,16 @@
 <div id="search_result">
-    <% if @search_diary_date.present? %>
+
+
+    <% if @search_diary_dates.present? %>
+    <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
+    <p>タグ検索</p>
+      <% Tag.all.each do |t| %>
+        <%= check_box :tag_ids, t.name %><%= t.name %>
+      <% end %>
+        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+      <%= submit_tag '検索' %>
+    <% end %>
+
       <h3><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果全<%=@search_diary_dates_count.count %>件</h3>
       <h3>並べ替え</h3><% if params[:order].present? %><%=@order_diary_date %> <% end %>
       <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>

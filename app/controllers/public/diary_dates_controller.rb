@@ -33,7 +33,7 @@ class Public::DiaryDatesController < ApplicationController
       end
       @diary_books.uniq!
       if @diary_books == []
-        @diary_books = current_customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
+        @diary_books = current_customer.diary_books.page(params[:page]).per(10)
         flash[:notice] = "タグが設定されていませんので、すべて表示します。"
       else
         @diary_books = Kaminari.paginate_array(@diary_books).page(params[:page])
