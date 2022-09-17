@@ -2,7 +2,6 @@ class Public::CalendarDiariesController < ApplicationController
     before_action :authenticate_customer!,except: [:index]
 
   def index
-   #@diary_dates = DiaryDate.where(status_admin: true,status: true).joins(:diary_book).where(status_admin: true,status: true)
     @diary_dates = DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true})
   end
 
@@ -15,7 +14,8 @@ class Public::CalendarDiariesController < ApplicationController
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
     @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
 
-    if params[:tag_ids]
+
+    if params[:tag_ids]&.values&.include?("1")
       @diary_books = []
       params[:tag_ids].each do |key, value|
         @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: current_customer.id, status: true, status_admin: true).order(created_at: :desc) if value == "1"
@@ -26,21 +26,23 @@ class Public::CalendarDiariesController < ApplicationController
         @diary_dates += diary_book.diary_dates.where(start_time: date.at_beginning_of_day...date.at_end_of_day,status_admin: true,status: true)
       end
       @diary_dates.uniq!
-      #binding.pry
       @diary_dates = Kaminari.paginate_array(@diary_dates).page(params[:page]).per(10)
+    else
+      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
     end
 
     if params[:order] == 'oldpost'
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
+      @order = "古い順"
     elsif params[:order] == 'favoritepost'
-      @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day,status: true, status_admin: true, diary_books: {status_admin: true,status: true}).find(Favorite.group(:diary_date_id).order('count(diary_date_id) desc').pluck(:diary_date_id))
-      # @all_ranks = Note.find(Like.group(:note_id).order('count(note_id) desc')
-      #@diary_dates = DiaryDate.joins(:diary_book).group("actresses.name").where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("count(diary_date_id) ASC").page(params[:page]).per(10)
+      @diary_dates = Kaminari.paginate_array(DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day,status: true, status_admin: true, diary_books: {status_admin: true,status: true}).sort {|a, b| b.favorites.size <=> a.favorites.size }).page(params[:page]).per(10)
+      @order = "いいね順"
     elsif params[:order] == 'newpost'
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
+      @order = "最新の順"
     end
       @diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true})
-      @order = params[:order]
+
   end
 
   def search_date
