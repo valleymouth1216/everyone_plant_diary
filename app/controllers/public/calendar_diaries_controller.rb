@@ -39,7 +39,7 @@ class Public::CalendarDiariesController < ApplicationController
       @order = "いいね順"
     elsif params[:order] == 'newpost'
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
-      @order = "最新の順"
+      @order = "新しい順"
     end
       @diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true})
 
@@ -56,14 +56,18 @@ class Public::CalendarDiariesController < ApplicationController
       @search_diary_date = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
       #@search_diary_date = DiaryDate.joins(:diary_book).where(start_time: start_time..end_time).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC")
 
-      @order_diary_date = params[:order]
+
       if params[:order] == 'olddate'
+        @order_diary_date = "古い日付順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time ASC").page(params[:page]).per(10)
       elsif params[:order] == 'newpost'
+        @order_diary_date = "最新の投稿順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
       elsif params[:order] == 'oldpost'
+        @order_diary_date = "古い投稿順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
       else
+        @order_diary_date = "最新の日付順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
       end
       @search_diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true})
