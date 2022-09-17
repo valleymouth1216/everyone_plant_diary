@@ -2,7 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-    before_action :ensure_normal_user, only: :destroy
+    before_action :ensure_normal_user, only: [:destroy,:update]
 
   def ensure_normal_user
     if resource.email == 'guest@example.com'
