@@ -16,3 +16,45 @@
 
 
 
+header {
+  background: #d5ffd5;
+  }
+
+.navbar-brand{
+  display: inline-block;
+}
+
+.customer_name{
+  display: inline-block;
+  /*text-align:left;*/
+  /*margin-left: 10%;*/
+}
+
+.customer_search{
+margin-left: 10%;
+display: inline-block;
+}
+
+.navbar-nav ul{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-nav li{
+  background: #98fb98;
+  text-align: right;
+  list-style: none;
+  display: inline-block;
+}
+
+.navbar-nav a{
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: #fff;
+	padding: 10px 20px 10px;
+}
+
+.navbar-nav a:hover{
+  background: #aaffd5;
+}

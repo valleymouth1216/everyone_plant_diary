@@ -12,137 +12,26 @@
 
   <body>
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
+
         <div class="container">
-          <a class="navbar-brand p-3" href="/">ロゴ</a>
-            <% if customer_signed_in? %>
-              <p class="text-right">ようこそ、<%= current_customer.name %>さん！</p>
-            <% end %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-            <% if admin_signed_in? %>
-              <div class="text-right pb-5">
-                <li>
-                 <%= link_to admin_customers_path,:style =>"color:black;" do %>
-                会員一覧
-               <% end %>
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li>
-              <%= link_to admin_path,:style =>"color:black;" do %>
-                みんなの日記
-              <% end %>
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li>
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li>
-                  <%= link_to destroy_admin_session_path,:style =>"color:black;",method: :delete do %>
-                  ログアウト
-                  <% end %>
-                </li>
-              </div>
-            <% elsif customer_signed_in? %>
-              <div class="text-right pb-5">
-                <li>
-              <%= link_to customers_path,:style =>"color:black;" do %>
-                会員一覧
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-              <li>
-              <%= link_to my_page_path,:style =>"color:black;" do %>
-                マイページ
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-              <li>
-              <%= link_to favorite_path,:style =>"color:black;" do %>
-                いいねした日記
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-              <li>
-              <%= link_to diary_books_path,:style =>"color:black;" do %>
-                日記帳
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-                <li>
-              <%= link_to diary_books_diaries_path,:style =>"color:black;" do %>
-                日記
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-                <li>
-              <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
-                みんなの日記
-              <% end %>
-                </li>
-              <!--   <span>&emsp;</span>  -->
-                <li>
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-                </li>
-              <!--   <span>&emsp;</span>  -->
-                <li>
-                  <%= link_to destroy_customer_session_path,:style =>"color:black;",method: :delete do %>
-                  ログアウト
-                  <% end %>
-                </li>
-              </div>
-            <% else %>
-              <div class="text-right pb-5">
-                <li>
-              <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
-                みんなの日記
-              <% end %>
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li>
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_customer_registration_path,:style =>"color:black;" do %>
-                  新規登録
-                  <% end %>
-                </li>
-              <!--  <span>&emsp;</span>  -->
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_customer_session_path,:style =>"color:black;" do %>
-                  ログイン
-                  <% end %>
-                </li>
-             <!--    <span>&emsp;</span>  -->
-               <li class="btn btn-light btn-lg" >
-                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
-                  管理ログイン用(後で消す！！！)
-                  <% end %>
-                </li>
-                <li class="btn btn-light btn-lg">
-                  <%= link_to customers_guest_sign_in_path, method: :post,:style =>"color:black;" do %>
-                ゲストログイン（閲覧用）
-                  <% end %>
-                </li>
-              </div>
-            <% end %>
-          </ul>
+          <a class="navbar-brand pt-3" href="/">ロゴ</a>
+
+
+
+
           <% if customer_signed_in? %>
+          <div class="customer_name">
+            <p>ようこそ、<%= current_customer.name %>さん！</p>
+              </div>
+          <% end %>
+
+          <% if customer_signed_in? %>
+          <div class="customer_search pt-3 pl-3">
             <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
-              <p>キーワード検索</p>
+              <span>キーワード検索</span></br>
               <span>キーワード：</span>
               <%= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
+              <div>
               <span>検索対象：</span>
               <%= form.label "[model]","日記帳", value: "diary_books" %>
               <%= form.radio_button "[model]", "diary_books", checked: true %>
@@ -156,14 +45,12 @@
               <%= form.label "[method]","完全一致", value: "perfect" %>
               <%= form.radio_button "[method]", "perfect"	 %>
               <%= submit_tag '検索', class: "btn btn-primary" %>
+              </div>
             <% end %>
-            <%#= form_tag(search_path, method: :get) do %>
-              <%#= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
-              <%#= select_tag "search[model]", options_for_select({ "日記帳" => "diary_books","ユーザ" => "customer" }) %>
-              <%#= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "完全一致" => "perfect" }) %>
-              <%#= submit_tag '検索', class: "btn btn-primary" %>
-            <%# end %>
+          </div>
           <% end %>
+
+
 
           <% if admin_signed_in? %>
             <%= form_with(scope: "search", url: admin_search_path, method: 'get') do |form| %>
@@ -185,6 +72,116 @@
               <%= submit_tag '検索', class: "btn btn-primary" %>
             <% end %>
           <% end %>
+
+
+     <nav class="navbar navbar-expand-lg navbar-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if admin_signed_in? %>
+              <div>
+                <li>
+                 <%= link_to admin_customers_path,:style =>"color:black;" do %>
+                    会員一覧
+                 <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_path,:style =>"color:black;" do %>
+                    みんなの日記
+                  <% end %>
+                </li>
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+                </li>
+                <li>
+                  <%= link_to destroy_admin_session_path,:style =>"color:black;",method: :delete do %>
+                    ログアウト
+                  <% end %>
+                </li>
+              </div>
+            <% elsif customer_signed_in? %>
+              <div>
+                <li class="nav-item">
+                  <%= link_to customers_path,:style =>"color:black;" do %>
+                    会員一覧
+                  <% end %>
+                </li>
+              <li class="nav-item">
+                <%= link_to my_page_path,:style =>"color:black;" do %>
+                  マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to favorite_path,:style =>"color:black;" do %>
+                  いいねした日記
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to diary_books_path,:style =>"color:black;" do %>
+                  日記帳
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to diary_books_diaries_path,:style =>"color:black;" do %>
+                  日記
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
+                  みんなの日記
+                <% end %>
+              </li>
+              <li class="nav-item">
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_customer_session_path,:style =>"color:black;",method: :delete do %>
+                  ログアウト
+                <% end %>
+              </li>
+              </div>
+            <% else %>
+              <div class="text-right pb-5">
+                <li>
+                  <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
+                    みんなの日記
+                  <% end %>
+                </li>
+                <li>
+              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
+                使い方
+              <!--    < % end %>  -->
+                </li>
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_customer_registration_path,:style =>"color:black;" do %>
+                    新規登録
+                  <% end %>
+                </li>
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_customer_session_path,:style =>"color:black;" do %>
+                    ログイン
+                  <% end %>
+                </li>
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
+                    管理ログイン用(後で消す！！！)
+                  <% end %>
+                </li>
+                <li class="btn btn-light btn-lg">
+                  <%= link_to customers_guest_sign_in_path, method: :post,:style =>"color:black;" do %>
+                    ゲストログイン（閲覧用）
+                  <% end %>
+                </li>
+              </div>
+            <% end %>
+          </ul>
+
           </div>
         </div>
     </header>
