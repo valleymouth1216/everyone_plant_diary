@@ -13,43 +13,53 @@
   <body>
     <header class="shadow-sm">
 
-        <div class="container">
-          <a class="navbar-brand pt-3" href="/">ロゴ</a>
+        <div class="container pt-3">
 
 
 
+          <div class="row">
+
+            <div class="logo col-lg-1">
+              <a class="navbar-brand" href="/">ロゴ</a>
+            </div>
 
           <% if customer_signed_in? %>
-          <div class="customer_name">
-            <p>ようこそ、<%= current_customer.name %>さん！</p>
-              </div>
+            <div class="col-lg-3 col-sm-12">
+              <div class="customer_name">
+                <p>ようこそ,<%= current_customer.name %>さん！</p>
+                </div>
+            </div>
           <% end %>
 
+
+
           <% if customer_signed_in? %>
-          <div class="customer_search pt-3 pl-3">
-            <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
-              <span>キーワード検索</span></br>
-              <span>キーワード：</span>
-              <%= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
-              <div>
-              <span>検索対象：</span>
-              <%= form.label "[model]","日記帳", value: "diary_books" %>
-              <%= form.radio_button "[model]", "diary_books", checked: true %>
-              <span>,</span>
-              <%= form.label "[model]","ユーザ", value: "customer" %>
-              <%= form.radio_button "[model]", "customer"	 %>
-              <span>検索条件：</span>
-              <%= form.label "[method]","部分一致", value: "partial" %>
-              <%= form.radio_button "[method]", "partial", checked: true %>
-              <span>,</span>
-              <%= form.label "[method]","完全一致", value: "perfect" %>
-              <%= form.radio_button "[method]", "perfect"	 %>
-              <%= submit_tag '検索', class: "btn btn-primary" %>
-              </div>
-            <% end %>
+            <div class="col-lg-8 col-12 col-sm-12">
+              <div class="customer_search ">
+                <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
+                  <span>キーワード検索</span></br>
+                  <span>キーワード：</span>
+                  <%= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
+                  <div>
+                    <span>検索対象：</span>
+                    <%= form.label "[model]","日記帳", value: "diary_books" %>
+                    <%= form.radio_button "[model]", "diary_books", checked: true %>
+                    <span>,</span>
+                    <%= form.label "[model]","ユーザ", value: "customer" %>
+                    <%= form.radio_button "[model]", "customer"	 %>
+                    <span>検索条件：</span>
+                    <%= form.label "[method]","部分一致", value: "partial" %>
+                    <%= form.radio_button "[method]", "partial", checked: true %>
+                    <span>,</span>
+                    <%= form.label "[method]","完全一致", value: "perfect" %>
+                    <%= form.radio_button "[method]", "perfect"	 %>
+                    <%= submit_tag '検索', class: "btn sm btn-primary" %>
+                  </div>
+                  <% end %>
+               </div>
+            </div>
+          <% end %>
           </div>
-          <% end %>
-
 
 
           <% if admin_signed_in? %>
@@ -182,8 +192,8 @@
             <% end %>
           </ul>
 
-          </div>
-        </div>
+
+         </div>
     </header>
 
 
@@ -197,5 +207,16 @@
       <% end %>
       <%= yield %>
     </main>
+
+    <footer class="shadow-sm">
+      <div class='container mt-5'>
+        <div class='row'>
+          <div class='mx-auto mt-3'>
+            <p>EveryonePlantDiary</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>

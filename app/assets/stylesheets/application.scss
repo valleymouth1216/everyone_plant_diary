@@ -20,19 +20,25 @@ header {
   background: #d5ffd5;
   }
 
+.header_container{
+     display: flex;
+}
+
 .navbar-brand{
   display: inline-block;
 }
 
 .customer_name{
-  display: inline-block;
+margin-left: auto;
   /*text-align:left;*/
   /*margin-left: 10%;*/
+    display: flex;
+  align-items: center;
 }
 
 .customer_search{
-margin-left: 10%;
-display: inline-block;
+margin-left: auto;
+
 }
 
 .navbar-nav ul{
@@ -57,4 +63,26 @@ display: inline-block;
 
 .navbar-nav a:hover{
   background: #aaffd5;
+}
+
+.content{
+  text-align: -webkit-center;
+ /*text-align: center;*/
+}
+
+
+
+
+
+
+footer{
+  background-color:#f5f5f5;
+}
+
+a:hover {
+ color:#0000ff;
+}
+
+footer{
+  font-family:"HGP行書体";
 }
