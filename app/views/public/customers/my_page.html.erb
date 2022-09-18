@@ -5,11 +5,11 @@
   <div class="card d-block rounded-0 mt-5" >
     <div class="card-header"><h2 class="section-ttl">登録基本情報</h2></div>
         <%= image_tag @customer.get_profile_image(100,100),class:"my-3"  %>
-        <table class="customer_info " border="1">
+        <table class="customer_info ">
           <tbody>
             <tr>
-              <td width="20%">ユーザ名</td>
-              <td width="70%"><%= @customer.name %></td>
+              <td width="30%">ユーザ名</td>
+              <td width="60%"><%= @customer.name %></td>
             </tr>
             <tr>
             <tr>
@@ -25,16 +25,23 @@
   </div>
 
 
-<div class="card border-light my-5">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Light card title</h5>
-    <div class="row">
-    <p class="card-text col-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <p class="card-text col-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class="card d-block rounded-0 mt-5" >
+    <div class="card-header"><h2 class="section-ttl">登録基本情報</h2></div>
+      <%= image_tag @customer.get_profile_image(100,100),class:"my-3"  %>
+    <div class="row justify-content-center">
+      <p class="col-6" style="text-align:right"><span style="border-bottom: solid 2px black;">ユーザ&emsp;&emsp;&emsp;&emsp;&emsp;:&emsp;</span></p>
+      <p class="col-6" style="text-align:left"><span style="border-bottom: solid 2px black;"><%= @customer.name %></span></p>
+    </div>
+    <div class="row justify-content-center">
+      <p class="col-4" style="border-bottom: solid 2px black;text-align:right">メールアドレス&emsp;:</p>
+      <p class="col-6" style="border-bottom: solid 2px black;text-align:left"><%= @customer.email %></p>
+    </div>
+    <div class="card-body">
+      <%= link_to "基本情報編集をする", edit_information_path, class: "btn btn-success my-3" %>
+      <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success my-3" %>
     </div>
   </div>
-</div>
+
 
 
 </div>
