@@ -2,268 +2,39 @@
 
 <div class="content">
 
-
-    <h2 class="section-ttl">登録基本情報</h2>
-
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="2"><div class="row"><div class="col-12" style="padding-left: 40px"><%= image_tag @customer.get_profile_image(100,100) %></div></div></td>
-          </tr>
-          <tr>
-            <td>ユーザ名</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-        </tbody>
+  <div class="card d-block rounded-0 mt-5" >
+    <div class="card-header"><h2 class="section-ttl">登録基本情報</h2></div>
+        <%= image_tag @customer.get_profile_image(100,100),class:"my-3"  %>
+        <table class="customer_info " border="1">
+          <tbody>
+            <tr>
+              <td width="20%">ユーザ名</td>
+              <td width="70%"><%= @customer.name %></td>
+            </tr>
+            <tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @customer.email %></td>
+            </tr>
+          </tbody>
         </table>
-
-  <%= link_to "基本情報編集をする", edit_information_path, class: "btn btn-success ml2 mt-3" %>
-  <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success ml2 mt-3" %>
-
-
-
-<div class="card" style="width: 18rem;">
-  <%= image_tag 'no_image.jpg', class: "card-img-top" %>
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card-body">
+          <%= link_to "基本情報編集をする", edit_information_path, class: "btn btn-success my-3" %>
+          <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success my-3" %>
+        </div>
   </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <%= image_tag 'no_image.jpg', class: "card-img-top" %>
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <div class="card-header">
-    Featured
-  </div>
-    <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-  <div class="card-footer">
-    Card footer
-  </div>
-</div>
 
 
-
-<div class="card">
-  <h5 class="card-header">Featured</h5>
-    <div class="card-header">
-    Quote
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-        <blockquote class="blockquote mb-0">
-      <p>A well-known quote, contained in a blockquote element.</p>
-      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="card w-75">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Button</a>
-  </div>
-</div>
-
-<div class="card w-50">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Button</a>
-  </div>
-</div>
-
-
-
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-<div class="card bg-dark text-white">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-  </div>
-  <%= image_tag 'no_image.jpg', class: "card-img" %>
-  <div class="card-img-overlay">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-</div>
-
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <%= image_tag 'no_image.jpg', class: "card-img" %>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Success card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-
-<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+<div class="card border-light my-5">
   <div class="card-header">Header</div>
   <div class="card-body">
     <h5 class="card-title">Light card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-
-<div class="card border-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-
-<div class="card border-light mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Light card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<div class="card border-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-
-<div class="card border-success mb-3" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-success">Header</div>
-  <div class="card-body text-success">
-    <h5 class="card-title">Success card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <div class="card-footer bg-transparent border-success">Footer</div>
-</div>
-
-
-
-<div class="card mb-3" style="max-width: 540px">
-    <div class="row no-gutters">
-        <div class="col-md-4 my-auto">
-            <%= image_tag 'no_image.jpg', class: "card-img" %>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Card Title</h5>
-                <p>ここに写真の説明などを記載します。これは例えば作品集の一部を写真で示しておいて、下のリンクから作品集ページに飛んでもらうような仕掛けを作ることができます。</p>
-                <a class="btn btn-primary" href="#">Details</a>
-            </div>
-        </div>
+    <div class="row">
+    <p class="card-text col-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text col-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
+  </div>
 </div>
-
 
 
 </div>
