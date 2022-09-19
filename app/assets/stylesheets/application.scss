@@ -14,17 +14,19 @@
  *= require_self
  */
 
+/*
 body {
   background-image: url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
+*/
 
-/*
+
 main {
   background-image: url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
-*/
+
 
 header {
   background: #d5ffd5;
@@ -82,15 +84,25 @@ margin-left: auto;
  /*text-align: center;*/
 }
 
-.customer_info table{
-border: 0;
+.my_content{
+  background-color:#FFF;
+  padding:30px 0;
+  border : 10px solid #9dff76;
+ /*text-align: center;*/
+}
+
+.card.d-block.edit{
+    width: 80%;
 }
 
 .card.d-block{
   width: 60%;
-  border : solid 1px #333 ;
-  box-shadow: 0 0 0 1px #000, 0 0 0 19px #9dff76, 0 0 0 20px #000;
+  border : 1px solid #000;
+   /*box-shadow: 0 0 0 1px #000;*/
+  /*border : solid 1px #333 ;*/
+  /*box-shadow: 0 0 0 1px #000, 0 0 0 19px #9dff76, 0 0 0 20px #000;*/
 }
+
 
 .card_text p{
   border-bottom: solid 2px black;

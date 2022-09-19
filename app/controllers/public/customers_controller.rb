@@ -23,6 +23,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+
     @customer=current_customer
     if @customer.email == 'guest@example.com'
       redirect_to my_page_path

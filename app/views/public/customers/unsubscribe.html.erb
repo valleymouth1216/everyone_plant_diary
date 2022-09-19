@@ -1,17 +1,20 @@
 <div class='container'>
 
-<div class="content">
+  <div class="content my_content">
 
 
-    <h2 class="section-ttl">本当に退会しますか？</h2>
-
-      <div class="text-center"> 退会すると、会員登録情報や</br>日記の作成やほかのユーザの日記が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</div>
-  	  <div class="flex justify-around mt2">
-  	    <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary" %>
-  	    <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger" %>
+  <div class="card d-block rounded-0" >
+    <div class="card-header mb-3"><h2 class="section-ttl">本当に退会しますか？</h2></div>
+    <div class="row justify-content-center">
+      <p class="col-lg-10 col-sm-5 col-10 col-md-5">退会すると、会員登録情報や</br>日記の作成やほかのユーザの日記が閲覧できなくなります。</br>退会する場合は、「退会する」をクリックしてください。</p>
+    </div>
+  	  <div class="flex justify-around mb-3">
+  	    <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary mx-1" %>
+  	    <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger mx-1" %>
   	  </div>
+  </div>
 
 
-</div>
+  </div>
 
 </div>
