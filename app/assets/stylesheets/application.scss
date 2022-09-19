@@ -130,6 +130,19 @@ margin-left: auto;
     /*文字直接*/
 }
 
+.publish{
+  background-color:#80ff80;
+  padding:1px 2px;
+  border-radius: 2px;
+      /*公開*/
+}
+
+.private{
+  background-color:#949494;
+  padding:1px 2px;
+  border-radius: 2px;
+        /*非公開*/
+}
 
 footer{
   background-color:#f5f5f5;
