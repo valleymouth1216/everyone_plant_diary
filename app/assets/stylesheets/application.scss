@@ -77,7 +77,10 @@ margin-left: auto;
   background: #aaffd5;
 }
 
-
+.flash{
+  background-color:#FFF;
+  border : 10px solid #ffffaa;
+}
 
 .content{
   text-align: -webkit-center;
@@ -89,10 +92,12 @@ margin-left: auto;
   padding:30px 0;
   border : 10px solid #9dff76;
  /*text-align: center;*/
+  /*ユーザのみ*/
 }
 
 .card.d-block.edit{
     width: 80%;
+      /*ユーザ編集のみ*/
 }
 
 .card.d-block{
@@ -107,6 +112,7 @@ margin-left: auto;
 .card_text p{
   border-bottom: solid 2px black;
   text-align:left;
+  /*文字直接ではない*/
 }
 
 /*
@@ -115,6 +121,15 @@ margin-left: auto;
   text-align:right;
 }
 */
+
+
+
+.character_underline span{
+  border-bottom: solid 2px black;
+  line-height: 2;
+    /*文字直接*/
+}
+
 
 footer{
   background-color:#f5f5f5;

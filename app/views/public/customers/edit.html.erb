@@ -3,7 +3,6 @@
   <div class="content my_content">
 
 
-
     <div class="card d-block rounded-0 edit" >
       <div class="card-header mb-3"><h2 class="section-ttl">会員情報編集</h2></div>
         <% if @customer.profile_image.attached? %>
@@ -14,16 +13,16 @@
         <% end %>
       <%= form_with model:@customer, url: update_information_path, method: :patch do |f| %>
             <%= render 'layouts/error_messages', resource: @customer %>
-        <div class="row justify-content-center card_text">
-          <p class="col-lg-3 col-sm-5 col-10 col-md-5"><%= f.label :name,"ユーザ名"  %></p>
-          <p class="col-lg-6 col-sm-5 col-10 col-md-5"><%= f.text_field :name ,:size=>"30" %></p>
+        <div class="row justify-content-center character_underline">
+          <p class="col-lg-3 col-sm-5 col-10 col-md-5"><span class="px-3"><%= f.label :name,"ユーザ名"  %></span></p>
+          <p class="col-lg-5 col-sm-5 col-10 col-md-5 card_text"><%= f.text_field :name ,:size=>"30" %></p>
         </div>
-        <div class="row justify-content-center card_text">
+        <div class="row justify-content-center  card_text">
           <p class="col-lg-3 col-sm-5 col-10 col-md-5"><%= f.label :email,"メールアドレス" %></p>
           <p class="col-lg-6 col-sm-5 col-10 col-md-5"><%= f.email_field :email, autofocus: true,:size=>"30" %></p>
         </div>
-        <div class="row justify-content-center card_text">
-          <p class="col-lg-3 col-sm-5 col-10 col-md-5"><%= f.label :profile_image,"プロフィール画像" %></p>
+        <div class="row justify-content-center character_underline">
+          <p class="col-lg-3 col-sm-5 col-10 col-md-5"><span class="px-3"><%= f.label :profile_image,"プロフィール画像" %></span></p>
           <p class="col-lg-6 col-sm-5 col-10 col-md-5"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png' %></p>
         </div>
         <div class="row justify-content-center card_text mb-3">
@@ -34,9 +33,11 @@
 
     <div class="card d-block rounded-0 mt-3" >
       <div class="card-header mb-3"><h2 class="section-ttl">退会する場合</h2></div>
-      <div class="row justify-content-center card_text">
-        <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= link_to "こちら",confirm_unsubscribe_path %>&emsp;をクリックしてください。</p>
-        <p class="col-lg-10 col-sm-10 col-10 col-md-10">退会されると日記の閲覧、作成が使用できなくなります。</p>
+      <div class="row justify-content-center character_underline">
+        <p class="col-lg-10 col-sm-10 col-10 col-md-10 ">
+          <span class="px-3"><%= link_to "こちら",confirm_unsubscribe_path %>&emsp;をクリックしてください。</span>
+          </br><span class="px-3">退会されると日記の閲覧、作成が使用できなくなります。</span>
+        </p>
     </div>
 
   </div>
