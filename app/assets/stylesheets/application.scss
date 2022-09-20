@@ -27,6 +27,10 @@ main {
    background-size:  cover;
 }
 
+a {
+  color: #000000;
+  text-decoration: none;
+}
 
 #error_explanation {
   margin : 10px 0;
@@ -111,6 +115,14 @@ margin-left: auto;
   /*ユーザのみ*/
 }
 
+.customers{
+  background-color:#FFF;
+  padding:30px 0;
+  border : 10px solid #5555ff;
+ /*text-align: center;*/
+  /*ユーザのみ*/
+}
+
 .card.d-block.index{
     width: 95%;
       /*ユーザ編集のみ*/
@@ -119,6 +131,19 @@ margin-left: auto;
 .card.d-block.edit{
     width: 80%;
       /*ユーザ編集のみ*/
+}
+
+
+.card_hover  {
+  color: #000000;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.card_hover :hover {
+ color:#99ff99;
+ text-decoration-color:#99ff99;
+ background-color:#fcfced;
 }
 
 .card.d-block{
@@ -136,6 +161,11 @@ margin-left: auto;
   /*文字直接ではない*/
 }
 
+.card_text_center p{
+  border-bottom: solid 2px black;
+  text-align:center;
+  /*文字直接ではない*/
+}
 /*
 .card_text_p{
   border-bottom: solid 2px black;
@@ -199,3 +229,4 @@ a:hover {
 footer{
   font-family:"HGP行書体";
 }
+

@@ -1,20 +1,28 @@
 <div class='container'>
 
-<div class="content">
+<div class="content customers">
 
+    <div class="card d-block rounded-0 index my-2" >
+    <div class="card-header mb-3"><h2 class="section-ttl">ユーザ一覧</h2></div>
 
-    <h2 class="section-ttl">会員一覧</h2>
+      <div class="row justify-content-center card_text">
+        <p class="col-lg-4 col-sm-10 col-10 col-md-10 ">ユーザ画像</p>
+        <p class="col-lg-4 col-sm-10 col-10 col-md-10 ">ユーザ名</p>
+              </div>
 
       <% @customers.each do |customer|%>
-      <%= link_to customer_path(customer) do %>
-        <table class="customer_info customer_form" border="1">
-          <tr>
-            <td colspan="2"><%= image_tag customer.get_profile_image(100,100) %></td>
-            <td>ユーザ名</td>
-            <td><%= customer.name %></td>
-          </tr>
-        </table>
+
+    <div class="card d-block rounded-0 my-1" >
+      <%= link_to customer_path(customer),class:"card_hover" do %>
+            <div class="card-body">
+      <div class="row justify-content-center d-flex align-items-center card_text_center">
+        <%= image_tag customer.get_profile_image(100,100),class:"p-2" %>
+        <p class="col-lg-4 col-sm-10 col-10 col-md-10"><%= customer.name %>さん</p>
+              </div>
+      </div>
       <% end %>
+    </div>
+
       <% end %>
     <% if @customers.present? %>
       <%= paginate @customers %>
@@ -22,21 +30,8 @@
       <p>ユーザが登録されていません。</p>
     <% end %>
 
-
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <%= image_tag 'no_image.jpg', class: "card-img" %>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
 </div>
+
 </div>
 
 </div>
