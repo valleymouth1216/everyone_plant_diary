@@ -1,17 +1,34 @@
 <div class='container'>
 
-<div class="content">
-
-
-    <h2 class="section-ttl">新しい日記帳の作成</h2>
-    
-      <%= form_with model: @diary_book do |f| %>
 		    <%= render 'layouts/error_messages', resource: @diary_book %>
 
-        <div class="form-group">
-         <%= f.label :title,"タイトル" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-         <%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-5"  %>
-       </div>
+<div class='row'>
+  <div class="diary_book content col-lg-5 col-sm-12 col-12 col-md-12 m-1 ">
+
+
+    <h2 class="section-ttl diary_book_new">新しい日記帳の作成</h2>
+
+      <%= form_with model: @diary_book do |f| %>
+
+
+
+        <div class="row justify-content-center character_underline">
+          <p class="col-lg-10 col-sm-10 col-10 col-md-10" ><span class="px-3">&emsp;<%= f.label :title,"タイトル" %>&emsp;</span></p>
+          <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-10"  %></p>
+        </div>
+
+  </div>
+
+  <div class="content my_content col-lg-6 col-sm-12 col-12 col-md-12 m-1">
+    <div class="card d-block rounded-0" >
+      <div class="row justify-content-center card_text">
+        <p class="col-lg-4 col-sm-5 col-10 col-md-5">データ名</p>
+        <p class="col-lg-6 col-sm-5 col-10 col-md-5">データ</p>
+      </div>
+      <div class="row flex justify-around mb-3">
+        ボタン
+      </div>
+    </div>
        <div class="form-group">
          <%= f.label :tag_ids,"タグ" ,class:"col-lg-2 col-form-label font-weight-bold" %>
          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -30,11 +47,12 @@
             <%= f.label :status, '公開しない', value: false %>
           </div>
         </div>
-        
+
         <%= f.submit '投稿', class: "btn btn-success ml2" %>
       <% end %>
 
 
-</div>
 
+  </div>
+</div>
 </div>

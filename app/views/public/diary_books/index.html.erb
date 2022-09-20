@@ -1,50 +1,38 @@
 <div class='container'>
 
-<div class="content my_content">
+  <div class="content my_content">
 
 
-    <div class="card d-block rounded-0" >
+    <div class="card d-block rounded-0 index" >
       <div class="card-header mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
       <div class="row justify-content-center mb-3">
         <%= link_to "日記帳作成する",new_diary_book_path,class:"btn btn-lg btn-success" %>
       </div>
-
       <% if @diary_books.present? %>
-      <table>
-        <thead>
-          <tr>
-            <th>日記帳名</th>
-            <th>作成日</th>
-            <th>公開設定</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @diary_books.each do |diary_book| %>
-          <tr>
-            <td><%= link_to diary_book.title,diary_book_path(diary_book.id) %></td>
-            <td><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
-            <td><% if diary_book.status == true %><span class="publish">公開する</span><% else %><span class="private">公開しない</span><% end %></td>
-          </tr>
-        <% end %>
-        </tbody>
-
-      </table>
-        <% @diary_books.each do |diary_book| %>
-          <div class="card rounded-0 col-md-3">
-            <p><%= link_to diary_book.title,diary_book_path(diary_book.id) %></p>
-          </div>
-        <% end %>
+        <table border="1" cellpadding="5" width="95%" class="mb-3" >
+          <thead>
+            <tr class="bg-light" height="40">
+              <th width="65%">日記帳名</th>
+              <th width="20%" style="text-align:center">作成日</th>
+              <th width="15%" style="text-align:center">公開</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @diary_books.each do |diary_book| %>
+            <tr>
+              <td style="word-break: break-all;"><%= link_to diary_book.title,diary_book_path(diary_book.id) %></td>
+              <td style="text-align:center"><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
+              <td style="word-break: break-all;text-align:center"><% if diary_book.status == true %><span class="publish">公開</span><% else %><span class="private">非公開</span><% end %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
         <%= paginate @diary_books %>
       <% else %>
         <h3>日記帳がありません。</h3>
       <% end %>
     </div>
 
-
-
-
-
-
-</div>
+  </div>
 
 </div>

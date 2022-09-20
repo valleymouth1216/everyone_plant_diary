@@ -28,6 +28,22 @@ main {
 }
 
 
+#error_explanation {
+  margin : 10px 0;
+  padding: 20px 10px;
+  background-color:#FFF;
+  border : 10px solid red;
+  color: red;
+  padding-bottom: 20px;
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  ul {
+    padding-left: 50px;
+    list-style: circle;
+  }
+}
 header {
   background: #d5ffd5;
   }
@@ -95,6 +111,11 @@ margin-left: auto;
   /*ユーザのみ*/
 }
 
+.card.d-block.index{
+    width: 95%;
+      /*ユーザ編集のみ*/
+}
+
 .card.d-block.edit{
     width: 80%;
       /*ユーザ編集のみ*/
@@ -131,17 +152,40 @@ margin-left: auto;
 }
 
 .publish{
+  color:#000;
   background-color:#80ff80;
-  padding:1px 2px;
+  padding:1px 3px;
   border-radius: 2px;
+  box-shadow : 0px 1px 10px 3px #99ff99 ;
       /*公開*/
 }
 
 .private{
+  color:#FFF;
   background-color:#949494;
   padding:1px 2px;
   border-radius: 2px;
+  box-shadow : 0px 1px 10px 3px #aaaaaa ;
         /*非公開*/
+}
+
+table a{
+  color:#000;
+}
+
+table a:hover {
+ color:#99ff99;
+}
+
+
+.diary_book {
+  background-image: url("219741.jpg");
+  background-size:  cover;
+  /*background-size: 100% 100%;*/
+    background-repeat: no-repeat;
+  background-color:#FFF;
+  padding:30px 0;
+  border : 10px solid #9dff76;
 }
 
 footer{
