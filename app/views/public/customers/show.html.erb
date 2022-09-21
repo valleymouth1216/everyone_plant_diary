@@ -7,10 +7,13 @@
 
 
     <div class="card d-block rounded-0 index" >
-      <div class="card-header mb-3"><h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2></div>
-        <div class="customer_card">
-          <%= image_tag @customer.get_profile_image(50,50),class:"my-3"%>&emsp;<%= link_to "#{@customer.name}さん日記へ",customer_customer_diary_books_path(@customer)%>
+      <div class="card-header mb-3"><h2 class="section-ttl pl-5">日記一覧</h2></div>
+      <%= link_to customer_customer_diary_books_path(@customer),class:"customer_card_hover" do  %>
+        <div class="customer_card p-1">
+          <%= image_tag @customer.get_profile_image(50,50)%>&emsp;<%= "#{@customer.name}さん" %>
         </div>
+      <% end %>
+
       <% if @customer_diary_books.present? %>
         <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
@@ -23,7 +26,7 @@
           <% @customer_diary_books.each do |diary_book| %>
             <tr>
               <td style="word-break: break-all;"><%= link_to diary_book.title,customer_customer_diary_books_path(@customer,diary_book: diary_book.id) %></td>
-              <td style="text-align:center"><%= diary_book.diary_dates.count %></td>
+              <td style="text-align:center"><%= diary_book.diary_dates.where(status_admin: true,status: true).count %></td>
             </tr>
           <% end %>
           </tbody>

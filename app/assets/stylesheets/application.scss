@@ -168,13 +168,20 @@ position: relative;
 }
 
 .customer_card{
-  border : 1px solid #9dff76;
+  border : 3px solid #0080ff;
+  color:#000;
   /*position: absolute;*/
   /*position: relative;*/
   top: 0;
   left: 0;
-  background-color: #fda;
+  background-color: #d5eaff;
   position: absolute;
+}
+
+.customer_card_hover :hover {
+ color:#99ff99;
+ text-decoration-color:#99ff99;
+ background-color:#fcfced;
 }
 
 .card.d-block.index{
