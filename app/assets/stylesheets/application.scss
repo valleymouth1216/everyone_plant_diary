@@ -27,6 +27,49 @@ main {
    background-size:  cover;
 }
 
+
+/*body, html { font-size: 100%; }*/
+/*@media screen and (min-width: 576px) and (max-width: 768px) { body, html { font-size: 50%; } }*/
+/*@media screen and (min-width: 769px) and (max-width: 992px) { body, html { font-size: 50%; } }*/
+/*@media screen and (min-width: 993px) and (max-width: 1200px) { body, html { font-size: 100%; } }*/
+/*@media screen and (min-width: 1201px) { body, html { font-size: 100%; } }*/
+
+
+// 小デバイス（横向きモバイル, 768px 未満）
+@media (max-width: 767.98px) {
+main {
+   font-size: 0.5rem;
+ }
+header {
+   font-size: 0.5rem;
+ }
+.section-ttl {
+   font-size: 1rem;
+ }
+.btn_size {
+   font-size: 0.5rem;
+ }
+}
+
+// @include media-breakpoint-up(sm) {
+// 極小デバイス（縦向きモバイル, 576px 未満）
+@media (max-width: 575.98px) {
+main {
+   font-size: 0.5rem;
+ }
+header {
+   font-size: 0.5rem;
+ }
+.section-ttl {
+   font-size: 1rem;
+ }
+.btn_size {
+   font-size: 0.5rem;
+ }
+}
+
+
+
 a {
   color: #000000;
   text-decoration: none;
@@ -61,10 +104,10 @@ header {
 }
 
 .customer_name{
-margin-left: auto;
+  margin-left: auto;
   /*text-align:left;*/
   /*margin-left: 10%;*/
-    display: flex;
+  display: flex;
   align-items: center;
 }
 
@@ -119,8 +162,19 @@ margin-left: auto;
   background-color:#FFF;
   padding:30px 0;
   border : 10px solid #5555ff;
+position: relative;
  /*text-align: center;*/
   /*ユーザのみ*/
+}
+
+.customer_card{
+  border : 1px solid #9dff76;
+  /*position: absolute;*/
+  /*position: relative;*/
+  top: 0;
+  left: 0;
+  background-color: #fda;
+  position: absolute;
 }
 
 .card.d-block.index{
@@ -212,7 +266,7 @@ table a:hover {
   background-image: url("219741.jpg");
   background-size:  cover;
   /*background-size: 100% 100%;*/
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-color:#FFF;
   padding:30px 0;
   border : 10px solid #9dff76;

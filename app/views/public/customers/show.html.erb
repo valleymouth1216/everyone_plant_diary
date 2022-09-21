@@ -1,30 +1,40 @@
 <div class='container'>
 
-<div class="content">
+<div class="content customers">
 
 
-    <h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2>
 
 
-        <table class="customer_info customer_form" border="1">
-          <tr>
-            <td colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></td>
-          </tr>
+
+    <div class="card d-block rounded-0 index" >
+      <div class="card-header mb-3"><h2 class="section-ttl"><%= @customer.name %>さんの日記帳一覧</h2></div>
+        <div class="customer_card">
+          <%= image_tag @customer.get_profile_image(50,50),class:"my-3"%>&emsp;<%= link_to "#{@customer.name}さん日記へ",customer_customer_diary_books_path(@customer)%>
+        </div>
+      <% if @customer_diary_books.present? %>
+        <table border="1" cellpadding="5" width="95%" class="mb-3" >
+          <thead>
+            <tr class="bg-light" height="40">
+              <th width="65%">日記帳名</th>
+              <th width="20%" style="text-align:center">投稿数</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @customer_diary_books.each do |diary_book| %>
+            <tr>
+              <td style="word-break: break-all;"><%= link_to diary_book.title,customer_customer_diary_books_path(@customer,diary_book: diary_book.id) %></td>
+              <td style="text-align:center"><%= diary_book.diary_dates.count %></td>
+            </tr>
+          <% end %>
+          </tbody>
         </table>
-
-        <%= link_to "#{@customer.name}さん日記へ",customer_customer_diary_books_path(@customer)%>
-
-       <% if @customer_diary_booKs.present? %>
-        <p>日記一覧</p>
-        <% @customer_diary_booKs.each do |diary_book| %>
-          <div class="card col-md-3">
-            <p><%= link_to diary_book.title,customer_customer_diary_books_path(@customer,diary_book: diary_book.id) %></p>
-          </div>
-        <% end %>
-        <%= paginate @customer_diary_booKs %>
+        <%= paginate @customer_diary_books %>
       <% else %>
         <h3>日記帳がありません。</h3>
       <% end %>
+    </div>
+
+
 
 </div>
 
