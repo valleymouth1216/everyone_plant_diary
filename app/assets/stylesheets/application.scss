@@ -46,9 +46,26 @@ header {
 .section-ttl {
    font-size: 1rem;
  }
-.btn_size {
+
+ input.btn_size {
    font-size: 0.5rem;
+   text-align:center;
  }
+
+ .link_size{
+   font-size: 0.5rem;
+   text-align:center;
+ }
+
+td{
+   font-size: 0.1rem;
+ }
+
+ .image_size{
+   width: 100%;
+ }
+
+
 }
 
 // @include media-breakpoint-up(sm) {
@@ -63,9 +80,23 @@ header {
 .section-ttl {
    font-size: 1rem;
  }
-.btn_size {
+ input.btn_size {
    font-size: 0.5rem;
+   text-align:center;
  }
+  .link_size{
+   font-size: 0.5rem;
+   text-align:center;
+ }
+
+td{
+   font-size: 0.1rem;
+ }
+ .image_size{
+   width: 100%;
+ }
+
+
 }
 
 
@@ -294,7 +325,7 @@ table a:hover {
   padding:1px 3px;
   border-radius: 3px;
   border-color: #80ff80;
-  border : 1px solid #d5ffd5;
+  border : 2px solid #d5ffd5;
 }
 
 .sort_color:hover{
@@ -303,13 +334,43 @@ table a:hover {
   padding:1px 3px;
   border-radius: 3px;
   border-color: #d5ffd5;
-  border : 1px solid #80ff80;
+  border : 2px solid #80ff80;
+}
+
+.search_color{
+  color:#000;
+  background-color:#ffbf80;
+  padding:1px 3px;
+  border-radius: 3px;
+  border-color: #80ff80;
+  border : 2px solid #ff952b;
+}
+
+.search_color:hover{
+  color:#000;
+  background-color: #ff952b;
+  padding:1px 3px;
+  border-radius: 3px;
+  border-color: #ff952b;
+  border : 2px solid #ffbf80;
 }
 
 .calendar_day{
   text-align: center;
-  background-color: #d5ffd5;
+  background-color:#ffead5;
   display: block;
+  border-radius: 3px;
+}
+
+.calendar_day:hover{
+  text-align: center;
+  background-color: #ffffd5;
+  display: block;
+  border-radius: 3px;
+}
+
+.form_middle{
+  vertical-align: middle;
 }
 
 footer{

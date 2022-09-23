@@ -3,6 +3,7 @@ class Public::CalendarDiariesController < ApplicationController
 
   def index
     @diary_dates = DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true})
+    @diary_dates_first= DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true}).first
   end
 
   def filter_by_date
