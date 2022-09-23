@@ -1,9 +1,6 @@
 <div class='container'>
 
-<div class="content customers">
-
-
-
+  <div class="content customers">
 
 
     <div class="card d-block rounded-0 index" >
@@ -13,7 +10,6 @@
           <%= image_tag @customer.get_profile_image(50,50)%>&emsp;<%= "#{@customer.name}さん" %>
         </div>
       <% end %>
-
       <% if @customer_diary_books.present? %>
         <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
@@ -36,7 +32,6 @@
         <h3>日記帳がありません。</h3>
       <% end %>
     </div>
-
 
 
 </div>

@@ -162,7 +162,7 @@ margin-left: auto;
   background-color:#FFF;
   padding:30px 0;
   border : 10px solid #5555ff;
-position: relative;
+  position: relative;
  /*text-align: center;*/
   /*ユーザのみ*/
 }
@@ -186,6 +186,15 @@ position: relative;
 
 .card.d-block.index{
     width: 95%;
+      /*ユーザ編集のみ*/
+}
+
+.card.d-block.tag{
+    width: 100%;
+      /*ユーザ編集のみ*/
+}
+.card.d-block.calendar{
+    width: 100%;
       /*ユーザ編集のみ*/
 }
 
@@ -277,6 +286,30 @@ table a:hover {
   background-color:#FFF;
   padding:30px 0;
   border : 10px solid #9dff76;
+}
+
+.sort_color{
+  color:#000;
+  background-color:#80ff80;
+  padding:1px 3px;
+  border-radius: 3px;
+  border-color: #80ff80;
+  border : 1px solid #d5ffd5;
+}
+
+.sort_color:hover{
+  color:#000;
+  background-color: #d5ffd5;
+  padding:1px 3px;
+  border-radius: 3px;
+  border-color: #d5ffd5;
+  border : 1px solid #80ff80;
+}
+
+.calendar_day{
+  text-align: center;
+  background-color: #d5ffd5;
+  display: block;
 }
 
 footer{

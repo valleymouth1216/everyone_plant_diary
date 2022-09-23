@@ -2,32 +2,35 @@
 
   <div class="content my_content">
 
-
-    <h2 class="section-ttl">いいねした日記一覧</h2>
-
+    <div class="card d-block index rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl">いいねした日記</h2></div>
       <% if @favorites.present? %>
+      <div class="row justify-content-center">
+        <p class="col-lg-2 col-sm-10 col-10 col-md-10 character_underline"><span class="px-1">全<%=@favorites_count.count %>件</span></p>
+        <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
+      <% if params[:order].present? %>
+        <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order %></span></p>
+      <% end %>
+        <%= form_tag({controller:"favorites",action:"index"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
+          <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
+          <%= submit_tag '並べ替える' ,class:"sort_color" %>
+        <% end %>
 
-        <h3>全<%=@favorites_count.count %>件</h3>
-
-        <h3>並べ替え</h3><% if params[:order].present? %><%=@order %>の順 <% end %>
-          <%= form_tag({controller:"favorites",action:"index"}, method: :get) do %>
-            <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
-            <%= submit_tag '並べ替える'  %>
-          <% end %>
-        <table>
+      </div>
+        <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
-            <tr>
-              <th>投稿者名</th>
-              <th>日記帳名</th>
-              <th>日付</th>
+            <tr class="bg-light" height="40">
+              <th width="20%" style="text-align:center">日付</th>
+              <th width="50%" style="text-align:center">日記帳名</th>
+              <th width="30%" style="text-align:center">ユーザ名</th>
             </tr>
           </thead>
           <tbody>
           <% @favorites.each do |favorite| %>
             <tr>
-              <td><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
-              <td><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
-              <td><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
+              <td style="text-align:center"><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
+              <td style="word-break: break-all;"><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
+              <td style="text-align:center"><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
             </tr>
           <% end %>
           </tbody>
@@ -36,6 +39,11 @@
       <% else %>
         <p><いいねした日記がありません。</p>
       <% end %>
+
+    </div>
+
+
+
 
 
 </div>

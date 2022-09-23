@@ -1,6 +1,6 @@
 <div class='container'>
 
-<div class="content customers">
+  <div class="content customers">
 
     <div class="card d-block rounded-0 index my-2" >
     <div class="card-header mb-3"><h2 class="section-ttl">ユーザ一覧</h2></div>
@@ -11,7 +11,6 @@
               </div>
 
       <% @customers.each do |customer|%>
-
     <div class="card d-block rounded-0 my-1" >
       <%= link_to customer_path(customer),class:"card_hover" do %>
             <div class="card-body">
@@ -30,8 +29,8 @@
       <p>ユーザが登録されていません。</p>
     <% end %>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </div>

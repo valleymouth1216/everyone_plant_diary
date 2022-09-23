@@ -1,17 +1,17 @@
 <div class='container'>
 
-<div class="content">
+  <div class="content customers">
 
 
     <h2 class="section-ttl">みんなの日記</h2>
 
       <%= form_with url: search_date_path, method: :get do |f| %>
-        <span>日付検索:</span><%= f.date_field :start_date %><span>～</span><%= f.date_field :end_date %><span>を検索する</span>
+        <span>日付検索:</span><%= f.date_field :start_date %><span>～</span><%= f.date_field :end_date %>
         <%= f.submit '検索', class: 'btn btn-primary'  %>
       <% end %>
 
       <%= month_calendar events: @diary_dates do |date, diary_dates| %>
-        <%= link_to date.day , date_path(date: date) %></br>
+        <%= link_to date.day , date_path(date: date),class:"calendar_day p-1" %>
           <% unless diary_dates.length == 0 %>
             <%= diary_dates.length %>件
           <% end %>
