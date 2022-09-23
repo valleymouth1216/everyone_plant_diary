@@ -64,6 +64,9 @@ td{
  .image_size{
    width: 100%;
  }
+.card-title{
+   font-size: 1rem;
+ }
 
 
 }
@@ -90,12 +93,15 @@ header {
  }
 
 td{
-   font-size: 0.1rem;
+   font-size: 1px;
  }
  .image_size{
    width: 100%;
  }
 
+.card-title{
+   font-size: 1rem;
+ }
 
 }
 
@@ -369,6 +375,13 @@ table a:hover {
   border-radius: 3px;
 }
 
+.count{
+  display: inline-block;
+}
+.count_position_right{
+  padding: 0 0 0 20px ;
+  display: inline-block;
+}
 .form_middle{
   vertical-align: middle;
 }

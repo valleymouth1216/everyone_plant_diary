@@ -2,53 +2,83 @@
 
   <div class="content customers">
 
+    <div class="card d-block index rounded-0" >
+      <div class="card-header mb-3">
+        <h2 class="section-ttl count">日付検索</h2>
+            <% if @search_diary_dates.present? %><h5 class="section-ttl count_position_right">全<%=@search_diary_dates_count.count %>件</h5><% end %>
+      </div>
+
 
     <% if @search_diary_dates.present? %>
-    <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
-    <p>タグ検索</p>
-      <% Tag.all.each do |t| %>
-        <%= check_box :tag_ids, t.name %><%= t.name %>
-      <% end %>
-        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-      <%= submit_tag '検索' %>
-    <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</h5>
+      </div>
 
-            <% if params[:tag_ids].present? %>
-              <tr><th>
-                <% params[:tag_ids].each do |key, value| %>
-                  <% if value == "1" %>
-                    <span>"<%= key %>"</span>
-                  <% end %>
-                <% end %>
-               </th></tr>
-          <% end %>
-
-      <h3><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果全<%=@search_diary_dates_count.count %>件</h3>
-      <h3>並べ替え</h3><% if params[:order].present? %><%=@order_diary_date %> <% end %>
-      <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
+      <div class="card d-block index rounded-0 my-3" >
+        <div class="row justify-content-center my-3">
+          <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
+        <% if params[:order].present? %>
+          <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order_diary_date %></span></p>
+        <% end %>
+        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
         <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
         <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-        <%= submit_tag '並べ替える'  %>
+          <%= submit_tag '並べ替える' ,class:"sort_color" %>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="card d-block index rounded-0" >
+        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
+        <div class="card-header mb-3"><h5 class="section-ttl">タグ検索</h5></div>
+          <% Tag.all.each do |t| %>
+            <span class:"vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
+          <% end %>
+        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+        <%= submit_tag '検索',class:"search_color m-2" %>
+        <% end %>
+      </div>
+
+      <% if params[:tag_ids].present? %>
+        <div class="card d-block index rounded-0 my-1" >
+          <div class="card-body character_underline">
+            <h5 class="card-title"><span>タグ検索結果</span></h5>
+                  <% params[:tag_ids].each do |key, value| %>
+                    <% if value == "1" %>
+                      <span>"<%= key %>"</span>
+                     <% end %>
+                  <% end %>
+          </div>
+        </div>
       <% end %>
-      <table>
+
+      <table border="1" cellpadding="5" width="95%" class="my-2">
         <thead>
-          <th>日記帳名</th>
-          <th>ユーザ名</th>
-          <th>日付</th>
+          <tr class="bg-light td_size" height="40">
+            <th>日記帳名</th>
+            <th style="text-align:center;">ユーザ名</th>
+            <th width="20%" style="text-align:center;">日付</th>
+          </tr>
         </thead>
         <tbody>
           <% @search_diary_dates.each do |diary_date| %>
-          <tr>
+          <tr class="td_size" height="40">
             <td><%= link_to diary_date.diary_book.title,customer_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id)%></td>
             <td><%= link_to "#{diary_date.diary_book.customer.name}さん",customer_path(diary_date.diary_book.customer.id) %></td>
-            <td><%= link_to diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date.id) %></td>
+            <td style="text-align:center;"><%= link_to diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date.id) %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @search_diary_dates %>
+      <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
+
     <% else %>
       <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
     <% end %>
-    <%= link_to "みんなの日記へ戻る",calendar_diaries_path %>
 
+      <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary link_size m-1" %>
+    </div>
+
+
+      </div>
+    </div>

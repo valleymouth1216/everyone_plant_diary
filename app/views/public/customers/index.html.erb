@@ -8,22 +8,21 @@
       <div class="row justify-content-center card_text">
         <p class="col-lg-4 col-sm-10 col-10 col-md-10 ">ユーザ画像</p>
         <p class="col-lg-4 col-sm-10 col-10 col-md-10 ">ユーザ名</p>
-              </div>
-
-      <% @customers.each do |customer|%>
-    <div class="card d-block rounded-0 my-1" >
-      <%= link_to customer_path(customer),class:"card_hover" do %>
-            <div class="card-body">
-      <div class="row justify-content-center d-flex align-items-center card_text_center">
-        <%= image_tag customer.get_profile_image(100,100),class:"p-2" %>
-        <p class="col-lg-4 col-sm-10 col-10 col-md-10"><%= customer.name %>さん</p>
-              </div>
       </div>
-      <% end %>
-    </div>
 
-      <% end %>
     <% if @customers.present? %>
+      <% @customers.each do |customer|%>
+        <div class="card d-block rounded-0 my-1" >
+          <%= link_to customer_path(customer),class:"card_hover" do %>
+            <div class="card-body">
+              <div class="row justify-content-center d-flex align-items-center card_text_center">
+                <%= image_tag customer.get_profile_image(100,100),class:"p-2" %>
+                <p class="col-lg-4 col-sm-10 col-10 col-md-10"><%= customer.name %>さん</p>
+              </div>
+             </div>
+          <% end %>
+         </div>
+      <% end %>
       <%= paginate @customers %>
     <% else %>
       <p>ユーザが登録されていません。</p>
