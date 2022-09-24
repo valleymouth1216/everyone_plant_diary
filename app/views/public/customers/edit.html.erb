@@ -14,16 +14,16 @@
         <% end %>
       <%= form_with model:@customer, url: update_information_path, method: :patch do |f| %>
         <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10" ><span class="px-3">&emsp;<%= f.label :name,"ユーザ名"  %>&emsp;</span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.text_field :name,class:"col-lg-12" %></p>
+          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins" ><span class="px-3">&emsp;<%= f.label :name,"ユーザ名"  %>&emsp;</span></p>
+          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.text_field :name,class:"my_page_edit" %></p>
         </div>
         <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10"><span class="px-3"><%= f.label :email,"メールアドレス" %></span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.email_field :email, autofocus: true,class:"col-lg-12" %></p>
+          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :email,"メールアドレス" %></span></p>
+          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.email_field :email, autofocus: true,class:"my_page_edit" %></p>
         </div>
         <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10"><span class="px-3"><%= f.label :profile_image,"プロフィール画像" %></span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png' %></p>
+          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :profile_image,"プロフィール画像" %></span></p>
+          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png',class:"my_page_edit image_size" %></p>
         </div>
         <div class="row justify-content-center card_text mb-3">
           <%= f.submit "編集内容を保存",class:"btn btn-lg btn-success" %>

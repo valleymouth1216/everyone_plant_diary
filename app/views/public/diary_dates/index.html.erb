@@ -39,7 +39,7 @@
           <% Tag.all.each do |t| %>
             <%= check_box :tag_ids, t.name %><%= t.name %>
           <% end %>
-        <%= submit_tag '検索',class:"m-2" %>
+        <%= submit_tag '検索',class:"m-2 search_color" %>
         <% end %>
       </div>
 
@@ -78,14 +78,17 @@
                 <% end %>
               <% else %>
                 <%= link_to diary_book_diary_date_path(@diary_book,diary_date) do %>
-                  <span style="word-break: break-all;"><%= diary_date.body.truncate(15, omission: '...続き') %></span>
+                  <span style="word-break: break-all;"><%= diary_date.body.truncate(21, omission: '...続きをみる') %></span>
         　       <% end %></br>
               <% end %>
             <% end %>
           <% end %>
         </div>
       <% else %>
-        <p>日記帳を選択してください</p>
+        <div class="card d-block rounded-0 " >
+          <h5 class="section-ttl"><h5>日記帳を選択してください</h5>
+          <div class="card d-block diary_book rounded-0 p-5" ></div>
+        </div>
       <% end %>
 
     </div>

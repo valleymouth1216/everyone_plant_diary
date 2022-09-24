@@ -1,55 +1,57 @@
 <div class='container'>
 
-  <div class="content">
+  <%= render 'layouts/error_messages', resource: @diary_date %>
+
+  <div class="content my_content">
 
 
-    <h2 class="section-ttl"><%= @diary_book.title %>日記の作成</h2>
+    <div class="card d-block diary_date  edit rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_date_header_new px-1"><%= @diary_book.title %>日記の作成</span></h2></div>
+      <%= form_with model: @diary_date,url: diary_book_diary_dates_path(@diary_book) do |f| %>
 
+        <div class="character_underline ">
+          <div class="m-1 p-1 diary_date_new" style="text-align:center" >
+            <span class="px-1"><%= f.label :start_time,"日付" %></span>
+            <%= f.date_field :start_time , :value => Time.now.strftime('%Y-%m-%d') %>
+          </div>
 
-<%= form_with model: @diary_date,url: diary_book_diary_dates_path(@diary_book) do |f| %>
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " >
+            <p style="text-align:center;"class="no_margins"><span class="px-1" ><%= f.label :body,"内容" ,class:"" %></span></p>
+            <%= f.text_area :body ,placeholder:"入力してください",class: "",rows:"5",:style =>"color:black;"  %>
+          </div>
 
-		    <%= render 'layouts/error_messages', resource:  @diary_date %>
-    <div class="form-group">
-      <%= f.label :start_time,"日付" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.date_field :start_time , :value => Time.now.strftime('%Y-%m-%d') %>
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+            <span class="px-1 "><%= f.label :temperature,"気温" ,class:"" %></span>
+            <%= f.number_field :temperature ,placeholder:"入力してください",class: ""  %>℃
+          </div>
+
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+            <span class="px-1">日記の公開</span>
+              <%= f.radio_button :status, true %>
+              <%= f.label :status, '公開する', value: true %>
+              <%= f.radio_button :status, false %>
+              <%= f.label :status, '公開しない', value: false %>
+              <p class="help-block">※公開を選択すると他のユーザに日記帳を公開することができます。</p>
+            </div>
+
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+            <span class="px-1"><%= f.label :weather,"天気" ,class:"" %></span>
+            <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
+          </div>
+
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+            <span class="px-1"><%= f.label :diary_images, '画像' %></span>
+            <%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png' %>
+            <p class="help-block">JPEGまたはPNG形式を選択してアップロードしてください
+            </br>※サポートされていない形式のファイルは投稿しないでください。</p>
+          </div>
+
+          <%= f.submit '作成する',class:"m-3 btn btn-success" %>
+        </div>
+     <% end %>
     </div>
 
 
-    <div class="form-group">
-      <%= f.label :body,"内容" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.text_area :body ,placeholder:"入力してください",class: "col-lg-5"  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :temperature,"気温" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.number_field :temperature ,placeholder:"入力してください",class: "col-lg-5"  %>
-    </div>
-
-    <div class="form-group">
-      日記の公開
-      <div>
-      <%= f.radio_button :status, true %>
-      <%= f.label :status, '公開する', value: true %>
-      <%= f.radio_button :status, false %>
-      <%= f.label :status, '公開しない', value: false %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :weather,"天気" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-      <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :diary_images, '画像' %>
-      <%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png' %>
-      <p>JPEGまたはPNG形式を選択してアップロードしてください</br>※サポートされていない形式のファイルは投稿しないでください。</p>
-    </div>
-
-  <%= f.submit '投稿',class:"btn btn-lg btn-success" %>
-
-<% end %>
-
-</div>
+  </div>
 
 </div>

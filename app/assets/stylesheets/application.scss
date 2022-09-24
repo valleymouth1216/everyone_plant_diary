@@ -35,77 +35,6 @@ main {
 /*@media screen and (min-width: 1201px) { body, html { font-size: 100%; } }*/
 
 
-// 小デバイス（横向きモバイル, 768px 未満）
-@media (max-width: 767.98px) {
-main {
-   font-size: 0.5rem;
- }
-header {
-   font-size: 0.5rem;
- }
-.section-ttl {
-   font-size: 1rem;
- }
-
- input.btn_size {
-   font-size: 0.5rem;
-   text-align:center;
- }
-
- .link_size{
-   font-size: 0.5rem;
-   text-align:center;
- }
-
-td{
-   font-size: 0.1rem;
- }
-
- .image_size{
-   width: 100%;
- }
-.card-title{
-   font-size: 1rem;
- }
-
-
-}
-
-// @include media-breakpoint-up(sm) {
-// 極小デバイス（縦向きモバイル, 576px 未満）
-@media (max-width: 575.98px) {
-main {
-   font-size: 0.5rem;
- }
-header {
-   font-size: 0.5rem;
- }
-.section-ttl {
-   font-size: 1rem;
- }
- input.btn_size {
-   font-size: 0.5rem;
-   text-align:center;
- }
-  .link_size{
-   font-size: 0.5rem;
-   text-align:center;
- }
-
-td{
-   font-size: 1px;
- }
- .image_size{
-   width: 100%;
- }
-
-.card-title{
-   font-size: 1rem;
- }
-
-}
-
-
 
 a {
   color: #000000;
@@ -325,6 +254,26 @@ table a:hover {
   background-position: center;
 }
 
+.diary_date {
+  background-image: url("773762.jpg");
+  background-size: 120% 120%;
+  /*background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-color:#FFF;
+  border : 10px solid #9dff76;
+  background-position: center;
+}
+
+.diary_date_new {
+background-color:rgba(255, 255, 43,0.1);
+border-radius: 1px;
+}
+
+.diary_date_header_new {
+background-color:rgba(255,255,255,0.7);
+border-radius: 1px;
+}
+
 .diary_book_new {
 background-color:rgba(152, 251, 152,0.6);
 border-radius: 1px;
@@ -421,3 +370,124 @@ footer{
 .pagination span {
   padding:10px;
 }
+
+ .image_size:hover{
+   width: 100%;
+   border : 3px solid #99ff99;
+ }
+
+ textarea{
+  width: 100%;
+  border : 3px solid #99ff99;
+ }
+
+  input{
+  border : 3px solid #99ff99;
+  background-color:#FFF;
+ }
+
+.my_page_edit{
+  width: 100%;
+ }
+
+.diary_book_form_new{
+    width: 80%;
+}
+
+ .no_margins{
+   margin: 0;
+ }
+
+.side_scroll{
+  white-space: nowrap;
+  overflow-x: scroll;
+  border: solid 1px #696969;
+}
+
+// 小デバイス（横向きモバイル, 768px 未満）
+@media (max-width: 767.98px) {
+main {
+   font-size: 0.5rem;
+ }
+header {
+   font-size: 0.5rem;
+ }
+.section-ttl {
+   font-size: 1rem;
+ }
+
+ input.btn_size {
+   font-size: 0.5rem;
+   text-align:center;
+ }
+
+ .link_size{
+   font-size: 0.5rem;
+   text-align:center;
+ }
+
+td{
+   font-size: 0.1rem;
+ }
+
+ .image_size{
+   width: 100%;
+ }
+
+ .image_size:hover{
+   width: 100%;
+ }
+.card-title{
+   font-size: 1rem;
+ }
+
+.card.d-block.edit{
+    width: 90%;
+      /*ユーザ編集のみ*/
+}
+}
+
+// @include media-breakpoint-up(sm) {
+// 極小デバイス（縦向きモバイル, 576px 未満）
+@media (max-width: 575.98px) {
+main {
+   font-size: 0.5rem;
+ }
+header {
+   font-size: 0.5rem;
+ }
+.section-ttl {
+   font-size: 1rem;
+ }
+ input.btn_size {
+   font-size: 0.5rem;
+   text-align:center;
+ }
+  .link_size{
+   font-size: 0.5rem;
+   text-align:center;
+ }
+
+td{
+   font-size: 1px;
+ }
+ .image_size{
+   width: 100%;
+ }
+
+.card-title{
+   font-size: 1rem;
+ }
+
+.card.d-block.edit{
+    width: 95%;
+      /*ユーザ編集のみ*/
+}
+
+textarea{
+  row:10;
+}
+
+}
+
+// 極小デバイスここまで
