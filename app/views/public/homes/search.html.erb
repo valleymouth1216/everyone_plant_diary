@@ -4,20 +4,19 @@
 
 
     <div class="card d-block rounded-0" >
-      <div class="card-header mb-3"><h2 class="section-ttl">検索結果</h2></div>
+      <div class="card-header mb-3">
+         <% if @model == 'customer' %>
+          <h2 class="section-ttl">ユーザ検索結果</h2>
+          <% else %>
+          <h2 class="section-ttl">日記帳検索結果</h2>
+          <% end %>
+      </div>
 
         <% if @result.present?  %>
 
       <div class="card-body character_underline">
         <h5 class="card-title">
-          <div class="row  justify-content-center">
-         <% if @model == 'customer' %>
-          <span class="col-lg-4 col-md-10 col-sm-10 px-3">ユーザ検索</span>
-          <% else %>
-          <span class="col-lg-4 col-md-10 col-sm-10 px-3">日記帳検索</span>
-          <% end %>
-          <span class="col-lg-6 col-md-10 col-sm-10 px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
-          </div>
+          <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
         </h5>
       </div>
 
