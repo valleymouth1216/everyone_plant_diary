@@ -317,12 +317,27 @@ table a:hover {
 
 .diary_book {
   background-image: url("219741.jpg");
-  background-size:  cover;
+  background-size: 120% 120%;
   /*background-size: 100% 100%;*/
   background-repeat: no-repeat;
   background-color:#FFF;
-  padding:30px 0;
   border : 10px solid #9dff76;
+  background-position: center;
+}
+
+.diary_book_new {
+background-color:rgba(152, 251, 152,0.6);
+border-radius: 1px;
+}
+
+.diary_book_header_new {
+background-color:rgba(255,255,255,0.7);
+border-radius: 1px;
+}
+
+.diary_book_edit {
+background-color:rgba(255,255,213,0.6);
+border-radius: 1px;
 }
 
 .sort_color{

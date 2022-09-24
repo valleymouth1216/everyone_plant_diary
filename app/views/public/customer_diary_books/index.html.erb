@@ -3,7 +3,7 @@
   <div class="row">
 
 
-    <div class="content customers  col-lg-3 col-sm-12 col-12 col-md-12 m-1">
+    <div class="content customers col-lg-3 col-sm-12 col-12 col-md-12 m-1">
 
       <div class="card d-block index rounded-0 my-1" >
         <div class="card-header mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
@@ -50,7 +50,6 @@
     <div class="content customers  col-lg-8 col-sm-12 col-12 col-md-12 m-1">
 
       <% if @diary_book.present? %>
-
         <div class="card d-block calendar rounded-0" >
           <div class="card-header mb-3"><h2 class="section-ttl"><%= @diary_book.title %>の日記</h2></div>
           <%= link_to customer_customer_diary_books_path(@customer),class:"customer_card_hover" do  %>
@@ -60,6 +59,7 @@
           <% end %>
           <div class="row justify-content-center card_text">
             <p class="col-lg-10 col-sm-10 col-10 col-md-5">
+              <span>タグ:</span>
               <% @diary_book.tags.each do |tag| %>
                 <span>▶<%= tag.name %></span>
               <% end %>
@@ -71,17 +71,17 @@
             <% end %>
           </div>
           <%= month_calendar events: @diary_dates do |date, diary_dates| %>
-            <%= date.day %>
+            <p style="text-align:center" class="my-1"><%= date.day %></p>
             <% diary_dates.each do |diary_date| %>
             <div>
               <% if diary_date.diary_images.attached? %>
                 <%= link_to customer_customer_diary_book_path(@customer,diary_date) do %>
-                  <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [100, 80]).processed, class: "review-img"%>
+                  <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [70, 70]).processed, class: "image_size" %>
                 <% end %>
               <% else %>
                 <%= link_to customer_customer_diary_book_path(@customer,diary_date) do %>
-                  <%= diary_date.body.truncate(10, omission: '...続き') %>
-        　       <% end %></br>
+                  <span style="word-break: break-all;"><%= diary_date.body.truncate(15, omission: '...続き') %></span>
+        　       <% end %>
               <% end %>
             </div>
             <% end %>
@@ -91,9 +91,9 @@
         <h2 class="section-ttl">日記帳を選択してください</h2>
       <% end %>
 
-
-
     </div>
+
+
 
    </div>
 

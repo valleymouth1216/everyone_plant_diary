@@ -1,38 +1,42 @@
 <div class='container'>
 
-<div class="content  my_content">
+  <%= render 'layouts/error_messages', resource: @diary_book %>
+
+  <div class="content my_content">
 
 
-    <h2 class="section-ttl">日記帳の編集</h2>
-
+    <div class="card d-block edit diary_book rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl "><span class="diary_book_header_new px-1">日記帳の編集</span></h2></div>
       <%= form_with model: @diary_book do |f| %>
-      <%= render 'layouts/error_messages', resource: @diary_book %>
-
-        <div class="form-group">
-         <%= f.label :title,"タイトル" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-         <%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-5"  %>
-       </div>
-       <div class="form-group">
-         <%= f.label :tag_ids,"タグ" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-           <%= tag.label do %>
-             <%= tag.check_box %>
-             <%= tag.text %>
-           <% end %>
-         <% end %>
-        </div>
-        <div class="form-group">
-          日記帳の公開
-          <div>
-            <%= f.radio_button :status, true %><%= f.label :status, '公開する', value: true %>
-            <%= f.radio_button :status, false %><%= f.label :status, '公開しない', value: false %>
+        <div class="character_underline ">
+          <div class="m-1 p-1 diary_book_edit" style="text-align:left" >
+            <span class="px-1"><%= f.label :title,"タイトル" %></span>
+            <%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-9"  %>
           </div>
+          <div class="m-1 p-1 diary_book_edit vertical-align: middle " style="text-align:left;">
+            <span class="px-1 "><%= f.label :tag_ids,"タグ" %></span>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+              <%= tag.label do %>
+                <%= tag.check_box %>
+                <%= tag.text %>
+               <% end %>
+            <% end %>
+             </br><span>※タグは一つ以上選択してください。</span>
+          </div>
+          <div class="m-1 p-1 diary_book_edit" style="text-align:left" >
+           <span class="px-1">日記帳の公開</span>
+            <%= f.radio_button :status, true %>
+            <%= f.label :status, '公開する', value: true %>
+            <%= f.radio_button :status, false %>
+            <%= f.label :status, '公開しない', value: false %>
+            </br><span>※公開を選択すると他のユーザに日記帳を公開することができます。</span>
+          </div>
+          <%= f.submit '編集', class: "m-3 btn btn-primary" %>
         </div>
-
-        <%= f.submit '更新する', class: "btn btn-success ml2"  %>
       <% end %>
+    </div>
 
 
-</div>
+  </div>
 
 </div>

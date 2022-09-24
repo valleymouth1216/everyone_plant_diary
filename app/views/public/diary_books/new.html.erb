@@ -1,58 +1,42 @@
 <div class='container'>
 
-		    <%= render 'layouts/error_messages', resource: @diary_book %>
+  <%= render 'layouts/error_messages', resource: @diary_book %>
 
-<div class='row'>
-  <div class="diary_book content col-lg-5 col-sm-12 col-12 col-md-12 m-1 ">
+  <div class="content my_content">
 
 
-    <h2 class="section-ttl diary_book_new">新しい日記帳の作成</h2>
-
+    <div class="card d-block edit diary_book rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl "><span class="diary_book_header_new px-1">新しい日記帳</span></h2></div>
       <%= form_with model: @diary_book do |f| %>
-
-
-
-        <div class="row justify-content-center character_underline">
-          <p class="col-lg-10 col-sm-10 col-10 col-md-10" ><span class="px-3">&emsp;<%= f.label :title,"タイトル" %>&emsp;</span></p>
-          <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-10"  %></p>
-        </div>
-
-  </div>
-
-  <div class="content my_content col-lg-6 col-sm-12 col-12 col-md-12 m-1">
-    <div class="card d-block rounded-0" >
-      <div class="row justify-content-center card_text">
-        <p class="col-lg-4 col-sm-5 col-10 col-md-5">データ名</p>
-        <p class="col-lg-6 col-sm-5 col-10 col-md-5">データ</p>
-      </div>
-      <div class="row flex justify-around mb-3">
-        ボタン
-      </div>
-    </div>
-       <div class="form-group">
-         <%= f.label :tag_ids,"タグ" ,class:"col-lg-2 col-form-label font-weight-bold" %>
-         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-           <%= tag.label do %>
-             <%= tag.check_box %>
-             <%= tag.text %>
-           <% end %>
-         <% end %>
-        </div>
-        <div class="form-group">
-          日記帳の公開
-          <div>
+        <div class="character_underline ">
+          <div class="m-1 p-1 diary_book_new" style="text-align:left" >
+            <span class="px-1"><%= f.label :title,"タイトル" %></span>
+            <%= f.text_field :title ,placeholder:"あさがお",class: "col-lg-9"  %>
+          </div>
+          <div class="m-1 p-1 diary_book_new vertical-align: middle " style="text-align:left;">
+            <span class="px-1 "><%= f.label :tag_ids,"タグ" %></span>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+              <%= tag.label do %>
+                <%= tag.check_box %>
+                <%= tag.text %>
+               <% end %>
+            <% end %>
+             </br><span>※タグは一つ以上選択してください。</span>
+          </div>
+          <div class="m-1 p-1 diary_book_new" style="text-align:left" >
+           <span class="px-1">日記帳の公開</span>
             <%= f.radio_button :status, true %>
             <%= f.label :status, '公開する', value: true %>
             <%= f.radio_button :status, false %>
             <%= f.label :status, '公開しない', value: false %>
+            </br><span>※公開を選択すると他のユーザに日記帳を公開することができます。</span>
           </div>
+          <%= f.submit '作成', class: "m-3 btn btn-success " %>
         </div>
-
-        <%= f.submit '投稿', class: "btn btn-success ml2" %>
       <% end %>
-
+    </div>
 
 
   </div>
-</div>
+
 </div>
