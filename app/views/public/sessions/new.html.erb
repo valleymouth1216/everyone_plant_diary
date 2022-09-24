@@ -1,9 +1,9 @@
 <div class='container'>
 
-<div class="content">
+  <div class="content my_content">
 
-
-    <h2 class="section-ttl">ログイン</h2>
+    <div class="card d-block  my-2" >
+    <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <table class="customer_info customer_form">
@@ -22,7 +22,7 @@
             </tr>
             <tr>
               <td></td>
-              <td colspan="2"><%= f.submit "ログイン",class:"col-md-4 btn btn-primary" %></td>
+              <td colspan="2"><%= f.submit "ログイン",class:"btn btn-primary" %></td>
             </tr>
           </tbody>
         </table>
@@ -31,7 +31,7 @@
 
     <%= render "public/shared/links" %>
 
-
-</div>
+  </div>
+  </div>
 
 </div>

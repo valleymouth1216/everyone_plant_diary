@@ -1,45 +1,90 @@
-<section class="inner">
-  <h2 class="section-ttl">検索結果</h2>
-  <% if @result.present?  %>
-  <p><%= @content %>の検索結果:<%= @result.count %>件</p>
-  	<% if @model == 'customer' %>
-      <table>
-        <thead>
-          <th></th>
-          <th>ユーザ名</th>
-        </thead>
-        <tbody>
-          <% @result.each do |customer| %>
-          <tr>
-            <td><%= image_tag customer.get_profile_image(100,100) %></td>
-            <td><%= link_to customer.name,customer_path(customer) %></td>
-          </tr>
+<div class='container'>
+
+  <div class="content customers">
+
+
+    <div class="card d-block rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl">検索結果</h2></div>
+
+        <% if @result.present?  %>
+
+      <div class="card-body character_underline">
+        <h5 class="card-title">
+          <div class="row  justify-content-center">
+         <% if @model == 'customer' %>
+          <span class="col-lg-4 col-md-10 col-sm-10 px-3">ユーザ検索</span>
+          <% else %>
+          <span class="col-lg-4 col-md-10 col-sm-10 px-3">日記帳検索</span>
           <% end %>
-        </tbody>
-      </table>
+          <span class="col-lg-6 col-md-10 col-sm-10 px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
+          </div>
+        </h5>
+      </div>
+
+
+    <% if @model == 'customer' %>
+
+      <% @result.each do |customer|%>
+        <div class="card d-block index rounded-0 my-1" >
+          <%= link_to customer_path(customer),class:"card_hover" do %>
+            <div class="card-body">
+              <div class="row justify-content-center d-flex align-items-center card_text_center">
+                <%= image_tag customer.get_profile_image(100,100),class:"p-2" %>
+                <p class="col-lg-4 col-sm-10 col-10 col-md-10"><%= customer.name %>さん</p>
+              </div>
+             </div>
+          <% end %>
+         </div>
+      <% end %>
+
   	<% else %>
-      <table>
+      <table border="1" cellpadding="5" width="95%" class="mb-3">
         <thead>
-          <th>日記帳名</th>
-          <th>ユーザ名</th>
-          <th>作成日付</th>
+          <tr class="bg-light" height="40">
+            <th>日記帳名</th>
+            <th style="text-align:center">ユーザ名</th>
+            <th style="text-align:center">更新日</th>
+          </tr>
         </thead>
         <tbody>
           <% @result.each do |diary_book| %>
-          <tr>
-            <% if diary_book.customer_id==current_customer.id %>
-            <td><%=link_to diary_book.title,diary_books_diaries_path(diary_book: diary_book.id) %></td></td>
-            <% else %>
-            <td><%=link_to diary_book.title,customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) %></td>
-            <% end %>
-            <td><%= link_to diary_book.customer.name,customer_path(diary_book.customer_id)%>さん</td>
-            <td><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
+          <tr height="40">
+            <td style="word-break: break-all;"><%=link_to diary_book.title,customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) %></td>
+            <td style="word-break: break-all;"><%= link_to "#{diary_book.customer.name}さん",customer_path(diary_book.customer_id)%></td>
+            <td style="text-align:center">
+              <% if diary_book.diary_dates.order(:updated_at).last.present? %>
+                <%= diary_book.diary_dates.order(:updated_at).last.start_time.strftime('%Y/%m/%d') %>
+              <% else %>
+                記録なし
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>
       </table>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
   	<% end %>
   <% else %>
-  	<h3><% if @content.present? %><%= @content %>の検索結果は<% end %>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+
+      <div class="card-body  character_underline">
+        <h5 class="card-title"><span><% if @content.present? %>"<%= @content %>"の検索結果は<% end %>見つかりませんでした。検索条件を変更して再度お試しください。</span></h5>
+      </div>
+
   <% end %>
-</section>
+
+
+  </div>
+
+</div>
+

@@ -32,7 +32,7 @@
         <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
         <div class="card-header mb-3"><h5 class="section-ttl">タグ検索</h5></div>
           <% Tag.all.each do |t| %>
-            <span class:"vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
+            <span class="vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
           <% end %>
         <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
         <%= submit_tag '検索',class:"search_color m-2" %>
@@ -76,7 +76,7 @@
       <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
     <% end %>
 
-      <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary link_size m-1" %>
+      <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary m-3" %>
     </div>
 
 

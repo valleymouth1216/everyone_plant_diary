@@ -37,22 +37,20 @@
             <div class="col-lg-8 col-12 col-sm-12">
               <div class="customer_search ">
                 <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
-                  <span>キーワード検索</span></br>
-                  <span>キーワード：</span>
-                  <%= text_field_tag "search[content]", "", :placeholder =>"日記帳: 日記帳名/ユーザ: ユーザ名" %>
-                  <div>
-                    <span>検索対象：</span>
-                    <%= form.label "[model]","日記帳", value: "diary_books" %>
-                    <%= form.radio_button "[model]", "diary_books", checked: true %>
-                    <span>,</span>
-                    <%= form.label "[model]","ユーザ", value: "customer" %>
-                    <%= form.radio_button "[model]", "customer"	 %>
-                    <span>検索条件：</span>
-                    <%= form.label "[method]","部分一致", value: "partial" %>
+                  <%= text_field_tag "search[content]", "", :placeholder =>"検索する" %>
+                    <span>
+                    <%= form.label "[method]","or", value: "partial" %>
                     <%= form.radio_button "[method]", "partial", checked: true %>
-                    <span>,</span>
-                    <%= form.label "[method]","完全一致", value: "perfect" %>
+                    <%= form.label "[method]","and", value: "perfect" %>
                     <%= form.radio_button "[method]", "perfect"	 %>
+                    </span>
+                  <div>
+                    <span>
+                    <%= form.label "[model]","日記帳検索", value: "diary_books" %>
+                    <%= form.radio_button "[model]", "diary_books", checked: true %>
+                    <%= form.label "[model]","ユーザ検索", value: "customer" %>
+                    <%= form.radio_button "[model]", "customer"	 %>
+                    </span>
                     <%= submit_tag '検索', class: "btn sm btn-primary" %>
                   </div>
                   <% end %>
@@ -178,14 +176,14 @@
                     ログイン
                   <% end %>
                 </li>
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
-                    管理ログイン用(後で消す！！！)
-                  <% end %>
-                </li>
                 <li class="btn btn-light btn-lg">
                   <%= link_to customers_guest_sign_in_path, method: :post,:style =>"color:black;" do %>
                     ゲストログイン（閲覧用）
+                  <% end %>
+                </li>
+                <li class="btn btn-light btn-lg" >
+                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
+                    管理ログイン用(後で消す！！！)
                   <% end %>
                 </li>
               </div>

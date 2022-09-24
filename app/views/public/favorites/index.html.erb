@@ -29,7 +29,7 @@
           <% @favorites.each do |favorite| %>
             <tr>
               <td style="text-align:center"><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
-              <td style="word-break: break-all;"><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id)%></td>
+              <td style="word-break: break-all;"><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id) %></td>
               <td style="text-align:center"><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
             </tr>
           <% end %>
