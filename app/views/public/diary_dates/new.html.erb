@@ -9,15 +9,17 @@
       <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_date_header_new px-1"><%= @diary_book.title %>日記の作成</span></h2></div>
       <%= form_with model: @diary_date,url: diary_book_diary_dates_path(@diary_book) do |f| %>
 
-        <div class="character_underline ">
+      <div class="row">
+
+        <div class="character_underline col-lg-5">
           <div class="m-1 p-1 diary_date_new" style="text-align:center" >
             <span class="px-1"><%= f.label :start_time,"日付" %></span>
             <%= f.date_field :start_time , :value => Time.now.strftime('%Y-%m-%d') %>
           </div>
 
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " >
-            <p style="text-align:center;"class="no_margins"><span class="px-1" ><%= f.label :body,"内容" ,class:"" %></span></p>
-            <%= f.text_area :body ,placeholder:"入力してください",class: "",rows:"5",:style =>"color:black;"  %>
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+            <span class="px-1"><%= f.label :weather,"天気" ,class:"" %></span>
+            <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
           </div>
 
           <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
@@ -32,11 +34,6 @@
               <%= f.radio_button :status, false %>
               <%= f.label :status, '公開しない', value: false %>
               <p class="help-block">※公開を選択すると他のユーザに日記帳を公開することができます。</p>
-            </div>
-
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
-            <span class="px-1"><%= f.label :weather,"天気" ,class:"" %></span>
-            <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
           </div>
 
           <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
@@ -45,9 +42,21 @@
             <p class="help-block">JPEGまたはPNG形式を選択してアップロードしてください
             </br>※サポートされていない形式のファイルは投稿しないでください。</p>
           </div>
+        </div>
 
+        <div class="character_underline col-lg-7">
+          <div class="m-1 p-1 diary_date_new vertical-align: middle " >
+            <p style="text-align:center;"class="no_margins"><span class="px-1" ><%= f.label :body,"内容" ,class:"" %></span></p>
+            <%= f.text_area :body ,placeholder:"入力してください",class: "",rows:"15"%>
+          </div>
+        </div>
+
+        <div class="character_underline col-lg-12">
           <%= f.submit '作成する',class:"m-3 btn btn-success" %>
         </div>
+
+      </div>
+
      <% end %>
     </div>
 

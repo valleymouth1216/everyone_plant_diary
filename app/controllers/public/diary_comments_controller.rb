@@ -13,7 +13,7 @@ class Public::DiaryCommentsController < ApplicationController
         redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
       end
     else
-      if current_customer.id == diary_comment.customer_id
+      if current_customer.id == @diary_date.diary_book.customer_id
         redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
       else
         redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)

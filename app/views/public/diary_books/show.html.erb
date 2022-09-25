@@ -1,75 +1,69 @@
 <div class='container'>
 
-  <div class="content my_content">
-
-
-    <h2 class="section-ttl">日記帳詳細</h2>
-
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-          <tr>
-            <td><%= @diary_book.title %></td>
-          </tr>
-        </tbody>
-        </table>
-      <p><%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success ml2" %></p>
-      <p><%= link_to "この日記帳の日記をみる", diary_books_diaries_path(diary_book: @diary_book.id), class: "btn btn-success ml2" %></p>
-</div>
-
-    <% unless @diary_book.status_admin? %>
-      <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
-     <% end %>
-
-<div class='content'>
-
-    <h2 class="section-ttl">詳細内容</h2>
-      <% @diary_book.tags.each do |tag| %>
-        ▶<%= tag.name %>
-      <% end %>
-      <table class="customer_info customer_form" >
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>作成日付</td>
-            <td><%= @diary_book.created_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-            <td>更新日付</td>
-            <td><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>日記の公開設定</td>
-            <td>        <% if @diary_book.status == true %>
-          公開する
-        <% else %>
-          公開しない
-        <% end %></td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %></td>
-          </tr>
-        </tbody>
-        </table>
+  <div class="row">
 
 
 
-    <h2 class="section-ttl">日記帳の削除</h2>
+    <div class="content my_content col-lg-6 m-1">
 
-      <p>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</p>
-      <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger ml2"  %>
+      <div class="card d-block index  diary_book rounded-0" >
+        <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_book_header_new px-1">日記帳詳細</span></h2></div>
+        <div class="card-body character_underline">
+          <h2 class="card-title"><span><%= @diary_book.title %></span></h2>
+        </div>
+        <div class="card-body">
+          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success" %>
+        </div>
+        <div class="card-body">
+          <%= link_to "この日記帳の日記をみる", diary_books_diaries_path(diary_book: @diary_book.id), class: "btn btn-success" %>
+        </div>
+        <% unless @diary_book.status_admin? %>
+          <div class="status_admin">
+            <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
+          </div>
+         <% end %>
+        </div>
+        <%= link_to "日記帳の一覧に戻る", diary_books_path %>
 
-</div>
+    </div>
 
-<%= link_to "日記帳の一覧に戻る", diary_books_path %>
 
-</div>
+    <div class="content my_content col-lg-5 m-1">
+
+      <div class="tags">
+        <% @diary_book.tags.each do |tag| %>
+          ▶<%= tag.name %>
+        <% end %>
+      </div>
+
+      <div class="card d-block index rounded-0 mt-2" >
+        <div class="card-header mb-3"><h2 class="section-ttl">詳細内容</h2></div>
+        <div class="card-body card_text">
+          <p><span class="px-2">作成日付:</span><span class="px-2" ><%= @diary_book.created_at.strftime('%Y/%m/%d') %></span></p>
+          <p><span class="px-2">更新日付:</span><span class="px-2"><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></span></p>
+          <p><span class="px-2">日記の公開設定:</span>
+             <% if @diary_book.status == true %>
+              <span class="publish">公開</span>
+            <% else %>
+              <span class="private">非公開</span>
+            <% end %>
+          </p>
+          <%= link_to "日記帳を編集する", edit_diary_book_path(@diary_book), class: "btn btn-success ml2" %>
+        </div>
+      </div>
+
+      <div class="card d-block index rounded-0 my-1" >
+        <div class="card-header mb-3"><h2 class="section-ttl">日記帳の削除</h2></div>
+        <div class="card-body character_underline">
+          <p><span>※日記帳を削除するとこの日記帳の日記を閲覧ができなくなります。</span></p>
+          <%= link_to "削除", diary_book_path(@diary_book), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger m-1"  %>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
 
 </div>

@@ -1,41 +1,38 @@
 <div class='container'>
 
+  <%= render "public/shared/error_messages", resource: resource %>
+
   <div class="content my_content">
 
-
-    <h2 class="section-ttl">新規登録</h2>
+    <div class="card d-block rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl">新規登録</h2></div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
-          <table class="customer_info customer_form">
-            <thead>
-              <th></th>
-              <th></th>
-            </thead>
+
+          <table class="form-table customer_info customer_form mb-1"  border="1" cellpadding="5" width="95%">
             <tbody>
               <tr>
                 <td><%= f.label :name, "ユーザ名" %></td>
-                <td><%= f.text_field :name,placeholder:"令和" %></td>
+                <td><%= f.text_field :name,placeholder:"令和",class:"my_page_edit" %></td>
               </tr>
               <tr>
                 <td><%= f.label :email, "メールアドレス" %></td>
-                <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com" %></td>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com",class:"my_page_edit" %></td>
               </tr>
               <tr>
-                <td><%= f.label :password, "パスワード" %><% if @minimum_password_length %><em>(<%= @minimum_password_length %>文字以上)</em><% end %></td>
-                <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+                <td width="35%"><%= f.label :password, "パスワード" %><% if @minimum_password_length %><em>(<%= @minimum_password_length %>文字以上)</em><% end %></td>
+                <td><%= f.password_field :password, autocomplete: "new-password",class:"my_page_edit" %></td>
               </tr>
               <tr>
                 <td><%= f.label :password_confirmation, "パスワード確認用" %></td>
-                <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td colspan="2" class="text-center"><%= f.submit "新規登録",class:"btn btn-sm btn-success" %></td>
+                <td><%= f.password_field :password_confirmation, autocomplete: "new-password",class:"my_page_edit" %></td>
               </tr>
             </tbody>
             </table>
+            <%= f.submit "新規登録",class:"btn btn-sm btn-success my-1" %>
       <% end %>
+
+    </div>
 
     <%= render "public/shared/links" %>
 

@@ -1,37 +1,32 @@
 <div class='container'>
 
+  <%= render "public/shared/error_messages", resource: resource %>
+
   <div class="content my_content">
 
     <div class="card d-block  my-2" >
-    <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
+      <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <table class="customer_info customer_form">
-          <thead>
-            <th></th>
-            <th></th>
-          </thead>
+        <table class="customer_info customer_form mb-1 table_border"  border="1" cellpadding="5" width="95%">
           <tbody>
             <tr>
-              <td><%= f.label :email, "メールアドレス" %></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+              <td width="25%"><%= f.label :email, "メールアドレス" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email",class:"my_page_edit" %></td>
             </tr>
             <tr>
               <td><%= f.label :password, "パスワード" %></td>
-              <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td colspan="2"><%= f.submit "ログイン",class:"btn btn-primary" %></td>
+              <td><%= f.password_field :password, autocomplete: "current-password",class:"my_page_edit" %></td>
             </tr>
           </tbody>
         </table>
+        <%= f.submit "ログイン",class:"btn btn-primary my-1" %>
       <% end %>
-
+    </div>
 
     <%= render "public/shared/links" %>
 
-  </div>
+
   </div>
 
 </div>
