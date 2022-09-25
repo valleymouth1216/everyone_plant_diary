@@ -27,19 +27,20 @@ main {
    background-size:  cover;
 }
 
-
+table {
+table-layout: fixed;
+word-break: break-all;
+word-wrap: break-all;
+}
+a {
+  color: #000000;
+  text-decoration: none;
+}
 /*body, html { font-size: 100%; }*/
 /*@media screen and (min-width: 576px) and (max-width: 768px) { body, html { font-size: 50%; } }*/
 /*@media screen and (min-width: 769px) and (max-width: 992px) { body, html { font-size: 50%; } }*/
 /*@media screen and (min-width: 993px) and (max-width: 1200px) { body, html { font-size: 100%; } }*/
 /*@media screen and (min-width: 1201px) { body, html { font-size: 100%; } }*/
-
-
-
-a {
-  color: #000000;
-  text-decoration: none;
-}
 
 #error_explanation {
   margin : 10px 0;
@@ -125,6 +126,14 @@ margin-left: auto;
   /*ユーザのみ*/
 }
 
+.admin_content{
+  background-color:#FFF;
+  padding:30px 0;
+  border : 10px solid #00ff80;
+  position: relative;
+ /*text-align: center;*/
+  /*ユーザのみ*/
+}
 .customers{
   background-color:#FFF;
   padding:30px 0;
@@ -148,6 +157,24 @@ margin-left: auto;
 .customer_card_hover :hover {
  color:#99ff99;
  text-decoration-color:#99ff99;
+ background-color:#fcfced;
+}
+
+.admin_card{
+  z-index: 20;
+  border : 3px solid #00d56a;
+  color:#000;
+  /*position: absolute;*/
+  /*position: relative;*/
+  top: 0;
+  left: 0;
+  background-color: #eafff4;
+  position: absolute;
+}
+
+.admin_card:hover {
+ color:#99ff99;
+ text-decoration-color:#00ff80;
  background-color:#fcfced;
 }
 
@@ -239,6 +266,7 @@ margin-left: auto;
 table a{
   color:#000;
 }
+
 
 table a:hover {
  color:#99ff99;
@@ -438,6 +466,15 @@ footer{
     padding: 0;
     font-weight: bold;
 }
+
+.card_link_font{
+  color: #000000;
+  text-decoration: none;
+}
+
+.card_link_font:hover{
+  text-decoration: none;
+}
 // 小デバイス（横向きモバイル, 768px 未満）
 @media (max-width: 767.98px) {
 main {
@@ -479,6 +516,25 @@ td{
     width: 90%;
       /*ユーザ編集のみ*/
 }
+
+.admin_card{
+  z-index: 20;
+  border : 3px solid #00d56a;
+  color:#000;
+  /*position: absolute;*/
+  /*position: relative;*/
+  padding:10px;
+  top: 0;
+  left: 0;
+  background-color: #eafff4;
+  position: absolute;
+}
+
+.admin_card:hover {
+ color:#99ff99;
+ text-decoration-color:#00ff80;
+ background-color:#fcfced;
+}
 }
 
 // @include media-breakpoint-up(sm) {
@@ -503,7 +559,7 @@ header {
  }
 
 td{
-   font-size: 1px;
+   font-size: 10%;
  }
  .image_size{
    width: 100%;
@@ -522,6 +578,23 @@ textarea{
   row:10;
 }
 
+.admin_card{
+  z-index: 20;
+  border : 3px solid #00d56a;
+  color:#000;
+  /*position: absolute;*/
+  /*position: relative;*/
+  top: 0;
+  left: 0;
+  background-color: #eafff4;
+  position: absolute;
+}
+
+.admin_card:hover {
+ color:#99ff99;
+ text-decoration-color:#00ff80;
+ background-color:#fcfced;
+}
 }
 
 // 極小デバイスここまで

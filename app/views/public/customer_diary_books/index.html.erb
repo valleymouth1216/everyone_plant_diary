@@ -7,31 +7,27 @@
 
       <div class="card d-block index rounded-0 my-1" >
         <div class="card-header mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
-        <table border="1" cellpadding="5" width="90%" class="mb-3" >
-          <thead>
           <% if params[:tag_ids].present? %>
-            <tr>
-              <th>
+            <div class="card rounded-0">
+              タグ検索結果
                 <% params[:tag_ids].each do |key, value| %>
                   <% if value == "1" %>
                     <span>"<%= key %>"</span>
                    <% end %>
                 <% end %>
-             </th>
-            </tr>
+            </div>
           <% end %>
-          </thead>
-          <tbody>
+
           <% @diary_books.each do |diary_book| %>
-            <tr>
-              <% if diary_book.id.present? %>
-                <td style="word-break: break-all;"><%= link_to diary_book.title, customer_customer_diary_books_path(diary_book: diary_book.id) %></td>
+            <% if diary_book.id.present? %>
+              <%=link_to customer_customer_diary_books_path(diary_book: diary_book.id),class:"card_link_font" do %>
+                <div class="card rounded-0 card_hover">
+                  <p class="no_margins py-2" style=" word-break: break-all;text-align:left" ><span>・</span><%= diary_book.title %></p>
+                 </div>
               <% end %>
-            </tr>
+            <% end %>
           <% end %>
           <%= paginate @diary_books %>
-          </tbody>
-        </table>
       </div>
 
       <div class="card d-block tag rounded-0" >
@@ -40,7 +36,7 @@
           <% Tag.all.each do |t| %>
             <%= check_box :tag_ids, t.name %><%= t.name %>
           <% end %>
-        <%= submit_tag '検索',class:"m-2" %>
+        <%= submit_tag '検索',class:"m-2 search_color" %>
         <% end %>
       </div>
 

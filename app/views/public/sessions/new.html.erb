@@ -1,27 +1,29 @@
 <div class='container'>
 
+  <% if flash[:alert] %>
+    <p class="alert alert-danger" role="alert" id="alert"><%= alert %></p>
+  <% end %>
+
   <%= render "public/shared/error_messages", resource: resource %>
+
 
   <div class="content my_content">
 
     <div class="card d-block  my-2" >
       <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <table class="customer_info customer_form mb-1 table_border"  border="1" cellpadding="5" width="95%">
-          <tbody>
-            <tr>
-              <td width="25%"><%= f.label :email, "メールアドレス" %></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email",class:"my_page_edit" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :password, "パスワード" %></td>
-              <td><%= f.password_field :password, autocomplete: "current-password",class:"my_page_edit" %></td>
-            </tr>
-          </tbody>
-        </table>
-        <%= f.submit "ログイン",class:"btn btn-primary my-1" %>
-      <% end %>
+      <div class="card-body">
+         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <p class"my-2">
+            <%= f.label :email,"メールアドレス" ,class:"col-lg-4",:style =>"text-align:left;" %>
+            <%= f.email_field :email            ,class:"col-lg-7 my_page_edit", autofocus: true ,autocomplete: "email",placeholder:"sample@example.com" %>
+          </p>
+          <p class"my-2">
+            <%= f.label :password,"パスワード" ,class:"col-lg-4",:style =>"text-align:left;" %>
+            <%= f.password_field :password     ,class:"col-lg-7 my_page_edit",  autocomplete: "current-password" %>
+          </p>
+          <%= f.submit "ログイン",class:"btn btn-primary m-2" %>
+        <% end %>
+      </div>
     </div>
 
     <%= render "public/shared/links" %>

@@ -2,35 +2,33 @@
 
   <%= render "public/shared/error_messages", resource: resource %>
 
+
   <div class="content my_content">
 
-    <div class="card d-block rounded-0" >
+    <div class="card d-block" >
       <div class="card-header mb-3"><h2 class="section-ttl">新規登録</h2></div>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-          <table class="form-table customer_info customer_form mb-1"  border="1" cellpadding="5" width="95%">
-            <tbody>
-              <tr>
-                <td><%= f.label :name, "ユーザ名" %></td>
-                <td><%= f.text_field :name,placeholder:"令和",class:"my_page_edit" %></td>
-              </tr>
-              <tr>
-                <td><%= f.label :email, "メールアドレス" %></td>
-                <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com",class:"my_page_edit" %></td>
-              </tr>
-              <tr>
-                <td width="35%"><%= f.label :password, "パスワード" %><% if @minimum_password_length %><em>(<%= @minimum_password_length %>文字以上)</em><% end %></td>
-                <td><%= f.password_field :password, autocomplete: "new-password",class:"my_page_edit" %></td>
-              </tr>
-              <tr>
-                <td><%= f.label :password_confirmation, "パスワード確認用" %></td>
-                <td><%= f.password_field :password_confirmation, autocomplete: "new-password",class:"my_page_edit" %></td>
-              </tr>
-            </tbody>
-            </table>
-            <%= f.submit "新規登録",class:"btn btn-sm btn-success my-1" %>
-      <% end %>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <p class"my-2"  style="text-align:left">
+            <%= f.label :name, "ユーザ名",class:"col-lg-4",:style =>"text-align:left;"  %>
+            <%= f.text_field :name,placeholder:"令和",class:"col-lg-7 my_page_edit" %>
+          </p>
+          <p class"my-2"  style="text-align:left">
+            <%= f.label :email, "メールアドレス" ,class:"col-lg-4",:style =>"text-align:left;"  %>
+            <%= f.email_field :email, autofocus: true,class:"col-lg-7 my_page_edit", autocomplete: "email",placeholder:"sample@example.com" %>
+          </p>
+          <p class"my-2" style="text-align:left">
+            <span class="col-lg-5" style="text-align:left"><%= f.label :password, "パスワード" %><% if @minimum_password_length %><em>(<%= @minimum_password_length %>文字以上)</em><% end %></span>
+            <%= f.password_field :password           ,class:"col-lg-7 my_page_edit" ,autocomplete: "new-password"%>
+          </p>
+          <p class"my-2"  style="text-align:left">
+            <%= f.label :password_confirmation, "パスワード確認用",class:"col-lg-4",:style =>"text-align:left;" %>
+            <%= f.password_field :password_confirmation           ,class:"col-lg-7 my_page_edit" , autocomplete: "new-password"%>
+          </p>
+          <%= f.submit "新規登録",class:"btn btn-success m-2" %>
+        <% end %>
+      </div>
 
     </div>
 

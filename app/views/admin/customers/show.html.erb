@@ -1,60 +1,53 @@
 <div class='container'>
 
-<div class="content">
+    <div class="row">
 
 
-    <h2 class="section-ttl">登録基本情報</h2>
-
-      <table class="customer_info customer_form" border="1">
-          <tr>
-            <th colspan="2"><%= image_tag @customer.get_profile_image(100,100) %></th>
-          </tr>          <tr>
-            <td>ID</td>
-            <td><%= @customer.id %></td>
-          </tr>
-          <tr>
-            <td>ユーザ名</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-          <tr>
-            <td>会員ステータス</td>
-            <td>
-              <% if @customer.is_deleted? %>
-                <span class="text-invalid">退会済み</span>
-              <% else %>
-               <span class="text-active">有効</span>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= link_to "基本情報編集をする", edit_admin_customer_path(@customer), class: "btn btn-success ml2" %></td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= link_to "このユーザの日記一覧をみる",admin_customer_diary_books_path(@customer) %></td>
-          </tr>
-        </tbody>
-      </table>
-
-    <h2 class="section-ttl">日記帳の詳細を見る</h2>
+     <div class="content admin_content col-lg-5 m-1">
 
 
-      <% if @diary_books.present? %>
-        <% @diary_books.each do |diary_book| %>
-          <div class="card col-md-3">
-            <p><%= link_to diary_book.title,admin_diary_book_path(diary_book) %></p>
-          </div>
+
+      <div class="content  index card d-block rounded-0" >
+        <div class="card-header mb-3"><h2 class="section-ttl">会員登録基本情報</h2></div>
+          <%= image_tag @customer.get_profile_image(100,100),class:"my-3"  %>
+        <div class="card-body card_text">
+          <p><span class="px-2">ID:</span><span class="px-2"><%= @customer.id %></span></p>
+          <p><span class="px-2">ユーザ名:</span><span class="px-2"><%= @customer.name %></span></p>
+          <p><span class="px-2">メールアドレス:</span><span class="px-2"><%= @customer.email %></span></p>
+          <p><span class="px-2">会員ステータス:</span>
+             <% if @customer.is_deleted? %>
+              <span class="private">退会</span>
+            <% else %>
+              <span class="publish">有効</span>
+            <% end %>
+          </p>
+          <%= link_to "基本情報編集をする", edit_admin_customer_path(@customer), class: "btn btn-success my-2" %>
+          <%= link_to "このユーザの日記一覧をみる",admin_customer_diary_books_path(@customer), class: "btn btn-success" %>
+        </div>
+      </div>
+
+    </div>
+
+     <div class="content admin_content col-lg-6  m-1">
+      <div class="card d-block index rounded-0 my-2" >
+        <div class="card-header mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
+        <% if @diary_books.present? %>
+          <% @diary_books.each do |diary_book| %>
+            <%=link_to admin_diary_book_path(diary_book),class:"card_link_font" do %>
+              <div class="card rounded-0 card_hover">
+                <p class="no_margins py-2" style=" word-break: break-all;text-align:left" ><span>・</span><%= diary_book.title %></p>
+              </div>
+            <% end %>
+          <% end %>
+          <%= paginate @diary_books %>
+        <% else %>
+          <h3>日記帳がありません。</h3>
         <% end %>
-        <%= paginate @diary_books %>
-      <% else %>
-        <h3>日記帳がありません。</h3>
-      <% end %>
+    </div>
+      </div>
 
 
 
-</div>
+
 
 </div>

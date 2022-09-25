@@ -1,34 +1,32 @@
 <div class='container'>
-  <div class="py-5 body heading">
-    <span class="col-md-3 bg-light" style="font-size : 30pt">管理者ログイン</span>
-  </div>
 
   <% if flash[:alert] %>
     <p class="alert alert-danger" role="alert" id="alert"><%= alert %></p>
   <% end %>
-  
-  
-  <div class="form-horizontal" role="form">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group">
-        <%= f.label :email,"メールアドレス" ,class:"col-lg-2 col-form-label" %>
-        <%= f.email_field :email,id:"email", autofocus: true,class:"col-lg-5" ,autocomplete: "email",placeholder:"sample@example.com" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password,"パスワード" ,class:"col-lg-2 col-form-label" %>
-        <%= f.password_field :password,id:"password",class:"col-lg-5",  autocomplete: "current-password" %>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-6 text-center">
-        <div class="actions">
-        <%= f.submit "ログイン",class:"col-md-3 btn btn-primary" %>
-        </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
 
-<%= render "admin/shared/links" %>
+
+  <div class="content admin_content">
+
+    <div class="card d-block my-2" >
+      <div class="card-header mb-3"><h2 class="section-ttl">管理者ログイン</h2></div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <p class"my-2">
+            <%= f.label :email,"メールアドレス" ,class:"col-lg-4",:style =>"text-align:left;" %>
+            <%= f.email_field :email            ,class:"col-lg-7 my_page_edit", autofocus: true ,autocomplete: "email",placeholder:"sample@example.com" %>
+          </p>
+          <p class"my-2">
+            <%= f.label :password,"パスワード" ,class:"col-lg-4",:style =>"text-align:left;" %>
+            <%= f.password_field :password     ,class:"col-lg-7 my_page_edit",  autocomplete: "current-password" %>
+          </p>
+          <%= f.submit "ログイン",class:"btn btn-primary m-2" %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+
+     <%= render "admin/shared/links" %>
 
 </div>
