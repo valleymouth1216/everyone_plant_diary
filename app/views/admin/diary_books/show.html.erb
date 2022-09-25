@@ -1,73 +1,77 @@
-
 <div class='container'>
 
-<div class="content">
+  <div class="row">
 
 
-    <h2 class="section-ttl"><%= @diary_book.customer.name %>さんの日記帳詳細</h2>
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-          <tr>
-            <td><%= @diary_book.title %></td>
-          </tr>
-        </tbody>
-        </table>
-      <p><%= link_to "日記を見る",admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id) %></p>
-</div>
 
-<div class='content'>
+    <div class="content my_content col-lg-5 m-1">
 
-    <h2 class="section-ttl">詳細内容</h2>
-      <% @diary_book.tags.each do |tag| %>
-        ▶<%= tag.name %>
-      <% end %>
-      <table class="customer_info customer_form" >
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>作成日付</td>
-            <td><%= @diary_book.created_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-            <td>更新日付</td>
-            <td><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>日記の公開設定</td>
-            <td><% if @diary_book.status? %>公開する<% else %>公開しない<% end %></td>
-          </tr>
-          <tr>
-            <td>管理者側の日記の公開設定</td>
-            <td><% if @diary_book.status_admin? %>公開する<% else %>公開しない<% end %></td>
-          </tr>
-          <tr>
-            <td>管理者側の日の公開設定</td>
-            <td>
-              <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
+      <div class="card d-block index  diary_book rounded-0" >
+        <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_book_header_new px-1">日記帳詳細</span></h2></div>
+        <div class="card-body character_underline">
+          <h2 class="card-title"><span><%= @diary_book.title %></span></h2>
+        </div>
+        <div class="card-body">
+          <%= link_to "日記を見る",admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id), class: "btn btn-success" %>
+        </div>
+        <% unless @diary_book.status_admin? %>
+          <div class="status_admin">
+            <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
+          </div>
+         <% end %>
+        </div>
+        <%= link_to "戻る",admin_customer_path(@diary_book.customer_id), class: "btn btn-success m-3" %>
+
+    </div>
+
+
+    <div class="content my_content col-lg-6 m-1">
+
+      <div class="tags">
+        <% @diary_book.tags.each do |tag| %>
+          ▶<%= tag.name %>
+        <% end %>
+      </div>
+
+      <div class="card d-block index rounded-0 mt-2" >
+        <div class="card-header mb-3"><h2 class="section-ttl">詳細内容</h2></div>
+        <div class="card-body card_text">
+          <p><span class="px-2">作成日付:</span><span class="px-2" ><%= @diary_book.created_at.strftime('%Y/%m/%d') %></span></p>
+          <p><span class="px-2">更新日付:</span><span class="px-2"><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></span></p>
+          <p><span class="px-2">日記の公開設定:</span>
+             <% if @diary_book.status? %>
+              <span class="publish">公開</span>
+            <% else %>
+              <span class="private">非公開</span>
+            <% end %>
+          </p>
+          <p><span class="px-2">管理者日記の公開設定:</span>
+             <% if @diary_book.status_admin? %>
+              <span class="publish">公開</span>
+            <% else %>
+              <span class="private">非公開</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <div class="card d-block index rounded-0 mt-2" >
+        <div class="character_underline">
+          <span class="px-2">管理者の公開設定</span>
+                <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
                 <%= render 'layouts/error_messages', resource: @diary_book %>
                 <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
                 <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
-                <%= f.submit '更新する', class: "btn btn-success ml2"  %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-        </table>
+                <%= f.submit '更新する', class: "btn btn-success m-2"  %>
+            <% end %>
+        </div>
+      </div>
 
 
 
 
 
-<%= link_to "戻る",admin_customer_path(@diary_book.customer_id), class: "btn btn-success ml2" %>
 
-</div>
+  </div>
 
 </div>
