@@ -467,6 +467,25 @@ footer{
     font-weight: bold;
 }
 
+.comment {
+    width: 90%;
+    margin-right: auto;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+    text-align: left ;
+
+}
+.comment p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.comment_date{
+    display:inline-block;
+    text-align: right ;
+}
 .card_link_font{
   color: #000000;
   text-decoration: none;
