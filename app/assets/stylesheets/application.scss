@@ -152,6 +152,7 @@ margin-left: auto;
   left: 0;
   background-color: #d5eaff;
   position: absolute;
+  z-index:20;
 }
 
 .customer_card_hover :hover {
@@ -219,16 +220,26 @@ margin-left: auto;
 }
 
 
-.card_text p{
+.card_text {
   border-bottom: solid 2px black;
   text-align:left;
   /*文字直接ではない*/
 }
 
-.card_text_center p{
+.card_text_center {
   border-bottom: solid 2px black;
   text-align:center;
   /*文字直接ではない*/
+}
+.card_text_boder_left_80{
+  width: 60%;
+  border-bottom: solid 2px black;
+  text-align:left;
+}
+.card_text_boder_center_80{
+  width: 60%;
+  border-bottom: solid 2px black;
+  text-align:center;
 }
 /*
 .card_text_p{
@@ -238,7 +249,11 @@ margin-left: auto;
 */
 
 
-
+.body_frame{
+ background-color: #fceff2;
+ box-shadow: #fceff2 0 0 10px 10px;
+ margin:10px;
+}
 .character_underline span{
   border-bottom: solid 2px black;
   line-height: 2;
@@ -293,9 +308,17 @@ table a:hover {
   background-position: center;
 }
 
+.diary_date_image {
+  background-image: url("773762.jpg");
+  background-size: 125% 125%;
+  /*background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .diary_date_new {
 background-color:rgba(255, 255, 43,0.1);
 border-radius: 1px;
+
 }
 
 .diary_date_header_new {
@@ -486,6 +509,16 @@ footer{
     display:inline-block;
     text-align: right ;
 }
+.card-header_design{
+    margin-right: auto;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+    text-align: center ;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+}
+
 .card_link_font{
   color: #000000;
   text-decoration: none;
