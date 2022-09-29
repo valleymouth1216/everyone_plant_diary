@@ -1,113 +1,128 @@
 <div class='container'>
 
-<div class="content">
 
 
-    <h2 class="section-ttl"><%= @diary_book.customer.name %>さんの<%= @diary_book.title %>の日記詳細</h2>
-
-      <% @diary_book.tags.each do |tag| %>
-        ▶<%= tag.name %>
+  <div class="content admin_content">
+      <%= link_to admin_customer_path(@diary_book.customer),class:"customer_card_hover" do  %>
+        <div class="customer_card p-1">
+          <%= image_tag @diary_book.customer.get_profile_image(50,50)%>&emsp;<%= "#{@diary_book.customer.name}さん" %>
+        </div>
       <% end %>
 
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>日付</td>
-            <td><%= @diary_date.start_time.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-            <td>天気</td>
-            <td><%=@diary_date.weather_i18n%></td>
-          </tr>
-          <tr>
-          <tr>
-            <td>気温</td>
-            <td><%= @diary_date.temperature %>℃</td>
-          </tr>
-          <tr>
-            <td>画像</td>
-            <td>
-              <% if @diary_date.diary_images.present? %>
-                  <% @diary_date.diary_images.each do |diary_image|%>
-                    <%= image_tag diary_image.variant(resize: '300x100').processed %>
-                  <% end %>
-              <% else %>
-                  画像がありません
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-        </table>
+    <div class="card d-block index rounded-0 my-4" >
+      <div class="card-header_design"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>の日記</span></h2></div>
 
-      <table class="customer_info customer_form" border="1">
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>内容</td>
-          </tr>
-          <tr>
-            <td colspan="2"><%= @diary_date.body %></td>
-          </tr>
-          <tr>
-            <td>日記の公開設定</td>
-            <td><% if @diary_date.status? %>公開する<% else %>公開しない<% end %></td>
-          </tr>
-          <tr>
-            <td>管理者日記の公開設定</td>
-            <td><% if @diary_date.status_admin? %>公開する<% else %>公開しない<% end %></td>
-          </tr>
-          <tr>
-            <td>管理者側の日の公開設定</td>
-            <td>
+
+      <div class="diary_date_image">
+
+        <div class="row">
+
+        <div class="col-lg-5 mt-5">
+          <div class="m-2 diary_date_new mb-1" >
+          <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">日付</span>
+            <%= @diary_date.start_time.strftime('%Y/%m/%d') %>
+          </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">天気</span>
+            <%=@diary_date.weather_i18n%>
+            </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">気温</span>
+            <%if @diary_date.temperature.present? %>
+              <%= @diary_date.temperature %>℃<
+            <% else %>
+              未入力
+            <% end %>
+            </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">いいね回数</span>
+            <%= @diary_date.favorites.count %>
+            </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">日記の公開設定</span>
+            <% if @diary_date.status == true %>
+              <span class="publish">公開</span><% else %><span class="private">非公開</span><% end %>
+            </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_left_80 no_margins">
+            <span class="px-2">管理者日記の公開設定</span>
+            <% if @diary_date.status_admin == true %>
+              <span class="publish">公開</span><% else %><span class="private">非公開</span><% end %>
+            </p>
+          </div>
+          <div class="m-2 diary_date_new">
+            <p class="card_text_boder_center_80 no_margins">
+            <span class="px-2">管理者日記の公開設定</span>
               <%= form_with model: @diary_date,url: admin_diary_book_diary_date_path(@diary_book,@diary_date), method: :patch  do |f| %>
                 <%= render 'layouts/error_messages', resource: @diary_date %>
                 <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
                 <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
-                <%= f.submit '更新する',class:"btn btn-lg btn-success" %></br>
+                <%= f.submit '更新',class:"btn btn-sm btn-success m-2" %></br>
               <% end %>
-            </td>
-          </tr>
-        </tbody>
-        </table>
+            </p>
+          </div>
+          <% if @diary_date.diary_images.attached? %>
+          <div class="m-2 diary_date_new character_underline">
+            <span class="px-3">画像</span>
+          </div>
+          <div class="m-1 p-1 diary_date_new side_scroll">
+              <% @diary_date.diary_images.each do |diary_image| %>
+                <a href="<%= url_for(diary_image) %>">
+                <%= image_tag diary_image.representation(resize_to_limit: [200, 180]).processed,class:"pr-5 py-1" %>
+              <% end %>
+          </div>
+          <% end %>
+          <div class="m-2 diary_date_new" style="text-align:center;">
+            <%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_book),class: "btn btn-primary m-2" %>
+            <%= link_to '日記一覧へ', admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id),class: "btn btn-primary m-2" %>
+          </div>
+        </div>
+
+        <div class="character_underline col-lg-7 mt-5">
+            <p class="diary_date_new"><span class="px-1">内容</span></p>
+            <div class="body_frame">
+            <p class="px-1 mx-4"style="text-align:left;"><span><%= @diary_date.body %></span></p>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+  </div>
 
 
-        <p><%= link_to '日記帳詳細に戻る', admin_diary_book_path(@diary_book) %>&ensp;
-           <%= link_to '日記一覧へ', admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id) %></p>
 
 
+<% if @diary_date.diary_comments.present? %>
+  <div class="content content admin_content my-2">
 
-      <% if @diary_date.diary_comments.present? %>
-        <table class="customer_info customer_form" border="1">
-          <thead>
-            <th colspan="2">コメント一覧(全<%= @diary_date.diary_comments.count %>件)</th>
-          </thead>
-          <tbody>
-            <% @diary_date.diary_comments.each do |diary_comment| %>
-            <tr>
-              <td colspan="2"><%= diary_comment.created_at.strftime('%Y/%m/%d') %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag diary_comment.customer.get_profile_image(70,50) %></td>
-              <td><%= diary_comment.customer.name %>さんのコメント</td>
-            </tr>
-            <tr>
-              <td colspan="2"><%= diary_comment.comment %></td>
-            </tr>
-            <tr>
-              <td><%= link_to "コメントを削除する", admin_diary_book_diary_date_diary_comment_path(@diary_date.diary_book.id,@diary_date.id, diary_comment), "data-confirm" => "本当にコメントを削除しますか？", method: :delete %></td>
-            </tr>
+
+    <div class="card d-block index rounded-0" >
+      <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_date_header_new px-1">コメント一覧</span>(全<%= @diary_date.diary_comments.count %>件)</h2></div>  <div class="character_underline">
+          <% @diary_date.diary_comments.each do |diary_comment| %>
+          <div class="m-1 p-1 comment vertical-align: middle " style="text-align:left;">
+            <%= image_tag diary_comment.customer.get_profile_image(70,50),class:"px-1" %><%= diary_comment.customer.name %>さんのコメント
+            <div class="comment_date"><%= diary_comment.created_at.strftime('%Y/%m/%d') %></div>
+            <p><%= diary_comment.comment %></p>
+                  <%= link_to "コメントを削除する", admin_diary_book_diary_date_diary_comment_path(@diary_date.diary_book.id,@diary_date.id, diary_comment), "data-confirm" => "本当にコメントを削除しますか？", method: :delete,class: "btn btn-danger m-1",:style =>"text-align:left;" %>
+          </div>
             <% end %>
-          </tbody>
-        </table>
-      <% end %>
+      </div>
+    </div>
 
-      <p>いいねされた回数:<%= @diary_date.favorites.count %></p>
-</div>
+
+  </div>
+<% end %>
+
 </div>
