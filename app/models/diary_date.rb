@@ -13,6 +13,7 @@ class DiaryDate < ApplicationRecord
    # validate :image_type
 
 
+
     def favorited_by?(customer)
       favorites.exists?(customer_id: customer.id)
     end
@@ -25,7 +26,6 @@ class DiaryDate < ApplicationRecord
     def self.count_by_date_admin(date)
        where(start_time: Time.zone.parse(date.to_s)).count
     end
-
 
   private
 

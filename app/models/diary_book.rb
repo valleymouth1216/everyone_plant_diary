@@ -5,6 +5,11 @@ class DiaryBook < ApplicationRecord
     has_many :diary_dates, dependent: :destroy
 
 
+    def order_update_last
+      diary_dates.order(:updated_at).last
+    end
+
+
          validates :title, presence: true
          validates :tag_ids, presence: true
 end

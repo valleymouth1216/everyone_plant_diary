@@ -11,22 +11,23 @@
   </head>
 
   <body>
+
     <header class="shadow-sm">
 
-        <div class="container pt-3">
+        <div class="container py-3">
 
 
 
           <div class="row">
 
-            <div class="logo col-lg-1">
+            <div class="logo col-lg-2 col-12">
               <a class="navbar-brand" href="/">ロゴ</a>
             </div>
 
           <% if customer_signed_in? %>
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-4 col-sm-3">
               <div class="customer_name">
-                <p class="pt-4">ようこそ,<%= current_customer.name %>さん！</p>
+                <p class="pt-4"style="word-break: break-all;">ようこそ,<%= current_customer.name %>さん！</p>
                 </div>
             </div>
           <% end %>
@@ -34,7 +35,7 @@
 
 
           <% if customer_signed_in? %>
-            <div class="col-lg-8 col-12 col-sm-12">
+            <div class="col-lg-7 col-8 col-sm-8">
               <div class="customer_search ">
                 <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
                   <%= text_field_tag "search[content]", "", :placeholder =>"検索する" %>
@@ -51,7 +52,7 @@
                     <%= form.label "[model]","ユーザ検索", value: "customer" %>
                     <%= form.radio_button "[model]", "customer"	 %>
                     </span>
-                    <%= submit_tag '検索', class: "btn sm btn-primary" %>
+                    <%= submit_tag '検索', class:"m-2 search_color"%>
                   </div>
                   <% end %>
                </div>
@@ -85,112 +86,95 @@
             </div>
           <% end %>
 
-
-     <nav class="navbar navbar-expand-lg navbar-light">
+</div>
+     <nav class="navbar-expand-lg navbar-light header_list">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+            <ul class="navbar-nav  me-auto mb-lg-0">
             <% if admin_signed_in? %>
-              <div>
-                <li>
-                 <%= link_to admin_customers_path,:style =>"color:black;" do %>
+                <li class="nav-item">
+                 <%= link_to admin_customers_path do %>
                     会員一覧
                  <% end %>
                 </li>
-                <li>
-                  <%= link_to admin_path,:style =>"color:black;" do %>
+                <li class="nav-item">
+                  <%= link_to admin_path do %>
                     みんなの日記
                   <% end %>
                 </li>
-                <li>
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-                </li>
-                <li>
-                  <%= link_to destroy_admin_session_path,:style =>"color:black;",method: :delete do %>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path,method: :delete do %>
                     ログアウト
                   <% end %>
                 </li>
-              </div>
             <% elsif customer_signed_in? %>
-              <div>
+
                 <li class="nav-item">
-                  <%= link_to customers_path,:style =>"color:black;" do %>
+                  <%= link_to customers_path do %>
                     会員一覧
                   <% end %>
                 </li>
               <li class="nav-item">
-                <%= link_to my_page_path,:style =>"color:black;" do %>
+                <%= link_to my_page_path do %>
                   マイページ
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to favorite_path,:style =>"color:black;" do %>
+                <%= link_to favorite_path do %>
                   いいねした日記
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to diary_books_path,:style =>"color:black;" do %>
+                <%= link_to diary_books_path do %>
                   日記帳
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to diary_books_diaries_path,:style =>"color:black;" do %>
+                <%= link_to diary_books_diaries_path do %>
                   日記
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
+                <%= link_to calendar_diaries_path do %>
                   みんなの日記
                 <% end %>
               </li>
               <li class="nav-item">
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_customer_session_path,:style =>"color:black;",method: :delete do %>
+                <%= link_to destroy_customer_session_path,method: :delete do %>
                   ログアウト
                 <% end %>
               </li>
-              </div>
+
             <% else %>
-              <div class="text-right pb-5">
-                <li>
-                  <%= link_to calendar_diaries_path,:style =>"color:black;" do %>
+
+                <li class="nav-item" >
+                  <%= link_to calendar_diaries_path do %>
                     みんなの日記
                   <% end %>
                 </li>
-                <li>
-              <!--    < %= link_to ***_path,:style =>"color:black;" do %> -->
-                使い方
-              <!--    < % end %>  -->
-                </li>
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_customer_registration_path,:style =>"color:black;" do %>
+                <li class="nav-item" >
+                  <%= link_to new_customer_registration_path do %>
                     新規登録
                   <% end %>
                 </li>
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_customer_session_path,:style =>"color:black;" do %>
+                <li class="nav-item" >
+                  <%= link_to new_customer_session_path do %>
                     ログイン
                   <% end %>
                 </li>
-                <li class="btn btn-light btn-lg">
-                  <%= link_to customers_guest_sign_in_path, method: :post,:style =>"color:black;" do %>
+                <li class="nav-item">
+                  <%= link_to customers_guest_sign_in_path, method: :post do %>
                     ゲストログイン（閲覧用）
                   <% end %>
                 </li>
-                <li class="btn btn-light btn-lg" >
-                  <%= link_to new_admin_session_path,:style =>"color:black;" do %>
+                <li class="nav-item" >
+                  <%= link_to new_admin_session_path do %>
                     管理ログイン用(後で消す！！！)
                   <% end %>
                 </li>
-              </div>
+
             <% end %>
           </ul>
 
@@ -200,6 +184,12 @@
 
 
     <main class="py-5">
+      <% if flash[:alert] %>
+        <div class='container'>
+            <p class="alert alert-danger" role="alert" id="alert"><%= alert %></p>
+        </div>
+      <% end %>
+
       <% if flash[:notice] %>
         <div class='container'>
           <div class="flash my-3">

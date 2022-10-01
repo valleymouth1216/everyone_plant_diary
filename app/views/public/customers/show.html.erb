@@ -3,19 +3,20 @@
   <div class="content customers">
 
 
-    <div class="card d-block rounded-0 index" >
-      <div class="card-header mb-3"><h2 class="section-ttl pl-5">日記一覧</h2></div>
       <%= link_to customer_customer_diary_books_path(@customer),class:"customer_card_hover" do  %>
         <div class="customer_card p-1">
-          <%= image_tag @customer.get_profile_image(50,50)%>&emsp;<%= "#{@customer.name}さん" %>
+          <%= image_tag @customer.get_profile_image(50,50)%>&emsp;<span style="word-break: break-all;"><%= "#{@customer.name}さん" %></span>
         </div>
       <% end %>
+
+    <div class="card d-block rounded-0 index mt-5" >
+      <div class="card-header mb-3"><h2 class="section-ttl pl-5">日記一覧</h2></div>
       <% if @customer_diary_books.present? %>
         <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
             <tr class="bg-light" height="40">
               <th width="65%">日記帳名</th>
-              <th width="20%" style="text-align:center">投稿数</th>
+              <th width="20%" style="text-align:center">更新日付</th>
             </tr>
           </thead>
           <tbody>

@@ -1,26 +1,23 @@
 <div class='container'>
 
-  <% if flash[:alert] %>
-    <p class="alert alert-danger" role="alert" id="alert"><%= alert %></p>
-  <% end %>
-
   <%= render "public/shared/error_messages", resource: resource %>
 
 
   <div class="content my_content">
 
-    <div class="card d-block  my-2" >
+    <div class="card d-block" >
       <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
-      <div class="card-body">
+
+      <div class="card-body character_underline">
          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <p class"my-2">
-            <%= f.label :email,"メールアドレス" ,class:"col-lg-4",:style =>"text-align:left;" %>
-            <%= f.email_field :email            ,class:"col-lg-7 my_page_edit", autofocus: true ,autocomplete: "email",placeholder:"sample@example.com" %>
-          </p>
-          <p class"my-2">
-            <%= f.label :password,"パスワード" ,class:"col-lg-4",:style =>"text-align:left;" %>
-            <%= f.password_field :password     ,class:"col-lg-7 my_page_edit",  autocomplete: "current-password" %>
-          </p>
+        <div class="row my-3">
+            <div class="col-lg-4 text_position_cetnter_left"><span class="px-2"><%= f.label :email, "メールアドレス" %></span></div>
+            <div class="col-lg-7"><%= f.email_field :email, autofocus: true,class:"my_page_edit", autocomplete: "email",placeholder:"sample@example.com" %></div>
+        </div>
+        <div class="row my-3" >
+            <div class="col-lg-4 text_position_cetnter_left"><span class="px-4"><%= f.label :password, "パスワード" %><% if @minimum_password_length %>(<%= @minimum_password_length %>文字以上)<% end %></span></div>
+            <div class="col-lg-7"><%= f.password_field :password           ,class:"my_page_edit" ,autocomplete: "new-password"%></div>
+        </div>
           <%= f.submit "ログイン",class:"btn btn-primary m-2" %>
         <% end %>
       </div>

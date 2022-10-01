@@ -15,15 +15,11 @@ ja:
       previous: Previous<i class="fas fa-angle-left"></i>
       next: Next<i class="fas fa-angle-right"></i>
       truncate: "..."
-    search_date:
-      newdate: '最新の日付順'
-      olddate: '古い日付順'
-      newpost: '最新の投稿順'
-      oldpost: '古い投稿順'
   activerecord:
     models:
       diary_book: "日記帳"
       diary_date: "日記"
+      customer: "ユーザ名"
     attributes:
       diary_book:
         title: "タイトル"
@@ -31,6 +27,10 @@ ja:
       diary_date:
         start_time: "日付"
         body: "内容"
+      customer:
+        name: "ユーザ名"
+        email : "メールアドレス"
+        password: "パスワード"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

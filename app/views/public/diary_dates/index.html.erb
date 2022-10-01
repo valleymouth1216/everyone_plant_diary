@@ -47,22 +47,22 @@
 
 
       <% if @diary_book.present? %>
-        <div class="card d-block calendar rounded-0" >
+        <div class="tags">
+          <% @diary_book.tags.each do |tag| %>
+            ▶<%= tag.name %>
+          <% end %>
+        </div>
+
+        <div class="card d-block calendar rounded-0 my-3" >
           <div class="card-header mb-3"><h2 class="section-ttl"><%= @diary_book.title %>の日記</h2></div>
 
-          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success ml2" %>
+          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success m-1" %>
 
           <div class="row justify-content-center card_text">
-            <p class="col-lg-10 col-sm-10 col-10 col-md-5">
-              <span>タグ:</span>
-              <% @diary_book.tags.each do |tag| %>
-                <span>▶<%= tag.name %></span>
-              <% end %>
-            </p>
             <% if @diary_date.present? %>
-              <p class="col-lg-10 col-sm-10 col-10 col-md-5">最新記録日付：<%= @diary_date.start_time.strftime('%Y/%m/%d') %></p>
+              <p class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins">最新記録日付：<%= @diary_date.start_time.strftime('%Y/%m/%d') %></p>
             <% else %>
-              <p>この日記帳は何も投稿されていません。</p>
+              <p  class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins">この日記帳は何も投稿されていません。</p>
             <% end %>
           </div>
 

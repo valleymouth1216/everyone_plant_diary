@@ -32,6 +32,7 @@ class Public::CalendarDiariesController < ApplicationController
         end
     else
       @diary_dates = DiaryDate.joins(:diary_book).where(start_time: date.at_beginning_of_day...date.at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
+      redirect_to calendar_diaries_path,  notice: "この日付で公開できる日記がありません。" if @diary_dates.blank?
     end
 
     if params[:order] == 'oldpost'
@@ -52,7 +53,7 @@ class Public::CalendarDiariesController < ApplicationController
 
   def search_date
     if params[:start_date] == "" ||params[:end_date] == ""
-      flash[:notice] = "日付が選択されていません。"
+      flash[:alert] = "日付が選択されていません。"
       redirect_to calendar_diaries_path
     else
      # binding.pry
