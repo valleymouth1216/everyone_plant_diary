@@ -5,47 +5,48 @@
   <div class="content my_content">
 
 
-    <div class="card d-block diary_date  edit rounded-0" >
-      <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_date_header_new px-1"><%= @diary_book.title %>日記の編集</span></h2></div>
+    <div class="card d-block edit rounded-0" >
+      <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>日記編集</span></h2></div>
       <%= form_with model: @diary_date,url: diary_book_diary_date_path(@diary_book,@diary_date), method: :patch  do |f| %>
 
-      <div class="row">
+      <div class="loose-leaf">
+        <div class="row">
 
         <div class="character_underline col-lg-5">
-          <div class="m-1 p-1 diary_date_new" style="text-align:center" >
+          <div class="m-1 p-1 required_frame py-2">
             <span class="px-1"><%= f.label :start_time,"日付" %></span>
             <%= f.date_field :start_time %>
           </div>
 
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+          <div class="m-1 p-1 arbitrary_data py-2 vertical-align: middle ">
             <span class="px-1"><%= f.label :weather,"天気" ,class:"" %></span>
             <%= f.select :weather, DiaryDate.weathers.keys.map {|k| [I18n.t("enums.diary_date.weather.#{k}"), k]} %>
           </div>
 
-          <div class="m-1 p-1 diary_date_new" style="text-align:center" >
+          <div class="m-1 p-1 arbitrary_data py-2">
             <span class="px-1"><%= f.label :temperature,"気温" %></span>
             <%= f.number_field :temperature ,placeholder:"入力してください" %>
           </div>
 
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+          <div class="m-1 p-1 arbitrary_data py-2 vertical-align: middle ">
             <span class="px-1">日記の公開</span>
             <%= f.radio_button :status, true %>
             <%= f.label :status, '公開する', value: true %>
             <%= f.radio_button :status, false %>
             <%= f.label :status, '公開しない', value: false %>
-            <p class="help-block">※公開を選択すると他のユーザに日記帳を公開することができます。</p>
+            <p class="help-block no_margins text_position_left_cetnter px-2">※公開を選択すると他のユーザに日記帳を公開することができます。</p>
           </div>
 
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
+          <div class="m-1 p-1 arbitrary_data py-2_new vertical-align: middle ">
             <span class="px-1"><%= f.label :diary_images, '画像' %></span>
             <%= f.file_field :diary_images, multiple: true,accept: 'image/jpeg, image/png' %>
-            <p class="help-block">JPEGまたはPNG形式を選択してアップロードしてください
+            <p class="help-block no_margins text_position_left_cetnter px-2">JPEGまたはPNG形式を選択してアップロードしてください
             </br>※サポートされていない形式のファイルは投稿しないでください。</p>
           </div>
         </div>
 
         <div class="character_underline col-lg-7">
-          <div class="m-1 p-1 diary_date_new" style="text-align:center" >
+          <div class="m-1 p-1 required_frame" style="text-align:center" >
             <span class="px-1"><%= f.label :body,"内容" %></span>
             <%= f.text_area :body ,placeholder:"入力してください",rows:"15"%>
           </div>
@@ -53,8 +54,8 @@
 
         <div class="character_underline col-lg-12">
           <% if @diary_date.diary_images.attached? %>
-          <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
-            <p class="help-block">現在登録されている画像（削除するものはチェックしてください）</p>
+          <div class="m-1 p-1 arbitrary_data vertical-align: middle " style="text-align:center;">
+            <p class="help-block no_margins">現在登録されている画像（削除するものはチェックしてください）</p>
             <div class="side_scroll">
             <% @diary_date.diary_images.each do |image| %>
               <%= f.check_box :image_ids, {:multiple => true}, image.id, false %>
@@ -65,16 +66,18 @@
           <% end %>
         </div>
 
-        <div class="character_underline col-lg-12">
-          <%= f.submit '編集する',class:"m-3 btn btn-success" %>
+
+        <div class="character_underline arbitrary_data py-2 col-lg-12">
+          <%= f.submit '編集を保存する',class:"m-3 btn btn-info" %>
         </div>
 
+      <% end %>
       </div>
+     </div>
 
-     <% end %>
+
+
     </div>
-
-
 
   </div>
 

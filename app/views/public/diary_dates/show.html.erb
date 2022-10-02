@@ -5,92 +5,101 @@
   <div class="content my_content">
 
 
-    <div class="card d-block index rounded-0" >
-      <div class="card-header_design"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>の日記</span></h2></div>
+    <div class="card d-block index rounded-0 " >
+      <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>日記</span></h2></div>
 
 
-      <div class="diary_date_image">
+      <div class="loose-leaf">
         <div class="row">
 
-        <div class="col-lg-5 mt-5">
-          <div class="m-2 diary_date_new mb-1" >
-          <p class="card_text_boder_left_80 no_margins">
-            <span class="px-2">日付</span>
-            <%= @diary_date.start_time.strftime('%Y/%m/%d') %>
-          </p>
+          <% unless @diary_date.status_admin? %>
+          <div class="status_admin col-lg-12">
+            <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
           </div>
-          <div class="m-2 diary_date_new">
-            <p class="card_text_boder_left_80 no_margins">
-            <span class="px-2">天気</span>
-            <%=@diary_date.weather_i18n%>
+          <% end %>
+
+          <div class="col-lg-5">
+            <div class="m-2 required_frame py-2" >
+              <p class="card_text_boder_left_80 no_margins">
+              <span class="px-2">日付</span>
+              <%= @diary_date.start_time.strftime('%Y/%m/%d') %>
+              </p>
+            </div>
+            <div class="m-2 arbitrary_data py-2">
+              <p class="card_text_boder_left_80 no_margins">
+              <span class="px-2">天気</span>
+              <%=@diary_date.weather_i18n%>
             </p>
-          </div>
-          <div class="m-2 diary_date_new">
-            <p class="card_text_boder_left_80 no_margins">
-            <span class="px-2">気温</span>
-            <%if @diary_date.temperature.present? %>
-              <%= @diary_date.temperature %>℃
-            <% else %>
-              未入力
-            <% end %>
-            </p>
-          </div>
-          <div class="m-2 diary_date_new">
-            <p class="card_text_boder_left_80 no_margins">
-            <span class="px-2">いいねされた回数</span>
-            <%= @diary_date.favorites.count %>
-            </p>
-          </div>
-          <div class="m-2 diary_date_new">
-            <p class="card_text_boder_left_80 no_margins">
-            <span class="px-2">日記の公開設定</span>
-            <% if @diary_date.status == true %>
-              <span class="publish">公開</span><% else %><span class="private">非公開</span><% end %>
-            </p>
-          </div>
-          <% if @diary_date.diary_images.attached? %>
-          <div class="m-2 diary_date_new character_underline">
-            <span class="px-3">画像</span>
-          </div>
-          <div class="m-1 p-1 diary_date_new side_scroll">
+            </div>
+            <div class="m-2 arbitrary_data py-2">
+              <p class="card_text_boder_left_80 no_margins">
+              <span class="px-2">気温</span>
+              <%if @diary_date.temperature.present? %>
+                <%= @diary_date.temperature %>℃
+              <% else %>
+                未入力
+              <% end %>
+              </p>
+            </div>
+            <div class="m-2 arbitrary_data py-2">
+              <p class="card_text_boder_left_80 no_margins">
+              <span class="px-2">いいねされた回数</span>
+              <%= @diary_date.favorites.count %>
+              </p>
+            </div>
+            <div class="m-2 arbitrary_data py-2">
+              <p class="card_text_boder_left_80 no_margins">
+              <span class="px-2">日記の公開設定</span>
+              <% if @diary_date.status == true %>
+                <span class="publish">公開</span><% else %><span class="private">非公開</span><% end %>
+              </p>
+            </div>
+            <% if @diary_date.diary_images.attached? %>
+            <div class="m-2 arbitrary_data character_underline">
+              <span class="px-3">画像</span>
+            </div>
+            <div class="m-1 p-1 arbitrary_data side_scroll">
               <% @diary_date.diary_images.each do |diary_image| %>
                 <a href="<%= url_for(diary_image) %>">
                 <%= image_tag diary_image.representation(resize_to_limit: [200, 180]).processed,class:"pr-5 py-1" %>
+                </a>
               <% end %>
+            </div>
+            <% end %>
+         </div>
+
+          <div class="col-lg-7 character_underline">
+            <p class="required_frame py-2"><span class="px-1">内容</span></p>
+            <div class="required_frame_data">
+              <p class="px-1 mx-4"style="text-align:left;"><span><%= @diary_date.body %></span></p>
+            </div>
           </div>
-          <% end %>
-          <div class="m-2 diary_date_new" style="text-align:center;">
+
+          <div class="card-body m-2 arbitrary_data">
             <%= link_to '日記編集', edit_diary_book_diary_date_path(@diary_book,@diary_date),class: "btn btn-info m-1" %>
             <%= link_to 'この日記帳の詳細', diary_book_path(@diary_book),class: "btn btn-primary m-1" %>
             <%= link_to '日記一覧へ', diary_books_diaries_path(diary_book: @diary_book.id),class: "btn btn-primary m-1" %>
             <%= link_to "削除", diary_book_diary_date_path(@diary_book,@diary_date), method: :delete, "data-confirm" => "本当に削除しますか？" ,class: "btn btn-danger m-1"  %>
           </div>
-        </div>
 
-        <div class="character_underline col-lg-7 mt-5">
-            <p class="diary_date_new"><span class="px-1">内容</span></p>
-            <div class="body_frame">
-            <p class="px-1 mx-4"style="text-align:left;"><span><%= @diary_date.body %></span></p>
-            </div>
-          </div>
-        </div>
 
         </div>
       </div>
 
+    </div>
+
+
   </div>
-
-
-
   <% if @diary_date.diary_comments.present? %>
 
-  <div class="content customers my-2">
+  <div class="content my_content my-2">
 
 
     <div class="card d-block index rounded-0" >
-      <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_date_header_new px-1">コメント一覧(全<%= @diary_date.diary_comments.count %>件)</span></h2></div>  <div class="character_underline">
+      <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1">コメント一覧(全<%= @diary_date.diary_comments.count %>件)</span></h2></div>  <div class="character_underline">
+        <div class="loose-leaf">
           <% @diary_date.diary_comments.each do |diary_comment| %>
-          <div class="m-1 p-1 comment vertical-align: middle " style="text-align:left;">
+          <div class="p-1 comment vertical-align: middle my-2">
             <%= image_tag diary_comment.customer.get_profile_image(70,50),class:"px-1" %><%= diary_comment.customer.name %>さんのコメント
             <div class="comment_date"><%= diary_comment.created_at.strftime('%Y/%m/%d') %></div>
             <p><%= diary_comment.comment %></p>
@@ -100,16 +109,16 @@
           </div>
             <% end %>
           <div class="m-1 p-1 diary_date_new vertical-align: middle " style="text-align:center;">
-     　    <%= form_with model: @diary_comment,url: customer_customer_diary_book_diary_comments_path(@diary_book.customer_id,@diary_date.id) do |f| %>
-            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-            <%= f.submit "コメントを返信する" %>
-          <% end %>
+     　      <%= form_with model: @diary_comment,url: customer_customer_diary_book_diary_comments_path(@diary_book.customer_id,@diary_date.id) do |f| %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+              <%= f.submit "コメントを返信する",class: "btn btn-success m-1" %>
+            <% end %>
           </div>
+        </div>
       </div>
-
-
     </div>
 
+  </div>
   <% end %>
 
 </div>

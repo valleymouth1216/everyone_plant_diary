@@ -18,7 +18,7 @@ class Public::DiaryCommentsController < ApplicationController
       else
         redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
       end
-     flash[:notice] = "コメントを入力してください"
+     flash[:alert] = "コメントを入力してください"
     end
   end
 

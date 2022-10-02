@@ -6,7 +6,7 @@
     <div class="content my_content col-lg-3 col-sm-12 col-12 col-md-12 m-1">
 
       <div class="card d-block index rounded-0 my-1" >
-        <div class="card-header mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
+        <div class="card-header_design2"><h2 class="section-ttl">日記帳一覧</h2></div>
           <% if params[:tag_ids].present? %>
             <div class="card rounded-0">
               タグ検索結果
@@ -54,15 +54,15 @@
         </div>
 
         <div class="card d-block calendar rounded-0 my-3" >
-          <div class="card-header mb-3"><h2 class="section-ttl"><%= @diary_book.title %>の日記</h2></div>
+          <div class="card-header_design2"><h2 class="section-ttl"><%= @diary_book.title %>の日記</h2></div>
 
-          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success m-1" %>
+          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success m-2" %>
 
-          <div class="row justify-content-center card_text">
+          <div class="row justify-content-center character_underline  my-2">
             <% if @diary_date.present? %>
-              <p class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins">最新記録日付：<%= @diary_date.start_time.strftime('%Y/%m/%d') %></p>
+              <p class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins"><span class="px-2">最新記録日付：<%= @diary_date.start_time.strftime('%Y/%m/%d') %></span></p>
             <% else %>
-              <p  class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins">この日記帳は何も投稿されていません。</p>
+              <p  class="col-lg-10 col-sm-10 col-10 col-md-5 no_margins"><span class="px-2">この日記帳には記録がありません。</span></p>
             <% end %>
           </div>
 
@@ -82,10 +82,7 @@
           <% end %>
         </div>
       <% else %>
-        <div class="card d-block rounded-0 " >
-          <h5 class="section-ttl"><h5>日記帳を選択してください</h5>
-          <div class="card d-block diary_book rounded-0 p-5" ></div>
-        </div>
+          <h5 class="section-ttl">日記帳を選択してください</h5>
       <% end %>
 
     </div>

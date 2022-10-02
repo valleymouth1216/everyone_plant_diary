@@ -230,7 +230,13 @@ header {
       /*ユーザ編集のみ*/
 }
 
-
+.card_border  {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.diary_book_name{
+     background-color:#fcfced;
+     border: solid 1px black;
+}
 .card_hover  {
   color: #000000;
   text-decoration: none;
@@ -256,7 +262,7 @@ header {
 .card_text {
   border-bottom: solid 2px black;
   text-align:left;
-    width: 90%;
+  width: 90%;
   /*文字直接ではない*/
 }
 
@@ -265,13 +271,15 @@ header {
   text-align:center;
   /*文字直接ではない*/
 }
+
+
 .card_text_boder_left_80{
-  width: 60%;
+  width: 80%;
   border-bottom: solid 2px black;
   text-align:left;
 }
 .card_text_boder_center_80{
-  width: 60%;
+  width: 80%;
   border-bottom: solid 2px black;
   text-align:center;
 }
@@ -288,11 +296,6 @@ header {
     /*文字直接*/
 }
 
-.body_frame{
- background-color: #fceff2;
- box-shadow: #fceff2 0 0 10px 10px;
- margin:10px;
-}
 
 /*
 .card_text_p{
@@ -300,9 +303,6 @@ header {
   text-align:right;
 }
 */
-
-
-
 
 
 .publish{
@@ -353,6 +353,13 @@ table a:hover {
   background-position: center;
 }
 
+.loose-leaf{
+  background: #ffffea;
+  border-left: 20px dotted rgba(0,0,0,.1);
+  box-shadow: 0 0 0 5 #f8f0d7;
+  padding: 1em;
+}
+
 .diary_date_image {
   background-image: url("773762.jpg");
   background-size: 125% 125%;
@@ -360,16 +367,12 @@ table a:hover {
   background-repeat: no-repeat;
   background-position: center;
 }
-.diary_date_new {
+
+.arbitrary_data {
 background-color:rgba(255, 255, 43,0.1);
 border-radius: 1px;
-
 }
 
-.diary_date_header_new {
-background-color:rgba(255,255,255,0.7);
-border-radius: 1px;
-}
 
 .diary_book_new {
 background-color:rgba(152, 251, 152,0.6);
@@ -384,6 +387,18 @@ border-radius: 1px;
 .diary_book_edit {
 background-color:rgba(255,255,213,0.6);
 border-radius: 1px;
+}
+
+
+.required_frame{
+background-color:rgba(234, 255, 213,0.7);
+border-radius: 1px;
+}
+
+.required_frame_data{
+ background-color: #eaffd5;
+ box-shadow: #eaffd5 0 0 10px 10px;
+ margin:10px;
 }
 
 .sort_color{
@@ -513,7 +528,6 @@ footer{
 .status_admin {
   width: 90%;
   padding: 0.5em 1em;
-  margin: 2em 0;
   color: #232323;
   background: #ffaaaa;
   border-left: solid 10px #ff0080;
@@ -547,8 +561,8 @@ footer{
     width: 90%;
     margin-right: auto;
     color: #232323;
-    background: #fff8e8;
-    border-left: solid 10px #ffc06e;
+    background: #eaf4ff;
+    border-left: solid 10px #0080ff;
     text-align: left ;
 
 }
@@ -572,6 +586,39 @@ footer{
     margin-bottom: 0;
 }
 
+.card-header_design2 {
+ padding: 0.75rem 1.25rem;
+ margin-bottom: 0;
+ background-color:  #eaffd5;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+ position: relative;
+ /*width: 90%; /* ボックス幅 */
+ box-shadow: 3px 3px 1px #aaff55; /* 影の色 */
+}
+.card-header_design2::before {
+ position: absolute;
+ content: '';
+ top: -15px;
+ right: 10px;
+ height: 55px;
+ width: 15px;
+ border: 3px solid #C0C0C0; /*クリップ色 */
+ background-color: none;
+ border-radius: 12px;
+ box-shadow: 1px 1px 2px #ccc; /*クリップ影*/
+ transform: rotate(10deg);
+ z-index: 1;
+}
+
+.card-header_design2::after {
+ position: absolute;
+ content: '';
+ top: 0px;
+ width: 10px;
+ right: 20px;
+ border: solid 5px #eaffd5; /*背景色と同じ色に！*/
+ z-index: 2;
+}
 
 .card_link_font{
   color: #000000;
@@ -617,7 +664,8 @@ header {
 
  input.btn_size {
    font-size: 0.5rem;
-   text-align:center;
+   text-align: center;
+   padding: 0.1rem 0.3rem;
  }
 
  .link_size{

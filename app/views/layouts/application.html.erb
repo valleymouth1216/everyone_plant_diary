@@ -6,6 +6,7 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/bb658d0cc3.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -94,86 +95,86 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul class="navbar-nav  me-auto mb-lg-0">
             <% if admin_signed_in? %>
+              <%= link_to admin_customers_path do %>
                 <li class="nav-item">
-                 <%= link_to admin_customers_path do %>
                     会員一覧
-                 <% end %>
-                </li>
+                 </li>
+              <% end %>
+              <%= link_to admin_path do %>
                 <li class="nav-item">
-                  <%= link_to admin_path do %>
                     みんなの日記
-                  <% end %>
                 </li>
+              <% end %>
+              <%= link_to destroy_admin_session_path,method: :delete do %>
                 <li class="nav-item">
-                  <%= link_to destroy_admin_session_path,method: :delete do %>
                     ログアウト
-                  <% end %>
                 </li>
+              <% end %>
             <% elsif customer_signed_in? %>
 
-                <li class="nav-item">
-                  <%= link_to customers_path do %>
+              <%= link_to customers_path do %>
+               <li class="nav-item">
                     会員一覧
-                  <% end %>
                 </li>
-              <li class="nav-item">
-                <%= link_to my_page_path do %>
+              <% end %>
+              <%= link_to my_page_path do %>
+                <li class="nav-item">
                   マイページ
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to favorite_path do %>
+                </li>
+              <% end %>
+              <%= link_to favorite_path do %>
+                <li class="nav-item">
                   いいねした日記
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to diary_books_path do %>
+                </li>
+              <% end %>
+              <%= link_to diary_books_path do %>
+                <li class="nav-item">
                   日記帳
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to diary_books_diaries_path do %>
+                </li>
+              <% end %>
+              <%= link_to diary_books_diaries_path do %>
+                <li class="nav-item">
                   日記
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to calendar_diaries_path do %>
+                </li>
+              <% end %>
+              <%= link_to calendar_diaries_path do %>
+                <li class="nav-item">
                   みんなの日記
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_customer_session_path,method: :delete do %>
+                </li>
+              <% end %>
+              <%= link_to destroy_customer_session_path,method: :delete do %>
+                <li class="nav-item">
                   ログアウト
-                <% end %>
-              </li>
+                </li>
+              <% end %>
 
             <% else %>
 
-                <li class="nav-item" >
-                  <%= link_to calendar_diaries_path do %>
+               <%= link_to calendar_diaries_path do %>
+                  <li class="nav-item">
                     みんなの日記
-                  <% end %>
-                </li>
-                <li class="nav-item" >
-                  <%= link_to new_customer_registration_path do %>
+                  </li>
+                <% end %>
+                <%= link_to new_customer_registration_path do %>
+                  <li class="nav-item">
                     新規登録
-                  <% end %>
-                </li>
-                <li class="nav-item" >
-                  <%= link_to new_customer_session_path do %>
+
+                <% end %>
+                <%= link_to new_customer_session_path do %>
+                  <li class="nav-item">
                     ログイン
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to customers_guest_sign_in_path, method: :post do %>
+                  </li>
+                <% end %>
+                <%= link_to customers_guest_sign_in_path, method: :post do %>
+                  <li class="nav-item">
                     ゲストログイン（閲覧用）
-                  <% end %>
-                </li>
-                <li class="nav-item" >
-                  <%= link_to new_admin_session_path do %>
+                  </li>
+                <% end %>
+                <%= link_to new_admin_session_path do %>
+                  <li class="nav-item">
                     管理ログイン用(後で消す！！！)
-                  <% end %>
-                </li>
+                  </li>
+                <% end %>
 
             <% end %>
           </ul>
