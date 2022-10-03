@@ -5,7 +5,7 @@
 
 
     <div class="card d-block rounded-0 edit" >
-      <div class="card-header mb-3"><h2 class="section-ttl">会員情報編集</h2></div>
+      <div class="card-header_design2 mb-3"><h2 class="section-ttl">会員情報編集</h2></div>
         <% if @customer.profile_image.attached? %>
           <div class="row justify-content-center character_underline">
             <p class="col-lg-10 col-sm-10 col-10 col-md-10"><span class="px-3">現在のプロフィール画像</span></p>
@@ -32,8 +32,8 @@
             <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会", class: "private mx-3" %>
           </p>
         </div>
-        <div class="row justify-content-center card_text mb-3">
-          <%= f.submit "編集内容を保存",class:"btn btn-lg btn-success" %>
+        <div class="row justify-content-center mb-3">
+          <%= f.submit "編集内容を保存",class:"btn btn-lg btn-info" %>
         </div>
       <% end %>
     </div>

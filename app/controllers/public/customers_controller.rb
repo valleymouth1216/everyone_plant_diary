@@ -9,7 +9,9 @@ class Public::CustomersController < ApplicationController
     if params[:id]== current_customer.id.to_s
        redirect_to my_page_path
     else
+
       @customer = Customer.find(params[:id])
+      #binding.pry
       @customer_diary_books = @customer.diary_books.where(status_admin: true,status: true).page(params[:page]).per(10)
     end
   end

@@ -2,8 +2,9 @@
 
   <div class="content admin_content">
 
+
     <div class="card d-block index rounded-0" >
-      <div class="card-header mb-3">
+      <div class="card-header_design2 mb-3">
         <h2 class="section-ttl count"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記</h2>
         <h5 class="count_position_right">全<%=@diary_dates_count.count %>件</h5>
       </div>
@@ -47,58 +48,32 @@
         </div>
       <% end %>
 
-      <% @diary_dates.each do |diary_date|%>
-        <div class="card d-block index  rounded-0 my-1" >
-          <div class="row justify-content-center d-flex align-items-center " >
-            <%= link_to customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
-                <p width="100%">
-                <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "image_size pl-1" %>
-                名前: <span style="word-break: break-all;"><%= diary_date.diary_book.customer.name %>さん</span>
-                </p>
-            <% end %>
-            <%= link_to customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date),class:"card_hover" do %>
-                <p width="100%">日記名: <%= diary_date.diary_book.title %></p>
-            <% end %>
-              <div>
-                <p width="100%">♥<%= diary_date.favorites.count %>💬<%= diary_date.diary_comments.count %></p>
-              </div>
-            </div>
-         </div>
-      <% end %>
 
       <% @diary_dates.each do |diary_date|%>
-          <table border="0" cellpadding="5" width="95%" class="my-2">
-            <tr class="bg-light td_size" height="40">
-              <td width="20%">
-                <%=link_to admin_customer_path(diary_date.diary_book.customer.id) do %>
-                <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "image_size pl-1" %>
-                <% end %>
-              </td>
-              <td width="30%" style="text-align:left;">
-                <%=link_to admin_customer_path(diary_date.diary_book.customer.id) do %>
-                名前: <span style="word-break: break-all;"><%= diary_date.diary_book.customer.name %>さん</span>
-                <% end %>
-              </td>
-             <td width="35%" style="text-align:left;">
-                <%=link_to admin_diary_book_diary_date_path(diary_date.diary_book.id,diary_date)do %>
-                日記名: <span style="word-break: break-all;"><%= diary_date.diary_book.title %></span>
-                <% end %>
-              </td>
-              <td>
+        <div class="card d-block index rounded-0 my-2" >
+          <%= link_to admin_customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
+            <div class="card index rounded-0 py-1" >
+              <div style="text-align:left">
+                <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
+                ユーザ名 <%= diary_date.diary_book.customer.name %>さん
+              </div>
+            </div>
+          <% end %>
+          <%= link_to admin_diary_book_diary_date_path(diary_date.diary_book.id,diary_date),class:"card_hover" do %>
+            <div class="card index rounded-0 py-1">
+               <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
+               <div style="text-align:right">
                 <% if diary_date.status == true && diary_date.status_admin == true %>
-                公開
+                  <span class="publish">公開</span>
                 <% else %>
-                非公開
+                  <span class="private">非公開</span>
                 <% end %>
-              </td>
-              <td>
-                ♥<%= diary_date.favorites.count %>
-              </td>
-              <td>
-                💬<%= diary_date.diary_comments.count %>
-              </td>
-            </tr>
-          </table>
+                 <span class="px-2">♥<%= diary_date.favorites.count %></span>
+                 <span class="px-2">💬<%= diary_date.diary_comments.count %></span>
+                </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
 
     <%= paginate @diary_dates %>
@@ -106,7 +81,7 @@
     </div>
 
       <div class="row justify-content-center">
-        <%= link_to "みんなの日記へ戻る",calendar_diaries_path, class: "btn btn-primary link_size m-1" %>
+        <%= link_to "みんなの日記へ戻る",admin_path, class: "btn btn-primary link_size m-1" %>
       </div>
 
     </div>

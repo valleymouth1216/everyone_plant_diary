@@ -61,7 +61,10 @@
           <%= link_to customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date),class:"card_hover" do %>
             <div class="card index rounded-0 py-1">
                <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
-               <div style="text-align:right">♥<%= diary_date.favorites.count %>💬<%= diary_date.diary_comments.count %></div>
+               <div style="text-align:right">
+                 <span class="px-2">♥<%= diary_date.favorites.count %></span>
+                 <span class="px-2">💬<%= diary_date.diary_comments.count %></span>
+               </div>
             </div>
           <% end %>
         </div>

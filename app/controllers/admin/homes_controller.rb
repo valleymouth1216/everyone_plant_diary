@@ -49,8 +49,8 @@ class Admin::HomesController < ApplicationController
 
   def search_date
     if params[:start_date] == "" ||params[:end_date] == ""
-      flash[:notice] = "日付が選択されていません。"
-      redirect_to calendar_diaries_path
+      flash[:alert] = "日付が選択されていません。"
+      redirect_to admin_path
     else
      # binding.pry
       @start_date = params[:start_date]

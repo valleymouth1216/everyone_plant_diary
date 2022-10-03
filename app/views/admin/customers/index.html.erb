@@ -4,22 +4,29 @@
 
 
     <div class="card d-block rounded-0 index" >
-      <div class="card-header mb-3"><h2 class="section-ttl">会員情報一覧</h2></div>
+      <div class="card-header_design2 mb-3"><h2 class="section-ttl">会員情報一覧</h2></div>
 
       <table  border="1" cellpadding="5" width="95%" class="mb-3">
         <thead>
           <tr class="bg-light" height="40">
-          <th width="10%"style="text-align:center;">会員ID</th>
-          <th width="55%">名前</th>
-          <th style="text-align:center">会員ステータス</th>
-          <th width="10%"></th>
+          <th width="15%"style="text-align:center;">会員ID</th>
+          <th width="65%">名前</th>
+          <th width="20%" style="text-align:center">会員ステータス</th>
           </tr>
         </thead>
         <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td style="text-align:center;"><%= customer.id %></td>
-            <td style="word-break: break-all;"><%= customer.name %></td>
+            <td style="text-align:center;">
+               <%= link_to admin_customer_path(customer) do %>
+                 <p class="no_margins p_tag"><%= customer.id %></p>
+                <% end %>
+            </td>
+            <td style="word-break: break-all;">
+                <%= link_to admin_customer_path(customer) do %>
+                 <p class="no_margins p_tag"><%= customer.name %></p>
+                <% end %>
+            </td>
             <td style="text-align:center;" >
               <% if customer.is_deleted? %>
                 <span class="private">退会</span>
@@ -27,7 +34,6 @@
                 <span class="publish">有効</span>
               <% end %>
             </td>
-            <td style="text-align:center"><%= link_to "詳細", admin_customer_path(customer), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
         </tbody>

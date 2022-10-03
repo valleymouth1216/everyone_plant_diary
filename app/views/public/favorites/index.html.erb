@@ -3,10 +3,13 @@
   <div class="content my_content">
 
     <div class="card d-block index rounded-0" >
-      <div class="card-header mb-3"><h2 class="section-ttl">いいねした日記</h2></div>
+      <div class="card-header_design2 mb-3">
+        <h2 class="section-ttl count">いいねした日記</h2>
+        <h5 class="count_position_right">全<%=@favorites_count.count %>件</h5>
+      </div>
+
       <% if @favorites.present? %>
       <div class="row justify-content-center">
-        <p class="col-lg-2 col-sm-10 col-10 col-md-10 character_underline"><span class="px-1">全<%=@favorites_count.count %>件</span></p>
         <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
       <% if params[:order].present? %>
         <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order %></span></p>
@@ -28,9 +31,21 @@
           <tbody>
           <% @favorites.each do |favorite| %>
             <tr>
-              <td style="text-align:center"><%= link_to favorite.diary_date.start_time.strftime('%Y/%m/%d'), customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) %></td>
-              <td style="word-break: break-all;"><%= link_to favorite.diary_date.diary_book.title,customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id) %></td>
-              <td style="text-align:center"><%= link_to "#{favorite.diary_date.diary_book.customer.name}さん",customer_path(favorite.diary_date.diary_book.customer.id) %></td>
+              <td style="text-align:center">
+                <%= link_to customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) do %>
+                  <p class="no_margins p_tag"><%=favorite.diary_date.start_time.strftime('%Y/%m/%d') %></p>
+                <% end %>
+              </td>
+              <td style="word-break: break-all;">
+                <%= link_to customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id) do %>
+                  <p class="no_margins p_tag"><%=favorite.diary_date.diary_book.title %></p>
+                <% end %>
+              </td>
+              <td style="text-align:center">
+                <%= link_to customer_path(favorite.diary_date.diary_book.customer.id) do %>
+                  <p class="no_margins p_tag"><%="#{favorite.diary_date.diary_book.customer.name}さん" %></p>
+                <% end %>
+              </td>
             </tr>
           <% end %>
           </tbody>

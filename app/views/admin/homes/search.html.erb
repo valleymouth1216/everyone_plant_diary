@@ -4,7 +4,7 @@
 
 
     <div class="card d-block rounded-0" >
-      <div class="card-header mb-3">
+      <div class="card-header_design2 mb-3">
          <% if @model == 'customer' %>
           <h2 class="section-ttl">ユーザ検索結果</h2>
           <% else %>
@@ -27,9 +27,9 @@
         <div class="card d-block index rounded-0 my-1" >
           <%= link_to admin_customer_path(customer),class:"card_hover" do %>
             <div class="card-body">
-              <div class="row justify-content-center d-flex align-items-center card_text_center">
-                <%= image_tag customer.get_profile_image(100,100),class:"p-2" %>
-                <p class="col-lg-4 col-sm-10 col-10 col-md-10"><%= customer.name %>さん</p>
+              <div class="row align-items-center character_underline">
+                <p class="col-lg-4"><%= image_tag customer.get_profile_image(100,100),class:"p-2" %></p>
+                <p class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= customer.name %>さん</span></p>
               </div>
              </div>
           <% end %>
@@ -40,9 +40,9 @@
       <table border="1" cellpadding="5" width="95%" class="mb-3">
         <thead>
           <tr class="bg-light" height="40">
-            <th>日記帳名</th>
-            <th style="text-align:center">ユーザ名</th>
-            <th style="text-align:center">更新日</th>
+            <th width="40%" >日記帳名</th>
+            <th width="40%" style="text-align:center">ユーザ名</th>
+            <th width="20%" style="text-align:center">最終更新日付</th>
           </tr>
         </thead>
         <tbody>
@@ -51,8 +51,8 @@
             <td style="word-break: break-all;"><%=link_to diary_book.title,admin_customer_diary_books_path(diary_book.customer,diary_book: diary_book.id) %></td>
             <td style="word-break: break-all;"><%=link_to "#{diary_book.customer.name}さん",admin_customer_path(diary_book.customer) %></td>
             <td style="text-align:center">
-              <% if diary_book.diary_dates.order(:updated_at).last.present? %>
-                <%= diary_book.diary_dates.order(:updated_at).last.start_time.strftime('%Y/%m/%d') %>
+              <% if diary_book.order_update_last.present? %>
+                <%= diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %>
               <% else %>
                 記録なし
               <% end %>

@@ -36,6 +36,7 @@
         </div>
       </div>
 
+
       <% if params[:tag_ids].present? %>
         <div class="card d-block index rounded-0 my-1" >
           <div class="card-body character_underline">
@@ -75,7 +76,7 @@
                <div style="text-align:left" ><span class="px-2">記録日付</span><%= diary_date.start_time.strftime('%Y/%m/%d') %></div>
             </div>
           <% end %>
-        　</div>
+        </div>
         </div>
       <% end %>
       <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>

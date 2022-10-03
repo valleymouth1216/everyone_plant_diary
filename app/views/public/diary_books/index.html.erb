@@ -12,15 +12,19 @@
         <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
             <tr class="bg-light" height="40">
-              <th width="65%">日記帳名</th>
+              <th width="55%">日記帳名</th>
               <th width="20%" style="text-align:center">作成日</th>
-              <th width="15%" style="text-align:center">公開</th>
+              <th width="20%" style="text-align:center">公開</th>
             </tr>
           </thead>
           <tbody>
           <% @diary_books.each do |diary_book| %>
             <tr>
-              <td style="word-break: break-all;"><%= link_to diary_book.title,diary_book_path(diary_book.id) %></td>
+              <td style="word-break: break-all;">
+                <%= link_to diary_book_path(diary_book.id) do %>
+                 <p class="no_margins p_tag"><%= diary_book.title%></p>
+                <% end %>
+              </td>
               <td style="text-align:center"><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
               <td style="word-break: break-all;text-align:center"><% if diary_book.status == true %><span class="publish">公開</span><% else %><span class="private">非公開</span><% end %></td>
             </tr>

@@ -9,6 +9,13 @@ class DiaryBook < ApplicationRecord
       diary_dates.order(:updated_at).last
     end
 
+    def order_update_last_custmoter
+      diary_dates.where(status_admin: true,status: true).order(:updated_at).last
+    end
+
+    def order_update_first_custmoter
+      diary_dates.where(status_admin: true,status: true).order(:updated_at).first
+    end
 
          validates :title, presence: true
          validates :tag_ids, presence: true

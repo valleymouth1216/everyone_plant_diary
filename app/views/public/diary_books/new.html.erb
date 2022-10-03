@@ -6,15 +6,15 @@
   <div class="content my_content">
 
 
-    <div class="card d-block edit diary_book rounded-0" >
-      <div class="card-header mb-3"><h2 class="section-ttl "><span class="diary_book_header_new px-1">新しい日記帳</span></h2></div>
+    <div class="card d-block edit rounded-0" >
+      <div class="card-header_design2"><h2 class="section-ttl "><span class="diary_book_header_new px-1">新しい日記帳の作成</span></h2></div>
       <%= form_with model: @diary_book do |f| %>
-        <div class="character_underline ">
-          <div class="m-1 p-1 diary_book_new" style="text-align:left" >
+        <div class="character_underline book ">
+          <div class="m-1 p-1 required_frame" style="text-align:left" >
             <span class="px-1"><%= f.label :title,"タイトル" %></span>
             <%= f.text_field :title ,placeholder:"あさがお",class: "diary_book_form_new"  %>
           </div>
-          <div class="m-1 p-1 diary_book_new vertical-align: middle " style="text-align:left;">
+          <div class="m-1 p-1 required_frame vertical-align: middle " style="text-align:left;">
             <span class="px-1 "><%= f.label :tag_ids,"タグ" %></span>
             <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
               <%= tag.label do %>
@@ -24,7 +24,7 @@
             <% end %>
              </br><span>※タグは一つ以上選択してください。</span>
           </div>
-          <div class="m-1 p-1 diary_book_new" style="text-align:left" >
+          <div class="m-1 p-1 arbitrary_data" style="text-align:left" >
            <span class="px-1">日記帳の公開</span>
             <%= f.radio_button :status, true %>
             <%= f.label :status, '公開する', value: true %>
@@ -32,7 +32,7 @@
             <%= f.label :status, '公開しない', value: false %>
             </br><span>※公開を選択すると他のユーザに日記帳を公開することができます。</span>
           </div>
-          <%= f.submit '作成', class: "m-3 btn btn-success " %>
+          <%= f.submit '日記帳作成', class: "m-3 btn btn-success " %>
         </div>
       <% end %>
     </div>
