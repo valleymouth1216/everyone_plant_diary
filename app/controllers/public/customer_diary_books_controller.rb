@@ -26,8 +26,9 @@ class Public::CustomerDiaryBooksController < ApplicationController
      @diary_date = @diary_book.diary_dates.where(status_admin: true,status: true).order(:updated_at).last
      redirect_to(diary_books_diaries_path(diary_book: @diary_book.id)) if current_customer.id == @diary_book.customer.id
      unless @diary_book.status_admin == true && @diary_book.status == true
+       flash[:alert] =  "この日記帳は非公開のため表示出来ません。"
        redirect_to calendar_diaries_path and return
-       flash[:notice] =  "この日記帳は非公開のため表示出来ません。"
+
      end
     end
 
@@ -41,8 +42,9 @@ class Public::CustomerDiaryBooksController < ApplicationController
     #binding.pry
     redirect_to(diary_book_diary_date_path(@diary_date.diary_book,@diary_date)) if current_customer.id == @diary_date.diary_book.customer.id
          unless @diary_date.status_admin == true && @diary_date.status == true
+           flash[:alert] =  "この日記帳の日付の内容は非公開のため表示出来ません"
        redirect_to calendar_diaries_path and return
-       flash[:notice] =  "この日記帳の日付の内容は非公開のため表示出来ません"
+
      end
 
   end

@@ -4,28 +4,30 @@
 
 
 
-    <div class="content admin_content col-lg-5 m-1">
+    <div class="content admin_content col-lg-6 m-1">
 
-      <div class="card d-block index  diary_book rounded-0" >
-        <div class="card-header mb-3"><h2 class="section-ttl"><span class="diary_book_header_new px-1">日記帳詳細</span></h2></div>
-        <div class="card-body character_underline">
-          <h2 class="card-title"><span><%= @diary_book.title %></span></h2>
-        </div>
-        <div class="card-body">
-          <%= link_to "日記を見る",admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id), class: "btn btn-success" %>
-        </div>
+      <div class="card d-block index rounded-0" >
+        <div class="card-header_design2"><h2 class="section-ttl"><span class="diary_book_header_new px-1">日記帳詳細</span></h2></div>
+        <div class="card-body character_underline book">
         <% unless @diary_book.status_admin? %>
           <div class="status_admin">
             <p>管理者側によって不適切な投稿と判断され、非公開にされています。</p>
           </div>
          <% end %>
+          <h2 class="card-title"><span><%= @diary_book.title %></span></h2>
+        <div class="card-body">
+          <%= link_to "日記を見る",admin_customer_diary_books_path(@diary_book.customer.id,diary_book: @diary_book.id), class: "btn btn-primary" %>
         </div>
-        <%= link_to "戻る",admin_customer_path(@diary_book.customer_id), class: "btn btn-success m-3" %>
+        <div class="card-body">
+          <%= link_to "戻る", admin_customer_path(@diary_book.customer.id), class: "btn btn-primary" %>
+        </div>
+        </div>
 
+       </div>
     </div>
 
 
-    <div class="content my_content col-lg-6 m-1">
+    <div class="content my_content col-lg-5 m-1">
 
       <div class="tags">
         <% @diary_book.tags.each do |tag| %>
@@ -35,17 +37,17 @@
 
       <div class="card d-block index rounded-0 mt-2" >
         <div class="card-header mb-3"><h2 class="section-ttl">詳細内容</h2></div>
-        <div class="card-body card_text">
-          <p><span class="px-2">作成日付:</span><span class="px-2" ><%= @diary_book.created_at.strftime('%Y/%m/%d') %></span></p>
-          <p><span class="px-2">更新日付:</span><span class="px-2"><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></span></p>
-          <p><span class="px-2">日記の公開設定:</span>
-             <% if @diary_book.status? %>
+        <div class="card-body">
+          <p class="card_text"><span class="px-2">作成日付:</span><span class="px-2" ><%= @diary_book.created_at.strftime('%Y/%m/%d') %></span></p>
+          <p class="card_text"><span class="px-2">更新日付:</span><span class="px-2"><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></span></p>
+          <p class="card_text"><span class="px-2">日記の公開設定:</span>
+             <% if @diary_book.status == true %>
               <span class="publish">公開</span>
             <% else %>
               <span class="private">非公開</span>
             <% end %>
           </p>
-          <p><span class="px-2">管理者日記の公開設定:</span>
+          <p class="card_text"><span class="px-2">管理者の日記の公開設定:</span>
              <% if @diary_book.status_admin? %>
               <span class="publish">公開</span>
             <% else %>
@@ -62,13 +64,12 @@
                 <%= render 'layouts/error_messages', resource: @diary_book %>
                 <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
                 <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
-                <%= f.submit '更新する', class: "btn btn-success m-2"  %>
+                <%= f.submit '更新する', class: "btn btn-info m-2"  %>
             <% end %>
         </div>
       </div>
 
-
-
+    </div>
 
 
 

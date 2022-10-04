@@ -16,7 +16,7 @@
          <% end %>
           <h2 class="card-title"><span><%= @diary_book.title %></span></h2>
         <div class="card-body">
-                    <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success" %>
+          <%= link_to "日記を作成する", new_diary_book_diary_date_path(@diary_book), class: "btn btn-success" %>
         </div>
         <div class="card-body">
           <%= link_to "この日記帳の日記をみる", diary_books_diaries_path(diary_book: @diary_book.id), class: "btn btn-primary" %>
