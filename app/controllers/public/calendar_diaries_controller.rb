@@ -71,16 +71,16 @@ class Public::CalendarDiariesController < ApplicationController
         @diary_books.uniq!
         @search_diary_dates = []
         @diary_books.each do |diary_book|
-        @search_diary_dates += diary_book.diary_dates.where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date),status_admin: true,status: true)
+        @search_diary_dates += diary_book.diary_dates.where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day,status_admin: true,status: true)
       end
       @search_diary_dates.uniq!
         if @search_diary_dates == []
-          @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
+          @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).per(10)
           flash[:notice] = "タグ検索したタグがありませんので、すべて表示します。"
         end
       @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
     else
-      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date), status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).order("start_time DESC").per(10)
+      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).order("start_time DESC").per(10)
     end
 
       if params[:order] == 'olddate'

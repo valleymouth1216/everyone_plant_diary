@@ -24,7 +24,7 @@
             <% unless diary_dates.length == 0 %>
              <p class="my-1">
                <%=link_to admin_date_path(date: date),class:"calendar_day py-1" do %>
-               <i class="fa-solid fa-book pr-2"></i><%= diary_dates.length %>
+               <p class="no_margins" style="text-align:center"><i class="fa-solid fa-book pr-2"></i><%= diary_dates.length %></span>
                <% end %>
               </p>
             <p class="no_margins" style="text-align:center">公開中<%= DiaryDate.count_by_date(date).count %>件</p>
