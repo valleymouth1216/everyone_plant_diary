@@ -10,14 +10,15 @@
       <% end %>
 
     <div class="card d-block rounded-0 index mt-5" >
-      <div class="card-header mb-3"><h2 class="section-ttl pl-5">日記一覧</h2></div>
+      <div class="card-header_design2 mb-3"><h2 class="section-ttl pl-5">日記一覧</h2></div>
       <% if @customer_diary_books.present? %>
         <table border="1" cellpadding="5" width="95%" class="mb-3" >
           <thead>
             <tr class="bg-light" height="40">
               <th width="60%">日記帳名</th>
+              <th width="20%" style="text-align:center">日記帳作成日付</th>
               <th width="20%" style="text-align:center">最新記録日付</th>
-              <th width="20%" style="text-align:center">古い記録日付</th>
+              <th width="20%" style="text-align:center">最初記録日付</th>
             </tr>
           </thead>
           <tbody>
@@ -28,9 +29,29 @@
                  <p class="no_margins p_tag"><%= diary_book.title %></p>
                 <% end %>
               </td>
+              <td style="text-align:center">
+                <%= diary_book.created_at.strftime('%Y/%m/%d') %>
               </td>
-              <td style="text-align:center"><%#=link_to diary_book.order_update_last_custmoter.start_time.strftime('%Y/%m/%d'),customer_customer_diary_book_path(@customer,diary_book.order_update_last_custmoter)  %></td>
-              <td style="text-align:center"><%#=link_to diary_book.order_update_first_custmoter.start_time.strftime('%Y/%m/%d'),customer_customer_diary_book_path(@customer,diary_book.order_update_first_custmoter)  %></td>
+              <td style="text-align:center">
+                <% if diary_book.order_update_last_custmoter.present? %>
+                  <%= link_to customer_customer_diary_book_path(@customer,diary_book.order_update_last_custmoter) do %>
+                    <p class="no_margins p_tag"><%= diary_book.order_update_last_custmoter.start_time.strftime('%Y/%m/%d') %></p>
+                  <% end %>
+                <% else %>
+                  記録なし
+                <% end %>
+                <%#=link_to diary_book.order_update_first_custmoter.start_time.strftime('%Y/%m/%d'),customer_customer_diary_book_path(@customer,diary_book.order_update_first_custmoter)  %>
+              </td>
+              <td style="text-align:center">
+                <% if diary_book.order_update_first_custmoter.present? %>
+                  <%= link_to customer_customer_diary_book_path(@customer,diary_book.order_update_first_custmoter) do %>
+                    <p class="no_margins p_tag"><%= diary_book.order_update_first_custmoter.start_time.strftime('%Y/%m/%d') %></p>
+                  <% end %>
+                <% else %>
+                  記録なし
+                <% end %>
+                <%#=link_to diary_book.order_update_first_custmoter.start_time.strftime('%Y/%m/%d'),customer_customer_diary_book_path(@customer,diary_book.order_update_first_custmoter)  %>
+              </td>
             </tr>
           <% end %>
           </tbody>

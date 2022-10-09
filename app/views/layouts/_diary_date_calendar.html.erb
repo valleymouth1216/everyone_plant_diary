@@ -40,7 +40,7 @@
                        <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [70, 70]).processed, class: "image_size" %>
                      <% end %>
                    <% else %>
-                     <%= link_to diary_book_diary_date_path(diary_book,diary_date) do %>
+                     <%= link_to diary_book_diary_date_path(diary_book,diary_date),class:"calendar_day" do %>
                        <span style="word-break: break-all;"><%= diary_date.body.truncate(15, omission: '...続き') %></span>
              　       <% end %>
                    <% end %>
@@ -52,7 +52,7 @@
                        <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [70, 70]).processed, class: "image_size" %>
                      <% end %>
                    <% else %>
-                     <%= link_to customer_customer_diary_book_path(customer,diary_date) do %>
+                     <%= link_to customer_customer_diary_book_path(customer,diary_date),class:"calendar_day" do %>
                        <span style="word-break: break-all;"><%= diary_date.body.truncate(15, omission: '...続き') %></span>
              　       <% end %>
                    <% end %>
@@ -66,7 +66,7 @@
                        <%= image_tag diary_date.diary_images[0].representation(resize_to_limit: [70, 70]).processed, class: "image_size" %>
                      <% end %>
                    <% else %>
-                     <%= link_to admin_diary_book_diary_date_path(diary_book,diary_date) do %>
+                     <%= link_to admin_diary_book_diary_date_path(diary_book,diary_date),class:"calendar_day" do %>
                        <span style="word-break: break-all;"><%= diary_date.body.truncate(15, omission: '...続き') %></span>
              　       <% end %>
                    <% end %>
