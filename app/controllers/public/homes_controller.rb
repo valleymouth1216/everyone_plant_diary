@@ -10,6 +10,11 @@ class Public::HomesController < ApplicationController
     @content = params['search']['content']
     @method = params['search']['method']
     @result = search_for(@model, @content, @method)
+    if @model == 'customer'
+     @customers = search_for(@model, @content, @method)
+    else
+     @diary_books = search_for(@model, @content, @method)
+    end
   end
 
   private
