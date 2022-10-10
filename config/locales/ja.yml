@@ -27,10 +27,13 @@ ja:
       diary_date:
         start_time: "日付"
         body: "内容"
+        temperature: "気温"
       customer:
         name: "ユーザ名"
         email : "メールアドレス"
         password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        current_password: "現在のパスワード"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

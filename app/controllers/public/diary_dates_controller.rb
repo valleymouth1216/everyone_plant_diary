@@ -59,7 +59,7 @@ class Public::DiaryDatesController < ApplicationController
     @diary_date = @diary_book.diary_dates.find(params[:id])
     @diary_date_redirect = @diary_book.diary_dates.find(params[:id])
     @diary_date.destroy
-    flash[:notice] = "日記を削除しました。"
+    flash[:notice] = "#{@diary_date_redirect.start_time.strftime('%Y年%m月%d日')}の日記を削除しました。"
     redirect_to diary_books_diaries_path(diary_book: @diary_date_redirect.diary_book.id)
   end
 

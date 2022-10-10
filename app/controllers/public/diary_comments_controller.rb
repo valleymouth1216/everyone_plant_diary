@@ -9,8 +9,10 @@ class Public::DiaryCommentsController < ApplicationController
     if diary_comment.save
       if current_customer.id ==  @diary_date.diary_book.customer.id
         redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+        flash[:notice] = "コメントしました。"
       else
         redirect_to customer_customer_diary_book_path(@diary_date.diary_book.customer.id,@diary_date)
+        flash[:notice] = "コメントしました。"
       end
     else
       if current_customer.id == @diary_date.diary_book.customer_id
@@ -27,8 +29,10 @@ class Public::DiaryCommentsController < ApplicationController
     DiaryComment.find(params[:id]).destroy
       if current_customer.id ==  @diary_date.diary_book.customer.id
         redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+        flash[:notice] = "コメント削除しました。"
       else
         redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
+        flash[:notice] = "コメント削除しました。"
       end
 
   end

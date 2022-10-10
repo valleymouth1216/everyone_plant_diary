@@ -26,8 +26,8 @@
           <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png',class:"my_page_edit image_size" %></p>
         </div>
         <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-3 col-3 col-md-4 no_margins"><span class="px-3">会員ステータス</span></p>
-          <p class="col-lg-7 col-sm-7 col-7 col-md-7" style="text-align:left">
+          <p class="col-lg-3 col-sm-3 col-md-4 no_margins"><span class="px-3">会員ステータス</span></p>
+          <p class="col-lg-7 col-sm-7 col-md-6 text_position_left_cetnter my-1" >
             <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", class: "publish mx-3" %>
             <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会", class: "private mx-3" %>
           </p>

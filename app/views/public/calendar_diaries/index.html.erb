@@ -20,11 +20,9 @@
         <%= month_calendar events: @diary_dates do |date, diary_dates| %>
           <p style="text-align:center" class="my-1"><%= date.day %></p>
             <% unless diary_dates.length == 0 %>
-             <p class="my-1">
                <%=link_to date_path(date: date),class:"calendar_day py-1" do %>
                <i class="fa-solid fa-book pr-2"></i><%= diary_dates.length %>
                <% end %>
-              </p>
             <% end %>
         <% end %>
       </div>

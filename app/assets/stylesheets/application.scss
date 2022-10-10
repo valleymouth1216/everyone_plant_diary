@@ -432,12 +432,20 @@ border-radius: 1px;
   border-radius: 3px;
 }
 
+.calendar_day{
+  text-align: center;
+  background-color: #ffead5;
+  display: block;
+  border-radius: 3px;
+}
+
 .calendar_day:hover{
   text-align: center;
   background-color: #ffffd5;
   display: block;
   border-radius: 3px;
 }
+
 
 .count{
   display: inline-block;

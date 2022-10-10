@@ -10,6 +10,7 @@ class DiaryDate < ApplicationRecord
 
     validates :start_time, presence: true, uniqueness: { scope: :diary_book_id }
     validates :body, presence: true
+    validates :temperature, numericality: {greater_than: -100,less_than: 100}, allow_blank: true
    # validate :image_type
 
 

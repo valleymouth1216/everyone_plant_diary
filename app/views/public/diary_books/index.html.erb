@@ -26,7 +26,7 @@
                 <% end %>
               </td>
               <td style="text-align:center"><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>
-              <td style="word-break: break-all;text-align:center"><% if diary_book.status == true %><span class="publish">公開</span><% else %><span class="private">非公開</span><% end %></td>
+              <td style="word-break: break-all;text-align:center"><% if diary_book.status == true && diary_book.status_admin == true %><span class="publish">公開</span><% else %><span class="private">非公開</span><% end %></td>
             </tr>
           <% end %>
           </tbody>

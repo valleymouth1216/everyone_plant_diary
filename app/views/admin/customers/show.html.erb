@@ -13,7 +13,7 @@
         <div class="card-body">
           <div class="row justify-content-center character_underline">
             <div class="col-lg-4 col-sm-2 text_position_right_cetnter"><span class="px-4">ID:</span></div>
-            <div class="col-lg-7 col-sm-1 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.id %></span></div>
+            <div class="col-lg-7 col-sm-10 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.id %></span></div>
           </div>
           <div class="row justify-content-center character_underline my-3">
             <div class="col-lg-4 text_position_right_cetnter"><span class="px-4">ユーザ名</span></div>
@@ -25,7 +25,7 @@
           </div>
           <div class="row justify-content-center my-3">
             <div class="col-lg-4 col-sm-4 text_position_right_cetnter character_underline"><span class="px-2">会員ステータス</span></div>
-            <div class="col-lg-7 col-sm-2" style="text-align:left">
+            <div class="col-lg-7 col-sm-5 text_position_left_cetnter">
              <% if @customer.is_deleted? %>
               <span class="private"style="vertical-align: middle;">退会</span></span>
             <% else %>
