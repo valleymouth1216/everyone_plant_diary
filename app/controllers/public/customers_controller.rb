@@ -12,7 +12,7 @@ class Public::CustomersController < ApplicationController
 
       @customer = Customer.find(params[:id])
       #binding.pry
-      @customer_diary_books = @customer.diary_books.where(status_admin: true,status: true).page(params[:page]).per(10)
+      @customer_diary_books = @customer.diary_books.where(status_admin: true,status: true).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

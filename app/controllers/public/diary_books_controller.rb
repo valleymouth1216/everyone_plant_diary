@@ -13,7 +13,7 @@ class Public::DiaryBooksController < ApplicationController
     @diary_book.customer_id = current_customer.id
     if @diary_book.save
       flash[:notice] = "日記帳を作成しました。"
-      redirect_to diary_books_path
+      redirect_to diary_book_path(@diary_book)
     else
       render :new
     end
@@ -31,8 +31,10 @@ class Public::DiaryBooksController < ApplicationController
 
   def destroy
      @diary_book = current_customer.diary_books.find(params[:id])
+     @diary_book_destroy = current_customer.diary_books.find(params[:id])
      @diary_book.destroy
     redirect_to diary_books_path
+    flash[:notice] = "#{@diary_book_destroy.title}の日記帳を削除しました。"
   end
 
   def edit

@@ -55,7 +55,7 @@
             <div class="card index rounded-0 py-1" >
               <div style="text-align:left">
                 <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
-                ユーザ名 <%= diary_date.diary_book.customer.name %>さん
+                ユーザ名 <%= diary_date.diary_book.customer.name %>
               </div>
             </div>
           <% end %>
@@ -63,7 +63,7 @@
             <div class="card index rounded-0 py-1">
                <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
                <div style="text-align:right">
-                <% if diary_date.status == true && diary_date.status_admin == true %>
+                <% if diary_date.status == true && diary_date.status_admin == true &&  diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true%>
                   <span class="publish">公開</span>
                 <% else %>
                   <span class="private">非公開</span>

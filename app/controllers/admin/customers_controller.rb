@@ -24,8 +24,8 @@ class Admin::CustomersController < ApplicationController
          @customer.favorites.destroy_all
          diary_books =  @customer.diary_books.where(customer_id: @customer.id)
          diary_books.each do |diary_book|
-           diary_book.update(status_admin: false)
-           diary_book.diary_dates.update_all(status_admin: false)
+           diary_book.update(status: false)
+           diary_book.diary_dates.update_all(status: false)
          end
       end
     flash[:notice] = "登録情報を更新しました。"

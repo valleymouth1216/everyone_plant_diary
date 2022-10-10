@@ -72,8 +72,8 @@
             <span class="px-2">管理者日記の公開設定</span>
               <%= form_with model: @diary_date,url: admin_diary_book_diary_date_path(@diary_book,@diary_date), method: :patch  do |f| %>
                 <%= render 'layouts/error_messages', resource: @diary_date %>
-                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
-                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
+                <%= f.radio_button :status_admin, true %><%= f.label :status_admin, '公開する', value: true %>
+                <%= f.radio_button :status_admin, false %><%= f.label :status_admin, '公開しない', value: false %>
                 <%= f.submit '更新',class:"btn btn-sm btn-info m-2" %></br>
               <% end %>
             </p>

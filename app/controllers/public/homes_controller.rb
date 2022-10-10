@@ -25,15 +25,15 @@ class Public::HomesController < ApplicationController
     else
       if model == 'diary_books'
         if  method == 'perfect'
-          DiaryBook.where(title: content).where(status: true,status_admin: true)
+          DiaryBook.where(title: content).where(status: true,status_admin: true).order(created_at: :desc)
         else
-          DiaryBook.where('title LIKE ?', '%' + content + '%').where(status: true,status_admin: true)
+          DiaryBook.where('title LIKE ?', '%' + content + '%').where(status: true,status_admin: true).order(created_at: :desc)
         end
       elsif model == 'customer'
         if  method == 'perfect'
-          Customer.where(name: content).where(is_deleted: false)
+          Customer.where(name: content).where(is_deleted: false).order(created_at: :desc)
         else
-          Customer.where('name LIKE ?', '%' + content + '%').where(is_deleted: false)
+          Customer.where('name LIKE ?', '%' + content + '%').where(is_deleted: false).order(created_at: :desc)
         end
       else
           [] # 空配列を返す
