@@ -5,12 +5,12 @@
   <div class="content admin_content">
       <%= link_to admin_customer_path(@diary_book.customer),class:"customer_card_hover" do  %>
         <div class="customer_card p-1">
-          <%= image_tag @diary_book.customer.get_profile_image(50,50)%>&emsp;<%= "#{@diary_book.customer.name}さん" %>
+          <%= image_tag @diary_book.customer.get_profile_image(50,50)%>&emsp;<span style="word-break: break-all;"><%= "#{@diary_book.customer.name}さん" %></span>
         </div>
       <% end %>
 
-    <div class="card d-block index rounded-0 my-4" >
-      <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>の日記</span></h2></div>
+    <div class="card d-block index rounded-0 my-5" >
+      <div class="card-header_design2 pt-4"><h2 class="section-ttl"><span class="px-1"><%= @diary_book.title %>の日記</span></h2></div>
 
 
       <div class="loose-leaf">

@@ -80,7 +80,7 @@ class Public::CalendarDiariesController < ApplicationController
         end
       @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
     else
-      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).page(params[:page]).order("start_time DESC").per(10)
+      @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day, status: true, status_admin: true, diary_books: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
     end
 
       if params[:order] == 'olddate'

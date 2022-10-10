@@ -78,12 +78,16 @@ class Admin::HomesController < ApplicationController
 
       @order_diary_date = params[:order]
       if params[:order] == 'olddate'
+        @order_diary_date = "古い日付順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("start_time ASC").page(params[:page]).per(10)
       elsif params[:order] == 'newpost'
+        @order_diary_date = "最新の投稿順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("created_at DESC").page(params[:page]).per(10)
       elsif params[:order] == 'oldpost'
+        @order_diary_date = "古い投稿順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("created_at ASC").page(params[:page]).per(10)
       elsif params[:order] == 'newdate'
+        @order_diary_date = "最新の日付順"
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("start_time DESC").page(params[:page]).per(10)
       end
       @search_diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day)

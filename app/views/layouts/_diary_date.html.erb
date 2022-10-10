@@ -3,9 +3,9 @@
 
 
       <% if current_customer.id == diary_date.diary_book.customer.id %>
-        <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1"><%= diary_book.title %>日記</span></h2></div>
+        <div class="card-header_design2  pt-4"><h2 class="section-ttl"><span class="px-1"><%= diary_book.title %>日記</span></h2></div>
       <% else %>
-         <div class="card-header_design2"><h2 class="section-ttl"><span class="px-1"><%= diary_date.diary_book.title %>の日記</span></h2></div>
+         <div class="card-header_design2 pt-4"><h2 class="section-ttl"><span class="px-1"><%= diary_date.diary_book.title %>の日記</span></h2></div>
        <% end %>
 
 

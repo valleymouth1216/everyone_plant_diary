@@ -156,8 +156,7 @@ header {
 }
 
 .customer_card{
-  width: 300px;
-  max-width: 400px;
+  width: 400px;
   border : 3px solid #0080ff;
   color:#000;
   /*position: absolute;*/
@@ -425,7 +424,7 @@ border-radius: 1px;
   border : 2px solid #ffbf80;
 }
 
-.customer_card_block d-block index{
+.customer_card_block .d-block .index{
   text-align: center;
   background-color:#ffead5;
   display: block;

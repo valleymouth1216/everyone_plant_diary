@@ -3,8 +3,8 @@
   <div class="content customers">
 
 
-      <%= link_to customer_customer_diary_books_path(@customer),class:"customer_card_hover" do  %>
-        <div class="customer_card p-1">
+      <%= link_to customer_customer_diary_books_path(@customer),class:"customer_card_hover " do  %>
+        <div class="customer_card p-1 ">
           <%= image_tag @customer.get_profile_image(50,50)%>&emsp;<span style="word-break: break-all;"><%= "#{@customer.name}さん" %></span>
         </div>
       <% end %>

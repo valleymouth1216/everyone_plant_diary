@@ -60,10 +60,9 @@
       <div class="card d-block index rounded-0 mt-2" >
         <div class="character_underline">
           <span class="px-2">管理者の公開設定</span>
-                <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
-                <%= render 'layouts/error_messages', resource: @diary_book %>
-                <%= f.radio_button :status_admin, true %><%= f.label :status, '公開する', value: true %>
-                <%= f.radio_button :status_admin, false %><%= f.label :status, '公開しない', value: false %>
+            <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
+                <%= f.radio_button :status_admin, true %><%= f.label :status_admin, '公開する', value: true %>
+                <%= f.radio_button :status_admin, false %><%= f.label :status_admin, '公開しない', value: false %>
                 <%= f.submit '更新する', class: "btn btn-info m-2"  %>
             <% end %>
         </div>
