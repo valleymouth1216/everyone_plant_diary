@@ -351,6 +351,9 @@ table a:hover {
   background-position: center;
 }
 
+.inline p{
+    display: inline-block;
+}
 .loose-leaf{
   background: #ffffea;
   border-left: 20px dotted rgba(0,0,0,.1);
@@ -358,6 +361,11 @@ table a:hover {
   padding: 1em;
 }
 
+.loose-leaf2{
+  background: #ffffea;
+  border-left: 20px dotted rgba(0,0,0,.1);
+  box-shadow: 0 0 0 5 #f8f0d7;
+}
 .book{
   background: #ffffea;
   border-left: 30px solid #00d56a;

@@ -2,7 +2,8 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @customers = Customer.where(is_deleted: false).page(params[:page]).per(10)
+    @customers = Customer.where(is_deleted: false).order("RANDOM()").page(params[:page]).per(10)
+    #@customers = Customer.where(is_deleted: false).order("RAND()")page(params[:page]).per(10)
   end
 
   def show

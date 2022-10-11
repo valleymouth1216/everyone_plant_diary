@@ -11,30 +11,38 @@
 
     <% if @search_diary_dates.present? %>
 
+<div class="row justify-content-center">
+<div class="col-lg-5">
       <div class="card d-block index rounded-0" >
-        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get) do %>
-        <div class="card-header mb-3"><h5 class="section-ttl">タグ検索</h5></div>
+        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"my-2") do %>
+          タグ検索:
           <% Tag.all.each do |t| %>
-            <span class="vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
+            <%= check_box :tag_ids, t.name %><%= t.name %>
           <% end %>
         <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-        <%= submit_tag '検索',class:"search_color m-2" %>
+        <%= submit_tag '検索',class:"search_color" %>
         <% end %>
       </div>
+</div>
+<div class="col-lg-5">
+      <div class="card d-block index rounded-0 my-1 px-1" >
+        <div class="row justify-content-center my-1">
+          <p class="character_underline no_margins">
 
-      <div class="card d-block index rounded-0 my-3" >
-        <div class="row justify-content-center my-3">
-          <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
-        <% if params[:order].present? %>
-          <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order_diary_date %></span></p>
-        <% end %>
-        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
-        <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
-        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-          <%= submit_tag '並べ替える' ,class:"sort_color" %>
+          <% if params[:order].present? %>
+             <span class="px-1 mx-1"><%=@order_diary_date %></span>
+          <% end %>
+          </p>
+        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"") do %>
+          <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']]),class:"vertical-align: middle; mx-1") %>
+          <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+          <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
         <% end %>
         </div>
       </div>
+</div>
+</div>
+
 
 
       <% if params[:tag_ids].present? %>
