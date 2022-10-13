@@ -2,17 +2,19 @@
 
   <div class="content customers">
 
-    <div class="card d-block rounded-0 index my-2" >
-    <div class="card-header_design2 mb-3"><h2 class="section-ttl">ユーザ一覧</h2></div>
 
-    <% if @customers.present? %>
-      <%= render 'public/customers', customers: @customers %>
-      <%= paginate @customers %>
-    <% else %>
-      <p>ユーザが登録されていません。</p>
-    <% end %>
-
+    <div class="card d-block rounded-0 index my-3" >
+      <div class="card-header_design2"><h2 class="section-ttl">ユーザ一覧</h2></div>
+      <div class="stitch py-2">
+        <% if @customers.present? %>
+          <%= render 'public/customers', customers: @customers %>
+          <%= paginate @customers %>
+        <% else %>
+          <p>ユーザが登録されていません。</p>
+        <% end %>
+      </div>
     </div>
+
 
   </div>
 

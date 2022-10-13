@@ -2,64 +2,57 @@
 
   <div class="content my_content">
 
+
     <div class="card d-block index rounded-0" >
-      <div class="card-header_design2 mb-3">
+      <div class="card-header_design2">
         <h2 class="section-ttl count">いいねした日記</h2>
         <h5 class="count_position_right">全<%=@favorites_count.count %>件</h5>
       </div>
-
-      <% if @favorites.present? %>
-      <div class="row justify-content-center">
-        <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
-      <% if params[:order].present? %>
-        <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order %></span></p>
-      <% end %>
-        <%= form_tag({controller:"favorites",action:"index"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
-          <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
-          <%= submit_tag '並べ替える' ,class:"sort_color" %>
-        <% end %>
-      </div>
-
-        <table border="1" cellpadding="5" width="95%" class="mb-3" >
-          <thead>
-            <tr class="bg-light" height="40">
-              <th width="20%" style="text-align:center">日付</th>
-              <th width="50%" style="text-align:center">日記帳名</th>
-              <th width="30%" style="text-align:center">ユーザ名</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div class="stitch">
+         <% if @favorites.present? %>
+            <div class="row justify-content-center my-2">
+              <p class="character_underline no_margins">
+              <% if params[:order].present? %>
+                <span class="px-1 mx-1"><%=@order %></span>
+              <% end %>
+              </p>
+              <%= form_tag({controller:"favorites",action:"index"}, method: :get,class:"") do %>
+                <%= select_tag("order", options_for_select([ ['最近いいねした順', 'newfavorite'],['古いいいねした順', 'oldfavorite'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']]),class:"vertical-align: middle; mx-1") %>
+                <%= submit_tag '並べ替える' ,class:"sort_color mx-1" %>
+              <% end %>
+            </div>
           <% @favorites.each do |favorite| %>
-            <tr>
-              <td style="text-align:center">
-                <%= link_to customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id) do %>
-                  <p class="no_margins p_tag"><%=favorite.diary_date.start_time.strftime('%Y/%m/%d') %></p>
-                <% end %>
-              </td>
-              <td style="word-break: break-all;">
-                <%= link_to customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id) do %>
-                  <p class="no_margins p_tag"><%=favorite.diary_date.diary_book.title %></p>
-                <% end %>
-              </td>
-              <td style="text-align:center">
-                <%= link_to customer_path(favorite.diary_date.diary_book.customer.id) do %>
-                  <p class="no_margins p_tag"><%="#{favorite.diary_date.diary_book.customer.name}さん" %></p>
-                <% end %>
-              </td>
-            </tr>
+            <div class="card d-block index rounded-0 my-2" >
+              <div class="row">
+              <%= link_to customer_customer_diary_book_path(favorite.diary_date.diary_book.customer.id,favorite.diary_date.id),class:"card_hover col-lg-3" do %>
+                <div class="card rounded-0 py-1">
+                   <div style="text-align:left" ><span class="px-2">記録日付</span><%= favorite.diary_date.start_time.strftime('%Y/%m/%d') %></div>
+                </div>
+              <% end %>
+              <%= link_to customer_customer_diary_books_path(favorite.diary_date.diary_book.customer.id,diary_book: favorite.diary_date.diary_book.id),class:"card_hover col-lg-9" do %>
+                <div class="card rounded-0 py-1">
+                   <div style="text-align:left" ><span class="px-2">日記名</span><%= favorite.diary_date.diary_book.title %></div>
+                </div>
+              <% end %>
+              </div>
+              <%= link_to customer_path(favorite.diary_date.diary_book.customer.id),class:"card_hover" do %>
+                <div class="card index rounded-0 py-1" >
+                  <div style="text-align:left">
+                    <%= image_tag favorite.diary_date.diary_book.customer.get_profile_image(50,50), class: "px-2" %>
+                    ユーザ名 <%= favorite.diary_date.diary_book.customer.name %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           <% end %>
-          </tbody>
-        </table>
-        <%= paginate @favorites %>
-      <% else %>
-        <p>いいねした日記がありません。</p>
-      <% end %>
-
+          <%= paginate @favorites %>
+         <% else %>
+           <p>いいねした日記がありません。</p>
+         <% end %>
+      </div>
     </div>
 
 
+  </div>
 
-
-
-</div>
 </div>

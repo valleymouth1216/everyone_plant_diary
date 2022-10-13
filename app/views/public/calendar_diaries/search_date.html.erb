@@ -2,58 +2,51 @@
 
   <div class="content customers">
 
-    <div class="card d-block index rounded-0" >
-      <div class="card-header_design2 mb-3">
+
+    <div class="card d-block index rounded-0 my-1" >
+
+      <div class="card-header_design2">
         <h2 class="section-ttl count">日付検索</h2>
             <% if @search_diary_dates.present? %><h5 class="section-ttl count_position_right">全<%=@search_diary_dates_count.count %>件</h5><% end %>
       </div>
 
-
-    <% if @search_diary_dates.present? %>
-
-<div class="row justify-content-center">
-<div class="col-lg-5">
-      <div class="card d-block index rounded-0" >
-        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"my-2") do %>
-          タグ検索:
-          <% Tag.all.each do |t| %>
-            <%= check_box :tag_ids, t.name %><%= t.name %>
-          <% end %>
-        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-        <%= submit_tag '検索',class:"search_color" %>
-        <% end %>
-      </div>
-</div>
-<div class="col-lg-5">
-      <div class="card d-block index rounded-0 my-1 px-1" >
-        <div class="row justify-content-center my-1">
-          <p class="character_underline no_margins">
-
-          <% if params[:order].present? %>
-             <span class="px-1 mx-1"><%=@order_diary_date %></span>
-          <% end %>
-          </p>
-        <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"") do %>
-          <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']]),class:"vertical-align: middle; mx-1") %>
-          <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-          <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
-        <% end %>
-        </div>
-      </div>
-</div>
-</div>
-
-
+      <% if @search_diary_dates.present? %>
+        <div class="stitch">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"my-2") do %>
+                <span class="px-2">タグ検索</span>
+                <% Tag.all.each do |t| %>
+                  <%= check_box :tag_ids, t.name %><%= t.name %>&thinsp;
+                <% end %>
+                <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+                <%= submit_tag '検索',class:"search_color" %>
+              <% end %>
+            </div>
+            <div class="col-lg-5">
+              <div class="row justify-content-center my-2">
+                <p class="character_underline no_margins">
+                <% if params[:order].present? %>
+                  <span class="px-1 mx-1"><%=@order_diary_date %></span>
+                <% end %>
+                </p>
+                <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"") do %>
+                <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']]),class:"vertical-align: middle; mx-1") %>
+                <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+                <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
+              <% end %>
+            </div>
+          </div>
 
       <% if params[:tag_ids].present? %>
         <div class="card d-block index rounded-0 my-1" >
           <div class="card-body character_underline">
             <h5 class="card-title"><span>タグ検索結果</span></h5>
-                  <% params[:tag_ids].each do |key, value| %>
-                    <% if value == "1" %>
-                      <span>"<%= key %>"</span>
-                     <% end %>
-                  <% end %>
+              <% params[:tag_ids].each do |key, value| %>
+                <% if value == "1" %>
+                  <span>"<%= key %>"</span>
+                <% end %>
+              <% end %>
           </div>
         </div>
       <% end %>
@@ -96,6 +89,10 @@
       <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary m-3" %>
     </div>
 
-
+        </div>
       </div>
+
+
     </div>
+
+</div>

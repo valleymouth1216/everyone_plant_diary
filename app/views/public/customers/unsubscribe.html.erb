@@ -3,19 +3,21 @@
   <div class="content my_content">
 
 
-  <div class="card d-block rounded-0" >
-    <div class="card-header_design2 mb-3"><h2 class="section-ttl">本当に退会しますか？</h2></div>
-    <div class="row justify-content-center">
-      <p class="col-lg-12 col-sm-12 col-12 col-md-12 character_underline"><span class="px-3">退会すると、会員登録情報や</span>
-        </br><span class="px-3">日記の作成やほかのユーザの日記が閲覧できなくなります。</span>
-        </br><span class="px-3">退会する場合は、<span class="btn-danger px-1 rounded">退会する</span>をクリックしてください。</span>
-      </p>
+    <div class="card d-block rounded-0" >
+      <div class="card-header_design2"><h2 class="section-ttl">本当に退会しますか？</h2></div>
+      <div class="stitch">
+        <div class="row justify-content-center mt-2">
+          <p class="col-lg-12 col-sm-12 col-12 col-md-12 character_underline"><span class="px-3">退会すると、会員登録情報や</span>
+            </br><span class="px-3">日記の作成やほかのユーザの日記が閲覧できなくなります。</span>
+            </br><span class="px-3">退会する場合は、<span class="btn-danger px-1 rounded">退会する</span>をクリックしてください。</span>
+          </p>
+        </div>
+        <div class="flex justify-around mb-3">
+          <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary mx-1" %>
+          <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger mx-1" %>
+        </div>
+      </div>
     </div>
-  	  <div class="flex justify-around mb-3">
-  	    <%= link_to "退会しない",my_page_path,class:"btn btn-sm btn-primary mx-1" %>
-  	    <%= link_to "退会する", withdraw_customer_path, method: :patch, "data-confirm"=>"本当に退会しますか？",class:"btn btn-sm btn-danger mx-1" %>
-  	  </div>
-  </div>
 
 
   </div>

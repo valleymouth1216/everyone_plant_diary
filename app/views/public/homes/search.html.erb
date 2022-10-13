@@ -4,7 +4,7 @@
 
 
     <div class="card d-block index rounded-0" >
-      <div class="card-header_design2 mb-3">
+      <div class="card-header_design2">
          <% if @model == 'customer' %>
           <h2 class="section-ttl">ユーザ検索結果</h2>
           <% else %>
@@ -12,74 +12,59 @@
           <% end %>
       </div>
 
+      <div class="stitch">
         <% if @result.present?  %>
-
-      <div class="card-body character_underline">
-        <h5 class="card-title">
-          <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
-        </h5>
-      </div>
-
-
-    <% if @model == 'customer' %>
-
-      <%= render 'public/customers', customers: @customers %>
-
-  	<% else %>
-      <table border="1" cellpadding="5" width="95%" class="mb-3">
-        <thead>
-          <tr class="bg-light" height="40">
-            <th width="40%" >日記帳名</th>
-            <th width="40%" style="text-align:center">ユーザ名</th>
-            <th width="20%" style="text-align:center">最終更新日付</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @diary_books.each do |diary_book| %>
-          <tr height="40">
-            <td style="word-break: break-all;">
-              <%=link_to customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) do %>
-                <p class="no_margins p_tag"><%=diary_book.title %></p>
+          <div class="card-body character_underline">
+            <h5 class="card-title">
+              <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
+            </h5>
+          </div>
+          <% if @model == 'customer' %>
+            <%= render 'public/customers', customers: @customers %>
+          <% else %>
+            <table border="1" cellpadding="5" width="95%" class="mb-3">
+               <thead>
+                <tr class="bg-light" height="40">
+                  <th width="40%" >日記帳名</th>
+                  <th width="40%" style="text-align:center">ユーザ名</th>
+                  <th width="20%" style="text-align:center">最終更新日付</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @diary_books.each do |diary_book| %>
+                <tr height="40">
+                  <td style="word-break: break-all;">
+                    <%=link_to customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) do %>
+                      <p class="no_margins p_tag"><%=diary_book.title %></p>
+                    <% end %>
+                  </td>
+                  <td style="word-break: break-all;">
+                    <%= link_to customer_path(diary_book.customer_id) do %>
+                      <p class="no_margins p_tag"><%=diary_book.customer.name %>さん</p>
+                    <% end %>
+                  </td>
+                  <td style="text-align:center">
+                    <% if diary_book.order_update_last.present? %>
+                      <%= link_to customer_customer_diary_book_path(diary_book.customer.id,diary_book.order_update_last.id) do %>
+                        <p class="no_margins p_tag"><%=diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %></p>
+                      <% end %>
+                    <% else %>
+                      記録なし
+                    <% end %>
+                  </td>
+                </tr>
               <% end %>
-            </td>
-            <td style="word-break: break-all;">
-              <%= link_to customer_path(diary_book.customer_id) do %>
-                <p class="no_margins p_tag"><%=diary_book.customer.name %>さん</p>
-              <% end %>
-            </td>
-            <td style="text-align:center">
-              <% if diary_book.order_update_last.present? %>
-                <%= link_to customer_customer_diary_book_path(diary_book.customer.id,diary_book.order_update_last.id) do %>
-                  <p class="no_margins p_tag"><%=diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %></p>
-                <% end %>
-              <% else %>
-                記録なし
-              <% end %>
-            </td>
-          </tr>
+              </tbody>
+            </table>
           <% end %>
-        </tbody>
-      </table>
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-  	<% end %>
-  <% else %>
-
-      <div class="card-body  character_underline">
-        <h5 class="card-title"><span><% if @content.present? %>"<%= @content %>"の検索結果は<% end %>見つかりませんでした。検索条件を変更して再度お試しください。</span></h5>
+        <% else %>
+          <div class="card-body  character_underline">
+            <h5 class="card-title"><span><% if @content.present? %>"<%= @content %>"の検索結果は<% end %>見つかりませんでした。検索条件を変更して再度お試しください。</span></h5>
+          </div>
+        <% end %>
       </div>
+   </div>
 
-  <% end %>
 
 
   </div>
