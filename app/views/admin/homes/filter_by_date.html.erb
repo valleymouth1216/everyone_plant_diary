@@ -3,54 +3,52 @@
   <div class="content admin_content">
 
 
-    <div class="card d-block index rounded-0" >
-      <div class="card-header_design2 mb-3">
+    <div class="card d-block index rounded-0 my-1" >
+
+      <div class="card-header_design2">
         <h2 class="section-ttl count"><%= @date_year %>年<%= @date_month %>月<%= @date_date %>日の日記</h2>
         <h5 class="count_position_right">全<%=@diary_dates_count.count %>件</h5>
       </div>
 
-      <div class="card d-block index rounded-0" >
-        <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get) do %>
-        <div class="card-header mb-3"><h5 class="section-ttl">タグ検索</h5></div>
-          <% Tag.all.each do |t| %>
-            <span class:"vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
-          <% end %>
-        <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
-        <%= submit_tag '検索',class:"search_color m-2" %>
-        <% end %>
-      </div>
-
-      <div class="card d-block index rounded-0 my-3" >
-        <div class="row justify-content-center my-3">
-          <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
-        <% if params[:order].present? %>
-          <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order %></span></p>
-        <% end %>
-        <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
-          <%= select_tag("order", options_for_select([ ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost'], ['いいね投稿', 'favoritepost']]),class:"vertical-align: middle;") %>
-          <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
-          <%= submit_tag '並べ替える' ,class:"sort_color" %>
-        <% end %>
+      <div class="stitch">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get,class:"my-2") do %>
+              <span class="px-2">タグ検索</span>
+              <% Tag.all.each do |t| %>
+                <%= check_box :tag_ids, t.name %><%= t.name %>&thinsp;
+              <% end %>
+            <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
+            <%= submit_tag '検索',class:"search_color" %>
+            <% end %>
+          </div>
+          <div class="col-lg-5">
+            <div class="row justify-content-center my-2">
+              <p class="character_underline no_margins">
+              <% if params[:order].present? %>
+                <span class="px-1 mx-1"><%=@order %></span>
+              <% end %>
+              </p>
+              <%= form_tag({controller:"homes",action:"filter_by_date"}, method: :get,class:"") do %>
+                <%= select_tag("order", options_for_select([ ['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost'], ['いいねの多い順', 'favoritepost']]),class:"vertical-align: middle; mx-1") %>
+                <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
+                <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
-
-
       <% if params[:tag_ids].present? %>
-        <div class="card d-block index rounded-0 my-1" >
-          <div class="card-body character_underline">
-            <h5 class="card-title"><span>タグ検索結果</span></h5>
+          <div class="my-2">
+            <span class="mx-2">タグ検索結果</span>
                   <% params[:tag_ids].each do |key, value| %>
                     <% if value == "1" %>
-                      <span>"<%= key %>"</span>
+                      <span class="mx-1">"<%= key %>"</span>
                      <% end %>
                   <% end %>
           </div>
-        </div>
       <% end %>
-
-
       <% @diary_dates.each do |diary_date|%>
-        <div class="card d-block index rounded-0 my-2" >
+        <div class="card d-block index rounded-0 my-2">
           <%= link_to admin_customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
             <div class="card index rounded-0 py-1" >
               <div style="text-align:left">
@@ -62,6 +60,12 @@
           <%= link_to admin_diary_book_diary_date_path(diary_date.diary_book.id,diary_date),class:"card_hover" do %>
             <div class="card index rounded-0 py-1">
                <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
+               <div style="text-align:left" >
+                  <span class="px-2">タグ</span>
+                  <% diary_date.diary_book.tags.each do |tag| %>
+                    ▶<%= tag.name %>
+                  <% end %>
+               </div>
                <div style="text-align:right">
                 <% if diary_date.status == true && diary_date.status_admin == true &&  diary_date.diary_book.status == true && diary_date.diary_book.status_admin == true%>
                   <span class="publish">公開</span>
@@ -70,22 +74,22 @@
                 <% end %>
                  <span class="px-2">♥<%= diary_date.favorites.count %></span>
                  <span class="px-2">💬<%= diary_date.diary_comments.count %></span>
-                </div>
+               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-
-    <%= paginate @diary_dates %>
-
-    </div>
-
+      <%= paginate @diary_dates %>
       <div class="row justify-content-center">
-        <%= link_to "みんなの日記へ戻る",admin_path, class: "btn btn-primary link_size m-1" %>
+        <%= link_to "みんなの日記へ戻る",admin_path, class: "btn_size btn btn-primary m-2" %>
+      </div>
+
       </div>
 
     </div>
 
 
-      </div>
-    </div>
+   </div>
+
+</div>
+

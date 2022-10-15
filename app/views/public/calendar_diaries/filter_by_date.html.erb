@@ -30,7 +30,7 @@
               <% end %>
               </p>
               <%= form_tag({controller:"calendar_diaries",action:"filter_by_date"}, method: :get,class:"") do %>
-                <%= select_tag("order", options_for_select([ ['最新の投稿', 'newpost'], ['古い投稿', 'oldpost'], ['いいね投稿', 'favoritepost']]),class:"vertical-align: middle; mx-1") %>
+                <%= select_tag("order", options_for_select([ ['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost'], ['いいねの多い順', 'favoritepost']]),class:"vertical-align: middle; mx-1") %>
                 <%= hidden_field_tag :date,@date_year+"-"+@date_month+"-"+@date_date %>
                 <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
               <% end %>
@@ -60,6 +60,12 @@
           <%= link_to customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date),class:"card_hover" do %>
             <div class="card index rounded-0 py-1">
                <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
+               <div style="text-align:left" >
+                  <span class="px-2">タグ</span>
+                  <% diary_date.diary_book.tags.each do |tag| %>
+                    ▶<%= tag.name %>
+                  <% end %>
+               </div>
                <div style="text-align:right">
                  <span class="px-2">♥<%= diary_date.favorites.count %></span>
                  <span class="px-2">💬<%= diary_date.diary_comments.count %></span>
@@ -70,7 +76,7 @@
       <% end %>
       <%= paginate @diary_dates %>
       <div class="row justify-content-center">
-        <%= link_to "みんなの日記へ戻る",calendar_diaries_path, class: "btn_size btn btn-primary m-1" %>
+        <%= link_to "みんなの日記へ戻る",calendar_diaries_path, class: "btn_size btn btn-primary m-2" %>
       </div>
 
       </div>

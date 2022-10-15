@@ -8,62 +8,59 @@
 
 
       <div class="content  index card d-block rounded-0" >
-        <div class="card-header_design2 mb-3"><h2 class="section-ttl">会員登録基本情報</h2></div>
+        <div class="card-header_design2"><h2 class="section-ttl">会員登録基本情報</h2></div>
+        <div class="stitch py-2 card-body">
           <%= image_tag @customer.get_profile_image(100,100),class:"my-3"  %>
-        <div class="card-body">
           <div class="row justify-content-center character_underline">
-            <div class="col-lg-4 col-sm-2 text_position_right_cetnter"><span class="px-4">ID:</span></div>
-            <div class="col-lg-7 col-sm-10 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.id %></span></div>
+            <div class="col-lg-5 col-sm-3 text_position_right_cetnter"><span class="px-4">ID:</span></div>
+            <div class="col-lg-6 col-sm-2 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.id %></span></div>
           </div>
           <div class="row justify-content-center character_underline my-3">
-            <div class="col-lg-4 text_position_right_cetnter"><span class="px-4">ユーザ名</span></div>
-            <div class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.name %></span></div>
+            <div class="col-lg-5 text_position_right_cetnter"><span class="px-4">ユーザ名</span></div>
+            <div class="col-lg-6 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.name %></span></div>
           </div>
           <div class="row justify-content-center character_underline my-3">
-            <div class="col-lg-4 text_position_right_cetnter"><span class="px-2">メールアドレス</span></div>
-            <div class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.email %></span></div>
+            <div class="col-lg-5 text_position_right_cetnter"><span class="px-2">メールアドレス</span></div>
+            <div class="col-lg-6 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= @customer.email %></span></div>
           </div>
           <div class="row justify-content-center my-3">
-            <div class="col-lg-4 col-sm-4 text_position_right_cetnter character_underline"><span class="px-2">会員ステータス</span></div>
-            <div class="col-lg-7 col-sm-5 text_position_left_cetnter">
+            <div class="col-lg-5 col-sm-4 text_position_right_cetnter character_underline"><span class="px-2">会員ステータス</span></div>
+            <div class="col-lg-6 col-sm-2 text_position_left_cetnter">
              <% if @customer.is_deleted? %>
               <span class="private"style="vertical-align: middle;">退会</span></span>
             <% else %>
               <span class="publish"style="vertical-align: middle;">有効</span></span>
-            <% end %>
+              <% end %>
             </div>
           </div>
-
-
-
-          </p>
           <%= link_to "基本情報編集をする", edit_admin_customer_path(@customer), class: "btn btn-info my-2" %>
           <%= link_to "このユーザの日記一覧をみる",admin_customer_diary_books_path(@customer), class: "btn btn-primary " %>
         </div>
       </div>
-
     </div>
 
      <div class="content admin_content col-lg-5  m-1">
-      <div class="card d-block index rounded-0 my-2" >
-        <div class="card-header_design2 mb-3"><h2 class="section-ttl">日記帳一覧</h2></div>
-        <% if @diary_books.present? %>
-          <% @diary_books.each do |diary_book| %>
-            <%=link_to admin_diary_book_path(diary_book),class:"card_link_font" do %>
-              <div class="card rounded-0 card_hover">
-                <p class="no_margins py-2" style=" word-break: break-all;text-align:left" ><span>・</span><%= diary_book.title %></p>
-              </div>
-            <% end %>
+      <div class="card d-block index rounded-0" >
+        <div class="card-header_design2"><h2 class="section-ttl">日記帳一覧</h2></div>
+        <div class="stitch py-2">
+          <% if @diary_books.present? %>
+            <% @diary_books.each do |diary_book| %>
+              <%=link_to admin_diary_book_path(diary_book),class:"card_link_font" do %>
+                <div class="card rounded-0 card_hover">
+                  <p class="no_margins py-2" style=" word-break: break-all;text-align:left" ><span>・</span><%= diary_book.title %></p>
+                </div>
+              <% end %>
           <% end %>
-          <%= paginate @diary_books %>
-        <% else %>
-          <h3>日記帳がありません。</h3>
-        <% end %>
-    </div>
+            <%= paginate @diary_books %>
+          <% else %>
+            <h3>日記帳がありません。</h3>
+          <% end %>
+        </div>
       </div>
+    </div>
 
 
 
-
+  </div>
 
 </div>

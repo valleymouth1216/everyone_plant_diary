@@ -2,91 +2,97 @@
 
   <div class="content admin_content">
 
-    <div class="card d-block index rounded-0" >
-      <div class="card-header_design2 mb-3">
+
+    <div class="card d-block index rounded-0 my-1" >
+
+      <div class="card-header_design2">
         <h2 class="section-ttl count">日付検索</h2>
             <% if @search_diary_dates.present? %><h5 class="section-ttl count_position_right">全<%=@search_diary_dates_count.count %>件</h5><% end %>
       </div>
 
-
-    <% if @search_diary_dates.present? %>
-
-      <div class="card d-block index rounded-0" >
-        <%= form_tag({controller:"homes",action:"search_date"}, method: :get) do %>
-        <div class="card-header mb-3"><h5 class="section-ttl">タグ検索</h5></div>
-          <% Tag.all.each do |t| %>
-            <span class="vertical-align: middle;"><%= check_box :tag_ids, t.name %><%= t.name %></span>
-          <% end %>
-        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-        <%= submit_tag '検索',class:"search_color m-2" %>
-        <% end %>
-      </div>
-
-      <div class="card d-block index rounded-0 my-3" >
-        <div class="row justify-content-center my-3">
-          <p class="col-lg-2 col-sm-2 col-5 col-md-3 character_underline"><span class="px-1">並べ替え</span></p>
-        <% if params[:order].present? %>
-          <p class="col-lg-3 col-sm-2 col-6 col-md-4 character_underline" style="text-align:left"><span class="px-1"><%=@order_diary_date %></span></p>
-        <% end %>
-        <%= form_tag({controller:"homes",action:"search_date"}, method: :get,class:"col-lg-4 col-sm-4 col-12 col-md-12") do %>
-        <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']])) %>
-        <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
-          <%= submit_tag '並べ替える' ,class:"sort_color" %>
-        <% end %>
-        </div>
-      </div>
-
-      <% if params[:tag_ids].present? %>
-        <div class="card d-block index rounded-0 my-1" >
+      <% if @search_diary_dates.present? %>
+        <div class="stitch">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <%= form_tag({controller:"homes",action:"search_date"}, method: :get,class:"my-2") do %>
+                <span class="px-2">タグ検索</span>
+                <% Tag.all.each do |t| %>
+                  <%= check_box :tag_ids, t.name %><%= t.name %>&thinsp;
+                <% end %>
+                <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+                <%= submit_tag '検索',class:"search_color" %>
+              <% end %>
+            </div>
+            <div class="col-lg-5">
+              <div class="row justify-content-center my-2">
+                <p class="character_underline no_margins">
+                <% if params[:order].present? %>
+                  <span class="px-1 mx-1"><%=@order_diary_date %></span>
+                <% end %>
+                </p>
+                <%= form_tag({controller:"homes",action:"search_date"}, method: :get,class:"") do %>
+                <%= select_tag("order", options_for_select([ ['最新の日付順', 'newdate'],['古い日付順', 'olddate'],['最新の投稿順', 'newpost'], ['古い投稿順', 'oldpost']]),class:"vertical-align: middle; mx-1") %>
+                <%= hidden_field_tag :start_date,@start_date %><%= hidden_field_tag :end_date,@end_date %>
+                <%= submit_tag '並べ替え' ,class:"sort_color mx-1" %>
+              <% end %>
+            </div>
+          </div>
           <div class="card-body character_underline">
-            <h5 class="card-title"><span>タグ検索結果</span></h5>
+            <h5 class="card-title"><span class="px-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</span></h5>
+              <% if params[:tag_ids].present? %>
+                <div class="my-2">
+                  タグ検索結果<span class="mx-2"></span>
                   <% params[:tag_ids].each do |key, value| %>
                     <% if value == "1" %>
-                      <span>"<%= key %>"</span>
+                      "<%= key %>"
                      <% end %>
                   <% end %>
+                </div>
+              <% end %>
           </div>
-        </div>
-      <% end %>
-
-      <div class="card-body character_underline">
-        <h5 class="card-title"><span class="px-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</span></h5>
-      </div>
-
-      <% @search_diary_dates.each do |diary_date|%>
-        <div class="card d-block index rounded-0 my-2" >
-          <%= link_to admin_customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
-            <div class="card index rounded-0 py-1" >
-              <div style="text-align:left">
-                <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
-                ユーザ名 <%= diary_date.diary_book.customer.name %>
+          <% @search_diary_dates.each do |diary_date|%>
+            <div class="card d-block index rounded-0 my-2" >
+                <%= link_to admin_customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
+                  <div class="card index rounded-0 py-1" >
+                    <div style="text-align:left">
+                      <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
+                      ユーザ名 <%= diary_date.diary_book.customer.name %>
+                    </div>
+                  </div>
+                <% end %>
+              <div class="row">
+                <%= link_to admin_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id),class:"card_hover col-lg-9" do %>
+                  <div class="card rounded-0 py-1">
+                    <div style="text-align:left" >
+                      <span class="px-2">日記名</span><%= diary_date.diary_book.title %>
+                    </div>
+                    <div style="text-align:left" >
+                      <span class="px-2">タグ</span>
+                      <% diary_date.diary_book.tags.each do |tag| %>
+                        ▶<%= tag.name %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+                <%= link_to admin_diary_book_diary_date_path(diary_date.diary_book,diary_date),class:"card_hover col-lg-3" do %>
+                  <div class="card rounded-0 py-1">
+                    <div style="text-align:left" ><span class="px-2">記録日付</span><%= diary_date.start_time.strftime('%Y/%m/%d') %></div>
+                  </div>
+                <% end %>
               </div>
-            </div>
+             </div>
           <% end %>
-
-          <div class="row">
-          <%= link_to admin_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id)  ,class:"card_hover col-lg-9" do %>
-            <div class="card rounded-0 py-1">
-               <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
-            </div>
-          <% end %>
-          <%= link_to admin_diary_book_diary_date_path(diary_date.diary_book,diary_date),class:"card_hover col-lg-3" do %>
-            <div class="card rounded-0 py-1">
-               <div style="text-align:left" ><span class="px-2">記録日付</span><%= diary_date.start_time.strftime('%Y/%m/%d') %></div>
-            </div>
-          <% end %>
-        </div>
-        </div>
+          <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
+      <% else %>
+        <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
       <% end %>
-      <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
+        <%= link_to "みんなの日記へ戻る",admin_path,class: "btn btn-primary m-3" %>
+          </div>
 
-    <% else %>
-      <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
-    <% end %>
-
-      <%= link_to "みんなの日記へ戻る",admin_path,class: "btn btn-primary m-3" %>
+        </div>
     </div>
 
 
-      </div>
-    </div>
+  </div>
+
+</div>

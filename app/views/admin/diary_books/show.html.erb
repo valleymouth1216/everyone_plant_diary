@@ -36,10 +36,16 @@
       </div>
 
       <div class="card d-block index rounded-0 mt-2" >
-        <div class="card-header mb-3"><h2 class="section-ttl">詳細内容</h2></div>
-        <div class="card-body">
+        <div class="card-header_design2"><h2 class="section-ttl">詳細内容</h2></div>
+        <div class="card-body stitch py-2">
           <p class="card_text"><span class="px-2">作成日付:</span><span class="px-2" ><%= @diary_book.created_at.strftime('%Y/%m/%d') %></span></p>
           <p class="card_text"><span class="px-2">更新日付:</span><span class="px-2"><%= @diary_book.updated_at.strftime('%Y/%m/%d') %></span></p>
+          <% if @diary_book.order_update_first_user.present? %>
+            <p class="card_text"><span class="px-2">日記最初日付:</span><span class="px-2"><%= @diary_book.order_update_first_user.start_time.strftime('%Y/%m/%d') %></span></p>
+          <% end %>
+          <% if @diary_book.order_update_last_user.present? %>
+            <p class="card_text"><span class="px-2">日記更新日付:</span><span class="px-2"><%= @diary_book.order_update_last_user.start_time.strftime('%Y/%m/%d') %></span></p>
+          <% end %>
           <p class="card_text"><span class="px-2">日記の公開設定:</span>
              <% if @diary_book.status == true %>
               <span class="publish">公開</span>
@@ -58,7 +64,7 @@
       </div>
 
       <div class="card d-block index rounded-0 mt-2" >
-        <div class="character_underline">
+        <div class="character_underline stitch py-2">
           <span class="px-2">管理者の公開設定</span>
             <%= form_with model: @diary_book, url:admin_diary_book_path(@diary_book) do |f| %>
                 <%= f.radio_button :status_admin, true %><%= f.label :status_admin, '公開する', value: true %>

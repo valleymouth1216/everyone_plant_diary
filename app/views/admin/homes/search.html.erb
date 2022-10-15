@@ -4,7 +4,7 @@
 
 
     <div class="card d-block rounded-0" >
-      <div class="card-header_design2 mb-3">
+      <div class="card-header_design2">
          <% if @model == 'customer' %>
           <h2 class="section-ttl">ユーザ検索結果</h2>
           <% else %>
@@ -12,77 +12,59 @@
           <% end %>
       </div>
 
-        <% if @result.present?  %>
-
-      <div class="card-body character_underline">
-        <h5 class="card-title">
-          <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
-        </h5>
-      </div>
-
-
-    <% if @model == 'customer' %>
-
-      <% @result.each do |customer|%>
-        <div class="card d-block index rounded-0 my-1" >
-          <%= link_to admin_customer_path(customer),class:"card_hover" do %>
-            <div class="card-body">
-              <div class="row align-items-center character_underline">
-                <p class="col-lg-4"><%= image_tag customer.get_profile_image(100,100),class:"p-2" %></p>
-                <p class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= customer.name %>さん</span></p>
+      <div class="stitch">
+        <% if @result.present? %>
+          <div class="card-body character_underline">
+            <h5 class="card-title">
+              <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
+            </h5>
+          </div>
+        <% if @model == 'customer' %>
+            <% @result.each do |customer|%>
+              <div class="card d-block index rounded-0 my-1" >
+                <%= link_to admin_customer_path(customer),class:"card_hover" do %>
+                  <div class="card-body">
+                    <div class="row align-items-center character_underline">
+                      <p class="col-lg-4"><%= image_tag customer.get_profile_image(100,100),class:"p-2" %></p>
+                      <p class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= customer.name %>さん</span></p>
+                    </div>
+                  </div>
+            <% end %>
               </div>
-             </div>
           <% end %>
-         </div>
-      <% end %>
-
-  	<% else %>
-      <table border="1" cellpadding="5" width="95%" class="mb-3">
-        <thead>
-          <tr class="bg-light" height="40">
-            <th width="40%" >日記帳名</th>
-            <th width="40%" style="text-align:center">ユーザ名</th>
-            <th width="20%" style="text-align:center">最終更新日付</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @result.each do |diary_book| %>
-          <tr height="40">
-            <td style="word-break: break-all;"><%=link_to diary_book.title,admin_customer_diary_books_path(diary_book.customer,diary_book: diary_book.id) %></td>
-            <td style="word-break: break-all;"><%=link_to "#{diary_book.customer.name}さん",admin_customer_path(diary_book.customer) %></td>
-            <td style="text-align:center">
-              <% if diary_book.order_update_last.present? %>
-                <%= diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %>
-              <% else %>
-                記録なし
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-  	<% end %>
-  <% else %>
-
+        <% else %>
+          <table border="1" cellpadding="5" width="95%" class="mb-3">
+            <thead>
+              <tr class="bg-light" height="40">
+                <th width="40%" >日記帳名</th>
+                <th width="40%" style="text-align:center">ユーザ名</th>
+                <th width="20%" style="text-align:center">最終更新日付</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @result.each do |diary_book| %>
+              <tr height="40">
+                <td style="word-break: break-all;"><%=link_to diary_book.title,admin_customer_diary_books_path(diary_book.customer,diary_book: diary_book.id) %></td>
+                <td style="word-break: break-all;"><%=link_to "#{diary_book.customer.name}さん",admin_customer_path(diary_book.customer) %></td>
+                <td style="text-align:center">
+                  <% if diary_book.order_update_last.present? %>
+                   <%= diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %>
+                  <% else %>
+                    記録なし
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+           </table>
+        <% end %>
+        <% else %>
       <div class="card-body  character_underline">
         <h5 class="card-title"><span><% if @content.present? %>"<%= @content %>"の検索結果は<% end %>見つかりませんでした。検索条件を変更して再度お試しください。</span></h5>
       </div>
-
-  <% end %>
-
+        <% end %>
+      </div>
 
   </div>
-
+    </div>
 </div>

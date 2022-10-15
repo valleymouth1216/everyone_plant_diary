@@ -1,46 +1,47 @@
 <div class='container'>
 
   <%= render 'layouts/error_messages', resource: @customer %>
+
   <div class="content my_content">
 
 
     <div class="card d-block rounded-0 edit" >
-      <div class="card-header_design2 mb-3"><h2 class="section-ttl">会員情報編集</h2></div>
+      <div class="card-header_design2"><h2 class="section-ttl">会員情報編集</h2></div>
+      <div class="stitch card-body">
         <% if @customer.profile_image.attached? %>
           <div class="row justify-content-center character_underline">
             <p class="col-lg-10 col-sm-10 col-10 col-md-10"><span class="px-3">現在のプロフィール画像</span></p>
             <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= image_tag @customer.profile_image.representation(resize_to_limit: [200, 180]).processed %></p>
           </div>
         <% end %>
-      <%= form_with model:@customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-        <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins" ><span class="px-3">&emsp;<%= f.label :name,"ユーザ名"  %>&emsp;</span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.text_field :name,class:"my_page_edit" %></p>
-        </div>
-        <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :email,"メールアドレス" %></span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.email_field :email, autofocus: true,class:"my_page_edit" %></p>
-        </div>
-        <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :profile_image,"プロフィール画像" %></span></p>
-          <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png',class:"my_page_edit image_size" %></p>
-        </div>
-        <div class="row justify-content-center character_underline">
-          <p class="col-lg-3 col-sm-3 col-md-4 no_margins"><span class="px-3">会員ステータス</span></p>
-          <p class="col-lg-7 col-sm-7 col-md-6 text_position_left_cetnter my-1" >
-            <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", value: false, class: "publish mx-3" %>
-            <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会", value: true, class: "private mx-3" %>
-          </p>
-        </div>
-        <div class="row justify-content-center mb-3">
-          <%= f.submit "編集内容を保存",class:"btn btn-lg btn-info" %>
-        </div>
-      <% end %>
+        <%= form_with model:@customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+          <div class="row justify-content-center character_underline">
+            <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins" ><span class="px-3">&emsp;<%= f.label :name,"ユーザ名"  %>&emsp;</span></p>
+            <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.text_field :name,class:"my_page_edit" %></p>
+         </div>
+         <div class="row justify-content-center character_underline">
+            <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :email,"メールアドレス" %></span></p>
+            <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.email_field :email, autofocus: true,class:"my_page_edit" %></p>
+          </div>
+          <div class="row justify-content-center character_underline">
+            <p class="col-lg-3 col-sm-10 col-10 col-md-10 no_margins"><span class="px-3"><%= f.label :profile_image,"プロフィール画像" %></span></p>
+            <p class="col-lg-7 col-sm-10 col-10 col-md-10"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: 'image/jpeg, image/png',class:"my_page_edit image_size" %></p>
+          </div>
+          <div class="row justify-content-center character_underline">
+            <p class="col-lg-3 col-sm-3 col-md-4 no_margins"><span class="px-3">会員ステータス</span></p>
+            <p class="col-lg-7 col-sm-7 col-md-6 text_position_left_cetnter my-1" >
+              <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", value: false, class: "publish mx-3" %>
+              <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会", value: true, class: "private mx-3" %>
+            </p>
+          </div>
+          <div class="row justify-content-center mb-3">
+            <%= f.submit "編集内容を保存",class:"btn btn-lg btn-info" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-
   </div>
 
-  </div>
 
 </div>
