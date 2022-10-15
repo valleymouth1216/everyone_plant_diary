@@ -37,62 +37,62 @@
               <% end %>
             </div>
           </div>
-
-      <% if params[:tag_ids].present? %>
-        <div class="card d-block index rounded-0 my-1" >
           <div class="card-body character_underline">
-            <h5 class="card-title"><span>タグ検索結果</span></h5>
-              <% params[:tag_ids].each do |key, value| %>
-                <% if value == "1" %>
-                  <span>"<%= key %>"</span>
-                <% end %>
+            <h5 class="card-title"><span class="px-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</span></h5>
+              <% if params[:tag_ids].present? %>
+                <div class="my-2">
+                  タグ検索結果<span class="mx-2"></span>
+                  <% params[:tag_ids].each do |key, value| %>
+                    <% if value == "1" %>
+                      "<%= key %>"
+                     <% end %>
+                  <% end %>
+                </div>
               <% end %>
           </div>
-        </div>
-      <% end %>
-
-      <div class="card-body character_underline">
-        <h5 class="card-title"><span class="px-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</span></h5>
-      </div>
-
-      <% @search_diary_dates.each do |diary_date|%>
-        <div class="card d-block index rounded-0 my-2" >
-          <%= link_to customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
-            <div class="card index rounded-0 py-1" >
-              <div style="text-align:left">
-                <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
-                ユーザ名 <%= diary_date.diary_book.customer.name %>
+          <% @search_diary_dates.each do |diary_date|%>
+            <div class="card d-block index rounded-0 my-2" >
+                <%= link_to customer_path(diary_date.diary_book.customer.id),class:"card_hover" do %>
+                  <div class="card index rounded-0 py-1" >
+                    <div style="text-align:left">
+                      <%= image_tag diary_date.diary_book.customer.get_profile_image(70,70), class: "px-2" %>
+                      ユーザ名 <%= diary_date.diary_book.customer.name %>
+                    </div>
+                  </div>
+                <% end %>
+              <div class="row">
+                <%= link_to customer_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id),class:"card_hover col-lg-9" do %>
+                  <div class="card rounded-0 py-1">
+                    <div style="text-align:left" >
+                      <span class="px-2">日記名</span><%= diary_date.diary_book.title %>
+                    </div>
+                    <div style="text-align:left" >
+                      <span class="px-2">タグ</span>
+                      <% diary_date.diary_book.tags.each do |tag| %>
+                        ▶<%= tag.name %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+                <%= link_to customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date.id),class:"card_hover col-lg-3" do %>
+                  <div class="card rounded-0 py-1">
+                    <div style="text-align:left" ><span class="px-2">記録日付</span><%= diary_date.start_time.strftime('%Y/%m/%d') %></div>
+                  </div>
+                <% end %>
               </div>
-            </div>
+             </div>
           <% end %>
-
-          <div class="row">
-          <%= link_to customer_customer_diary_books_path(diary_date.diary_book.customer.id,diary_book: diary_date.diary_book.id),class:"card_hover col-lg-9" do %>
-            <div class="card rounded-0 py-1">
-               <div style="text-align:left" ><span class="px-2">日記名</span><%= diary_date.diary_book.title %></div>
-            </div>
-          <% end %>
-          <%= link_to customer_customer_diary_book_path(diary_date.diary_book.customer.id,diary_date.id),class:"card_hover col-lg-3" do %>
-            <div class="card rounded-0 py-1">
-               <div style="text-align:left" ><span class="px-2">記録日付</span><%= diary_date.start_time.strftime('%Y/%m/%d') %></div>
-            </div>
-          <% end %>
-        </div>
-        </div>
+          <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
+      <% else %>
+        <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
       <% end %>
-      <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
-
-    <% else %>
-      <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
-    <% end %>
-
-      <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary m-3" %>
-    </div>
+        <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary m-3" %>
+          </div>
 
         </div>
-      </div>
-
-
     </div>
+
+
+  </div>
 
 </div>

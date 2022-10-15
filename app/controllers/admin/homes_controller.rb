@@ -70,8 +70,9 @@ class Admin::HomesController < ApplicationController
         if @search_diary_dates == []
           @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).page(params[:page]).per(10)
           flash[:notice] = "タグ検索したタグがありませんので、すべて表示します。"
+        else
+           @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
         end
-      @search_diary_dates = Kaminari.paginate_array(@search_diary_dates).page(params[:page]).per(10)
     else
       @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).page(params[:page]).order("start_time DESC").per(10)
     end
