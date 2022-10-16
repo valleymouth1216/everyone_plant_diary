@@ -16,14 +16,14 @@
 
 
 body {
-  background-image: url("Photoelly014_TP_V.jpg");
+  background-image: image-url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
 
 
 /*
 main {
-  background-image: url("Photoelly014_TP_V.jpg");
+  background-image: image-url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
 */
@@ -335,7 +335,7 @@ table a:hover {
 
 
 .diary_book {
-  background-image: url("219741.jpg");
+  background-image: image-url("219741.jpg");
   background-size: 120% 120%;
   /*background-size: 100% 100%;*/
   background-repeat: no-repeat;
@@ -350,7 +350,7 @@ table a:hover {
 }
 
 .diary_date {
-  background-image: url("773762.jpg");
+  background-image: image-url("773762.jpg");
   background-size: 120% 120%;
   /*background-size: 100% 100%;*/
   background-repeat: no-repeat;
@@ -381,7 +381,7 @@ table a:hover {
   box-shadow: 5px 5px 1px #efefef, inset 0 0 0 5px #55ffaa;
 }
 .diary_date_image {
-  background-image: url("773762.jpg");
+  background-image: image-url("773762.jpg");
   background-size: 125% 125%;
   /*background-size: 100% 100%;*/
   background-repeat: no-repeat;
