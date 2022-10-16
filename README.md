@@ -28,20 +28,7 @@
 ## 設計書
 #実装機能リスト（スプレッドシート）URL
 - https://docs.google.com/spreadsheets/d/1JWw7jNGwNwZ0ih2au-UIDnOfyfLSHIqE7d37IDfpSGU/edit?usp=sharing
-#ER図.drawio
-- https://app.diagrams.net/#G1b-_eLLfE6xAnZOrH0BPPxI3HcEeB3dP0
-#画面転移図(admin)
-- https://app.diagrams.net/#G1AQMF5F6Yok_ghf9B6b7QeTNOsOkKzHwI
-#画面転移図(user)
-- https://app.diagrams.net/#G1643x71izPjiMYkxscEItyRsApHuHlfBR
-#ワイヤーフレーム(admin).drawio
-- https://app.diagrams.net/#G1tHU7FcdldmzHlHvpNvxFIQiCbmY19cx1
-#ワイヤーフレーム(user).drawio
-- https://app.diagrams.net/#G1KPG5GzfCVz9k1n3aa03R3i7Sx0FEZkk2
-#テーブル定義書
-- https://docs.google.com/spreadsheets/d/1LEQdiLAs0dI9VEFS9BhhBNzkXlQ_UXKd/edit#gid=1243549839
-#アプリケーション詳細設計
-- https://docs.google.com/spreadsheets/d/161jf6BW4xjtlSEpIfXTVT8uFrxd_C4wD/edit#gid=549108681
+
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -51,4 +38,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です。
+- https://www.pakutaso.com/
+- https://www.designevo.com/
