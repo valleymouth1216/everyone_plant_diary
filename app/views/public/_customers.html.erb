@@ -3,8 +3,8 @@
           <%= link_to customer_path(customer),class:"card_hover" do %>
             <div class="card-body">
               <div class="row align-items-center character_underline">
-                <p class="col-lg-4"><%= image_tag customer.get_profile_image(100,100),class:"p-2" %></p>
-                <p class="col-lg-7 text_position_left_cetnter"><span class="px-2" style="word-break: break-all;"><%= customer.name %>さん</span></p>
+                <p class="col-lg-4 no_margins"><%= image_tag customer.get_profile_image(100,100) %></p>
+                <p class="col-lg-7 text_position_left_cetnter no_margins"><span class="px-2" style="word-break: break-all;"><%= customer.name %>さん</span></p>
               </div>
              </div>
           <% end %>

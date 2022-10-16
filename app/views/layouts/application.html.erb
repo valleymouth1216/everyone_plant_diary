@@ -20,11 +20,9 @@
 
 
           <div class="row">
-
             <div class="logo col-lg-2 col-12">
               <a class="navbar-brand" href="/"><%= image_tag 'logo.jpg',size: "130x100" %></a>
             </div>
-
           <% if customer_signed_in? %>
             <div class="col-lg-3 col-12 col-sm-12">
               <div class="customer_name">
@@ -32,9 +30,6 @@
                 </div>
             </div>
           <% end %>
-
-
-
           <% if customer_signed_in? %>
             <div class="col-lg-7 col-8 col-sm-8">
               <div class="customer_search ">
@@ -59,13 +54,12 @@
                </div>
             </div>
           <% end %>
-          </div>
-
+            </div>
 
           <% if admin_signed_in? %>
             <div class="col-lg-8 col-12 col-sm-12">
               <div class="customer_search ">
-            <%= form_with(scope: "search", url: admin_search_path, method: 'get') do |form| %>
+                <%= form_with(scope: "search", url: admin_search_path, method: 'get') do |form| %>
                   <%= text_field_tag "search[content]", "", :placeholder =>"検索する" %>
                     <span>
                     <%= form.label "[method]","or", value: "partial" %>
@@ -84,11 +78,10 @@
                   </div>
                   <% end %>
                </div>
-            </div>
+              </div>
           <% end %>
-
-</div>
-     <nav class="navbar-expand-lg navbar-light header_list">
+            </div>
+          <nav class="navbar-expand-lg navbar-light header_list">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -163,16 +156,6 @@
                 <%= link_to new_customer_session_path do %>
                   <li class="nav-item">
                     ログイン
-                  </li>
-                <% end %>
-                <%= link_to customers_guest_sign_in_path, method: :post do %>
-                  <li class="nav-item">
-                    ゲストログイン（閲覧用）
-                  </li>
-                <% end %>
-                <%= link_to new_admin_session_path do %>
-                  <li class="nav-item">
-                    管理ログイン用(後で消す！！！)
                   </li>
                 <% end %>
 

@@ -14,19 +14,19 @@
  *= require_self
  */
 
-/*
+
 body {
   background-image: url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
-*/
 
 
+/*
 main {
   background-image: url("Photoelly014_TP_V.jpg");
    background-size:  cover;
 }
-
+*/
 table {
 table-layout: fixed;
 word-break: break-all;
@@ -737,6 +737,9 @@ td{
 
 .text_position_left_cetnter{
   text-align: center;
+}
+.customer_card{
+  width: 90%;
 }
 }
 

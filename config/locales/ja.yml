@@ -10,10 +10,10 @@ ja:
         typhoon: "台風"
   views:
     pagination:
-      first: First<i class="fas fa-angle-double-left"></i>
-      last: Last<i class="fas fa-angle-double-right"></i>
-      previous: Previous<i class="fas fa-angle-left"></i>
-      next: Next<i class="fas fa-angle-right"></i>
+      first: First <i class="fas fa-angle-double-left"></i>
+      last: Last <i class="fas fa-angle-double-right"></i>
+      previous: Previous <i class="fas fa-angle-left"></i>
+      next: Next <i class="fas fa-angle-right"></i>
       truncate: "..."
   activerecord:
     models:

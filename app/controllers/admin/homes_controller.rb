@@ -12,7 +12,6 @@ class Admin::HomesController < ApplicationController
     @date_month = date_arr[1]
     @date_date = date_arr[2]
     date =  Date.new(date_arr[0].to_i,date_arr[1].to_i, date_arr[2].to_i)
-    #byebug
 
     if params[:tag_ids]&.values&.include?("1")
       @diary_books = []
@@ -52,7 +51,6 @@ class Admin::HomesController < ApplicationController
       flash[:alert] = "日付が選択されていません。"
       redirect_to admin_path
     else
-     # binding.pry
       @start_date = params[:start_date]
       @end_date = params[:end_date]
 
@@ -92,7 +90,6 @@ class Admin::HomesController < ApplicationController
         @search_diary_dates = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("start_time DESC").page(params[:page]).per(10)
       end
       @search_diary_dates_count = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day)
-      #@search_diary_dates_release_count = DiaryDate.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).where(status: true,status_admin: true, diary_books: {status_admin: true,status: true})
     end
   end
 
@@ -107,7 +104,6 @@ class Admin::HomesController < ApplicationController
 
   def search_for(model, content, method)
     if @content == ""
-#binding.pry
     else
       if model == 'diary_books'
         if  method == 'perfect'
@@ -122,7 +118,7 @@ class Admin::HomesController < ApplicationController
           Customer.where('name LIKE ?', '%' + content + '%').order(created_at: :desc)
         end
       else
-          [] # 空配列を返す
+          []
       end
     end
   end
