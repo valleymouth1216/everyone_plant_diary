@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2022_09_03_063435) do
     t.datetime "start_time", null: false
     t.integer "weather", default: 0, null: false
     t.integer "temperature"
-    t.text "body", default: "", null: false
+    t.text "body", null: false
     t.boolean "status", default: false, null: false
     t.boolean "status_admin", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
