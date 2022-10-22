@@ -678,12 +678,12 @@ header {
  }
 
  .link_size{
-   font-size: 0.5rem;
+   font-size: 0.75rem;
    text-align:center;
  }
 
 td{
-   font-size: 0.1rem;
+   font-size: 0.75rem;
  }
 
  .image_size{
@@ -747,32 +747,32 @@ td{
 // 極小デバイス（縦向きモバイル, 576px 未満）
 @media (max-width: 575.98px) {
 main {
-   font-size: 0.5rem;
+   font-size: 0.75rem;
  }
 header {
-   font-size: 0.5rem;
+   font-size: 0.75rem;
  }
 .section-ttl {
    font-size: 1rem;
  }
  input.btn_size {
-   font-size: 0.5rem;
+   font-size: 0.75rem;
    text-align:center;
  }
   .link_size{
-   font-size: 0.5rem;
+   font-size: 0.75rem;
    text-align:center;
  }
 
 td{
-   font-size: 1rem;
+   font-size: 0.75rem;
  }
  .image_size{
    width: 100%;
  }
 
 .card-title{
-   font-size: 1rem;
+   font-size: 0.75rem;
  }
 
 .card.d-block.edit{
