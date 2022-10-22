@@ -5,7 +5,7 @@ class CreateDiaryDates < ActiveRecord::Migration[6.1]
       t.datetime :start_time,null: false
       t.integer :weather,default: 0, null: false
       t.integer :temperature
-      t.text :body,null: false, default: ""
+      t.text :body,null: false
       t.boolean :status, null: false, default: false
       t.boolean :status_admin, null: false, default: true
       t.timestamps
