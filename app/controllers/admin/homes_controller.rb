@@ -3,7 +3,7 @@ class Admin::HomesController < ApplicationController
 
   def top
     @diary_dates = DiaryDate.all
-    @diary_dates_release = DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true})
+   # @diary_dates_release = DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true})
   end
 
   def filter_by_date
@@ -16,12 +16,12 @@ class Admin::HomesController < ApplicationController
     if params[:tag_ids]&.values&.include?("1")
       @diary_books = []
       params[:tag_ids].each do |key, value|
-        @diary_books += Tag.find_by(name: key).diary_books.where(status: true, status_admin: true).order(created_at: :desc) if value == "1"
+        @diary_books += Tag.find_by(name: key).diary_books.order(created_at: :desc) if value == "1"
       end
       @diary_books.uniq!
       @diary_dates = []
       @diary_books.each do |diary_book|
-        @diary_dates += diary_book.diary_dates.where(start_time: date.at_beginning_of_day...date.at_end_of_day,status_admin: true,status: true).order("created_at DESC")
+        @diary_dates += diary_book.diary_dates.where(start_time: date.at_beginning_of_day...date.at_end_of_day).order("created_at DESC")
       end
       @diary_dates.uniq!
       @diary_dates = Kaminari.paginate_array(@diary_dates).page(params[:page]).per(10)
