@@ -10,9 +10,11 @@ class Public::CustomersController < ApplicationController
     if params[:id]== current_customer.id.to_s
        redirect_to my_page_path
     else
-
       @customer = Customer.find(params[:id])
-      #binding.pry
+      if @customer.is_deleted == true
+         flash[:alert] =  "このユーザは退会されています。"
+         redirect_to calendar_diaries_path and return
+    end
       @customer_diary_books = @customer.diary_books.where(status_admin: true,status: true).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
