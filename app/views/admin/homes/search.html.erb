@@ -16,7 +16,7 @@
         <% if @result.present? %>
           <div class="card-body character_underline">
             <h5 class="card-title">
-              <span class="px-3">"<%= @content %>"の検索結果:<%= @result_count.count %>件</span>
+              <span class="px-3">"<%= @content %>"の検索結果:<%= @result.count %>件</span>
             </h5>
           </div>
         <% if @model == 'customer' %>
