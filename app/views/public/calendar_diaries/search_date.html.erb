@@ -10,8 +10,8 @@
             <% if @search_diary_dates.present? %><h5 class="section-ttl count_position_right">全<%=@search_diary_dates_count.count %>件</h5><% end %>
       </div>
 
+      <div class="stitch">
       <% if @search_diary_dates.present? %>
-        <div class="stitch">
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <%= form_tag({controller:"calendar_diaries",action:"search_date"}, method: :get,class:"my-2") do %>
@@ -84,12 +84,12 @@
           <% end %>
           <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
       <% else %>
-        <p><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
+        <p class="my-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
       <% end %>
         <%= link_to "みんなの日記へ戻る",calendar_diaries_path,class: "btn btn-primary m-3" %>
           </div>
 
-        </div>
+      </div>
     </div>
 
 
