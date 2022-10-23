@@ -20,7 +20,7 @@ class DiaryDate < ApplicationRecord
     end
 
     def self.count_by_date(date)
-      joins(:diary_book).where(start_time: Time.zone.parse(date.to_s),status_admin: true,status: true, diary_books: {status_admin: true,status: true})
+      joins(:diary_book).where(start_time: Time.zone.parse(date.to_s).at_beginning_of_day...Time.zone.parse(date.to_s).at_end_of_day,status_admin: true,status: true, diary_books: {status_admin: true,status: true})
       # where(start_time: Time.zone.parse(date.to_s), status: true,status_admin: true).joins(:diary_book).where(status_admin: true,status: true).count
     end
 
