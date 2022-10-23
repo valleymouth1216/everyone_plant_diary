@@ -3,12 +3,12 @@
 
   <div class="content my_content">
 
-    <div class="card d-block" >
-      <div class="card-header mb-3"><h2 class="section-ttl">ログイン</h2></div>
+    <div class="card d-block edit" >
+      <div class="card-header"><h2 class="section-ttl">ログイン</h2></div>
 
       <div class="card-body character_underline">
          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="row my-3">
+        <div class="row my-2">
             <div class="col-lg-4 text_position_cetnter_left"><span class="px-2"><%= f.label :email, "メールアドレス" %></span></div>
             <div class="col-lg-7"><%= f.email_field :email, autofocus: true,class:"my_page_edit", autocomplete: "email",placeholder:"sample@example.com" %></div>
         </div>

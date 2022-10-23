@@ -1,12 +1,12 @@
 <%- if controller_name != 'sessions' %>
-    <div class="card d-block my-1" >
+    <div class="card d-block my-1 edit" >
       <div class="card-header mb-3"><h2 class="section-ttl">既に登録済みの方</h2></div>
       <p><%= link_to "こちら",new_session_path(resource_name) ,:style =>"text-decoration: underline" %>&emsp;からログインしてください。</p>
     </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <div class="card d-block my-1" >
+    <div class="card d-block my-1 edit" >
       <div class="card-header mb-3"><h2 class="section-ttl">会員登録がお済みでない方</h2></div>
       <p><%= link_to "こちら",new_registration_path(resource_name) ,:style =>"text-decoration: underline" %>&emsp;から新規登録を行ってください。</p>
     </div>
