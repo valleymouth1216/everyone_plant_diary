@@ -7,15 +7,15 @@
       <div class="card-header_design2"><h2 class="section-ttl">日記帳一覧</h2></div>
       <div class="stitch py-2">
         <div class="row justify-content-center">
-          <%= link_to "日記帳作成する",new_diary_book_path,class:"btn btn-lg btn-success my-2" %>
+          <%= link_to "日記帳作成する",new_diary_book_path,class:"btn btn-lg btn-success my-3" %>
         </div>
         <% if @diary_books.present? %>
           <table border="1" cellpadding="5" width="99%" class="mb-3" >
             <thead>
               <tr class="bg-light" height="40">
-                <th width="55%">日記帳名</th>
-                <th width="20%" style="text-align:center">作成日</th>
-                <th width="20%" style="text-align:center">公開</th>
+                <th width="50%">日記帳名</th>
+                <th width="25%" style="text-align:center">作成日</th>
+                <th width="25%" style="text-align:center">公開</th>
               </tr>
             </thead>
             <tbody>

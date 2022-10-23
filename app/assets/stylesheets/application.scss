@@ -640,8 +640,13 @@ footer{
   text-decoration: none;
 }
 
+td{
+   padding: 0;
+ }
 
-
+td p{
+   padding: 0.3rem 0.75rem 0.3rem 0.75rem;
+ }
 @media screen and (min-width: 769px) and (max-width: 992px) {
 .nav-item{
  border-top : 1px solid #fff;
