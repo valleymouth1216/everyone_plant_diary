@@ -44,9 +44,9 @@
                     <% end %>
                   </td>
                   <td style="text-align:center">
-                    <% if diary_book.order_update_last.present? %>
-                      <%= link_to customer_customer_diary_book_path(diary_book.customer.id,diary_book.order_update_last.id) do %>
-                        <p class="no_margins p_tag"><%=diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %></p>
+                    <% if diary_book.order_update_last_custmoter.present? %>
+                      <%= link_to customer_customer_diary_book_path(diary_book.customer.id,diary_book.order_update_last_custmoter.id) do %>
+                        <p class="no_margins p_tag"><%=diary_book.order_update_last_custmoter.start_time.strftime('%Y/%m/%d') %></p>
                       <% end %>
                     <% else %>
                       記録なし
