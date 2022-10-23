@@ -23,7 +23,7 @@
               <tr>
                 <td style="word-break: break-all;">
                   <%= link_to diary_book_path(diary_book.id) do %>
-                   <p class="no_margins p_tag"><%= diary_book.title%></p>
+                   <p class="no_margins p_tag px-2"><%= diary_book.title %></p>
                   <% end %>
                 </td>
                 <td style="text-align:center"><%= diary_book.created_at.strftime('%Y/%m/%d') %></td>

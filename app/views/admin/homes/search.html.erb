@@ -3,7 +3,7 @@
   <div class="content admin_content">
 
 
-    <div class="card d-block rounded-0" >
+    <div class="card d-block index rounded-0" >
       <div class="card-header_design2">
          <% if @model == 'customer' %>
           <h2 class="section-ttl">ユーザ検索結果</h2>
@@ -44,15 +44,25 @@
             <tbody>
             <% @result.each do |diary_book| %>
               <tr height="40">
-                <td style="word-break: break-all;"><%=link_to diary_book.title,admin_customer_diary_books_path(diary_book.customer,diary_book: diary_book.id) %></td>
-                <td style="word-break: break-all;"><%=link_to "#{diary_book.customer.name}さん",admin_customer_path(diary_book.customer) %></td>
-                <td style="text-align:center">
-                  <% if diary_book.order_update_last.present? %>
-                   <%= diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %>
-                  <% else %>
-                    記録なし
+                <td style="word-break: break-all;">
+                  <%=link_to admin_customer_diary_books_path(diary_book.customer,diary_book: diary_book.id) do %>
+                    <p class="no_margins p_tag px-2"><%=diary_book.title %></p>
                   <% end %>
                 </td>
+                <td style="word-break: break-all;">
+                  <%= link_to admin_customer_path(diary_book.customer) do %>
+                    <p class="no_margins p_tag px-2"><%=diary_book.customer.name %>さん</p>
+                  <% end %>
+                  </td>
+                  <td style="text-align:center">
+                    <% if diary_book.order_update_last.present? %>
+                      <%= link_to admin_diary_book_diary_date_path(diary_book.id,diary_book.order_update_last.id) do %>
+                        <p class="no_margins p_tag"><%=diary_book.order_update_last.start_time.strftime('%Y/%m/%d') %></p>
+                      <% end %>
+                    <% else %>
+                      記録なし
+                    <% end %>
+                  </td>
               </tr>
             <% end %>
             </tbody>

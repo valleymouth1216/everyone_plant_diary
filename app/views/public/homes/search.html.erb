@@ -35,12 +35,12 @@
                 <tr height="40">
                   <td style="word-break: break-all;">
                     <%=link_to customer_customer_diary_books_path(diary_book.customer.id,diary_book: diary_book.id) do %>
-                      <p class="no_margins p_tag"><%=diary_book.title %></p>
+                      <p class="no_margins p_tag px-2"><%=diary_book.title %></p>
                     <% end %>
                   </td>
                   <td style="word-break: break-all;">
                     <%= link_to customer_path(diary_book.customer_id) do %>
-                      <p class="no_margins p_tag"><%=diary_book.customer.name %>さん</p>
+                      <p class="no_margins p_tag px-2"><%=diary_book.customer.name %>さん</p>
                     <% end %>
                   </td>
                   <td style="text-align:center">
