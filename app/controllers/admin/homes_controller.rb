@@ -3,7 +3,6 @@ class Admin::HomesController < ApplicationController
 
   def top
     @diary_dates = DiaryDate.all
-   # @diary_dates_release = DiaryDate.joins(:diary_book).where(status_admin: true,status: true, diary_books: {status_admin: true,status: true})
   end
 
   def filter_by_date

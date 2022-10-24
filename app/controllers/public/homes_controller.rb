@@ -21,7 +21,6 @@ class Public::HomesController < ApplicationController
 
   def search_for(model, content, method)
     if @content == ""
-#binding.pry
     else
       if model == 'diary_books'
         if  method == 'perfect'
