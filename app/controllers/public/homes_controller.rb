@@ -21,7 +21,6 @@ class Public::HomesController < ApplicationController
 
   def search_for(model, content, method)
     if @content == ""
-#binding.pry
     else
       if model == 'diary_books'
         if  method == 'perfect'
@@ -36,7 +35,7 @@ class Public::HomesController < ApplicationController
           Customer.where('name LIKE ?', '%' + content + '%').where(is_deleted: false).order(created_at: :desc)
         end
       else
-          [] # 空配列を返す
+          []
       end
     end
   end
