@@ -25,7 +25,13 @@ class Public::DiaryBooksController < ApplicationController
   end
 
   def show
+    diary_book = DiaryBook.find(params[:id])
+    if diary_book.customer_id == current_customer.id
     @diary_book = current_customer.diary_books.find(params[:id])
+   else
+      redirect_to calendar_diaries_path
+      flash[:notice] = "ほかのユーザの日記帳です。"
+    end
   end
 
 
@@ -38,7 +44,13 @@ class Public::DiaryBooksController < ApplicationController
   end
 
   def edit
+    diary_book = DiaryBook.find(params[:id])
+    if diary_book.customer_id == current_customer.id
     @diary_book = current_customer.diary_books.find(params[:id])
+   else
+      redirect_to calendar_diaries_path
+      flash[:notice] = "ほかのユーザの日記帳です。"
+    end
   end
 
   def update
