@@ -47,12 +47,24 @@ class Public::DiaryDatesController < ApplicationController
   end
 
   def show
+    diary_date = DiaryDate.find(params[:id])
+    if @diary_book.id == diary_date.diary_book_id
     @diary_date = @diary_book.diary_dates.find(params[:id])
+    else
+      redirect_to calendar_diaries_path
+      flash[:notice] = "この日付はこの日記帳ではありません。"
+    end
     @diary_comment = DiaryComment.new
   end
 
   def edit
+    diary_date = DiaryDate.find(params[:id])
+    if @diary_book.id == diary_date.diary_book_id
     @diary_date = @diary_book.diary_dates.find(params[:id])
+    else
+      redirect_to calendar_diaries_path
+      flash[:notice] = "この日付はこの日記帳ではありません。"
+    end
   end
 
   def destroy
