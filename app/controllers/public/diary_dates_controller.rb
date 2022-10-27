@@ -84,7 +84,13 @@ class Public::DiaryDatesController < ApplicationController
 
 
   def set_diary_book
+    diary_book = DiaryBook.find(params[:diary_book_id])
+    if diary_book.customer_id == current_customer.id
     @diary_book = current_customer.diary_books.find(params[:diary_book_id])
+   else
+      redirect_to calendar_diaries_path
+      flash[:notice] = "ほかのユーザの日記帳です。"
+    end
   end
 
   def diary_params
