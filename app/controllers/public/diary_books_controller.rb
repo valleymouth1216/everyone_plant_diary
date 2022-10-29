@@ -1,5 +1,6 @@
 class Public::DiaryBooksController < ApplicationController
   before_action :authenticate_customer!
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def new
     @diary_book=DiaryBook.new
@@ -64,6 +65,13 @@ class Public::DiaryBooksController < ApplicationController
   end
 
   private
+
+
+  def record_not_found
+      redirect_to diary_books_path
+      flash[:notice] = "存在しない日記帳です。"
+  end
+
     def diary_book_params
       params.require(:diary_book).permit(:title,:status, tag_ids: [])
     end

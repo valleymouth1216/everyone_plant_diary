@@ -1,7 +1,7 @@
 class Public::DiaryDatesController < ApplicationController
   before_action :authenticate_customer!
   before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update]
-
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def new
     @diary_date = DiaryDate.new
@@ -103,6 +103,11 @@ class Public::DiaryDatesController < ApplicationController
       redirect_to calendar_diaries_path
       flash[:notice] = "ほかのユーザの日記帳です。"
     end
+  end
+
+  def record_not_found
+      redirect_to diary_books_path
+      flash[:notice] = "存在しない日記です。"
   end
 
   def diary_params
