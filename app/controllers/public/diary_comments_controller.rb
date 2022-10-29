@@ -26,7 +26,9 @@ class Public::DiaryCommentsController < ApplicationController
 
   def destroy
     @diary_date = DiaryDate.find(params[:customer_diary_book_id])
-    DiaryComment.find(params[:id]).destroy
+    diary_comment = @diary_date.diary_comments.find(params[:id])
+    if current_customer.id == diary_comment.customer_id
+    diary_comment.destroy
       if current_customer.id ==  @diary_date.diary_book.customer.id
         redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
         flash[:notice] = "コメント削除しました。"
@@ -34,6 +36,15 @@ class Public::DiaryCommentsController < ApplicationController
         redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
         flash[:notice] = "コメント削除しました。"
       end
+     else
+      if current_customer.id ==  @diary_date.diary_book.customer.id
+        redirect_to diary_book_diary_date_path(@diary_date.diary_book,@diary_date)
+        flash[:alert] = "他のユーザのコメントを削除できません。"
+      else
+        redirect_to customer_customer_diary_book_path(params[:customer_id],params[:customer_diary_book_id])
+        flash[:alert] = "他のユーザのコメントを削除できません。"
+      end
+    end
 
   end
 
