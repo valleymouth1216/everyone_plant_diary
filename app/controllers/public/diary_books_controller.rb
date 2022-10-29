@@ -69,7 +69,7 @@ class Public::DiaryBooksController < ApplicationController
 
   def record_not_found
       redirect_to diary_books_path
-      flash[:notice] = "存在しない日記帳です。"
+      flash[:notice] = "存在しない日記もしくは他のユーザの日記です。"
   end
 
     def diary_book_params
