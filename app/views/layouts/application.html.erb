@@ -37,9 +37,9 @@
                 <%= form_with(scope: "search", url: search_path, method: 'get') do |form| %>
                   <%= text_field_tag "search[content]", "", :placeholder =>"検索する" %>
                     <span>
-                    <%= form.label "[method]","or", value: "partial" %>
+                    <%= form.label "[method]","部分一致", value: "partial" %>
                     <%= form.radio_button "[method]", "partial", checked: true %>
-                    <%= form.label "[method]","and", value: "perfect" %>
+                    <%= form.label "[method]","完全一致", value: "perfect" %>
                     <%= form.radio_button "[method]", "perfect"	 %>
                     </span>
                   <div>
@@ -63,9 +63,9 @@
                 <%= form_with(scope: "search", url: admin_search_path, method: 'get') do |form| %>
                   <%= text_field_tag "search[content]", "", :placeholder =>"検索する" %>
                     <span>
-                    <%= form.label "[method]","or", value: "partial" %>
+                    <%= form.label "[method]","部分一致", value: "partial" %>
                     <%= form.radio_button "[method]", "partial", checked: true %>
-                    <%= form.label "[method]","and", value: "perfect" %>
+                    <%= form.label "[method]","完全一致", value: "perfect" %>
                     <%= form.radio_button "[method]", "perfect"	 %>
                     </span>
                   <div>
