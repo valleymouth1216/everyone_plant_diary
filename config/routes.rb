@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
 devise_for :customers,controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions',
@@ -20,6 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   namespace :admin do
   get 'search' => 'homes#search'
+  resources:tags,only:[:create,:index,:edit,:update,:destroy]
   resources:customers,only:[:edit,:show,:index,:update] do
    resources :diary_books,only:[:index]
    end

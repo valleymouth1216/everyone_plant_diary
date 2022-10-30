@@ -1,0 +1,20 @@
+<div class='container'>
+
+  <%= render 'layouts/error_messages', resource: @tag %>
+  <div class="content admin_content">
+    <div class="card d-block rounded-0 index" >
+      <div class="card-header_design2"><h2 class="section-ttl">タグ作成</h2></div>
+      <div class="stitch py-2">
+      <%= form_with model: @tag,url: admin_tag_path(@tag) do |f| %>
+        <div class="character_underline">
+          <div class="m-2 p-1 required_frame" style="text-align:left" >
+            <span class="px-1"><%= f.label :name,"タグ" %></span>
+            <%= f.text_field :name ,placeholder:"タグ名を入力",class: "diary_book_form_new"  %>
+          </div>
+          <%= f.submit '編集を保存する', class: "m-3 btn btn-info" %>
+        </div>
+      <% end %>
+
+</div>
+ </div>
+</div>

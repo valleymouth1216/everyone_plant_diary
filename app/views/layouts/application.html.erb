@@ -99,6 +99,11 @@
                     みんなの日記
                 </li>
               <% end %>
+              <%= link_to admin_tags_path do %>
+                <li class="nav-item">
+                    タグ
+                </li>
+              <% end %>
               <%= link_to destroy_admin_session_path,method: :delete do %>
                 <li class="nav-item">
                     ログアウト
