@@ -19,7 +19,7 @@ class Public::FavoritesController < ApplicationController
       @order = "最新のいいね順"
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at DESC").page(params[:page]).per(10)
     end
-    @favorites_count = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true})
+    @favorites_count = Favorite.includes(:diary_date, :customer).joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true})
   end
 
   def create

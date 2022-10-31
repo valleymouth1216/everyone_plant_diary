@@ -72,9 +72,9 @@ diary_books = DiaryBook.create!(
 first_diary_book_id = DiaryBook.first.id
 second_diary_book_id = DiaryBook.limit(1).offset(1).first.id
 third_diary_book_id = DiaryBook.limit(1).offset(2).first.id
-last_diary_book_id =DiaryBook.last.id
+last_diary_book_id = DiaryBook.last.id
 
- DiaryDate.create!(
+diary_dates = DiaryDate.create!(
   [
    {diary_book_id: first_diary_book_id, start_time: '2022-9-09 15:00:00',temperature: '20',body: "稲刈りの為、おじいちゃんの家に夜帰ってきました。"},
    {diary_book_id: first_diary_book_id, start_time: '2022-9-10 15:00:00',temperature: '20',status: "true",
@@ -106,6 +106,9 @@ last_diary_book_id =DiaryBook.last.id
   ]
 )
 
+second_diary_book_id = DiaryDate.limit(1).offset(1).first.id #2022-9-09
+third_diary_book_id = DiaryDate.limit(1).offset(2).first.id
+last_diary_book_id =DiaryDate.last.id
 
 DiaryDate.find(2).diary_images.attach(io: File.open("#{Rails.root}/db/seed_images/inekari/20220910_092503.jpg"), filename:"20220910_092503.jpg")
 DiaryDate.find(2).diary_images.attach(io: File.open("#{Rails.root}/db/seed_images/inekari/20220910_101153.jpg"), filename:"20220910_101153.jpg")
