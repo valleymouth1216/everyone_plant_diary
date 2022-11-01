@@ -22,7 +22,6 @@ class Public::DiaryBooksController < ApplicationController
 
   def index
      @diary_books = current_customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
-     #@diary_books = current_customer.diary_books.includes(:customer)
   end
 
   def show
