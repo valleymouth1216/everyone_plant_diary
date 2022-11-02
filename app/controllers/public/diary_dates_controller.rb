@@ -25,7 +25,6 @@ class Public::DiaryDatesController < ApplicationController
 
   def index
     @diary_books = current_customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
-    #binding.pry
     if params[:tag_ids]
       @diary_books = []
       params[:tag_ids].each do |key, value|
