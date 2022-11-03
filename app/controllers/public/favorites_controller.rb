@@ -3,15 +3,12 @@ class Public::FavoritesController < ApplicationController
 
 
   def index
-    #@favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at DESC")
-
     if params[:order] == 'oldfavorite'
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("created_at ASC").page(params[:page]).per(10)
       @order = "最古のいいね順"
     elsif params[:order] == 'newpost'
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("start_time DESC").page(params[:page]).per(10)
       @order = "新しい日付順"
-      #@diary_dates = DiaryDate.find(Favorite.group(:diary_date_id).order("count(diary_date_id) ASC").pluck(:diary_date_id))
     elsif params[:order] == 'oldpost'
       @order = "古い日付順"
       @favorites = Favorite.joins(:diary_date).where(customer_id: current_customer.id, diary_dates: {status_admin: true,status: true}).order("start_time ASC").page(params[:page]).per(10)
