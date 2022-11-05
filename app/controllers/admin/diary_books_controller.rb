@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Admin::DiaryBooksController < ApplicationController
-    before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   def index
     @customer = Customer.find(params[:customer_id])
@@ -10,7 +12,7 @@ class Admin::DiaryBooksController < ApplicationController
         @diary_books += Tag.find_by(name: key).diary_books.where(customer_id: @customer).order(created_at: :desc) if value == "1"
       end
       @diary_books.uniq!
-             # binding.pry
+      # binding.pry
       if @diary_books == []
         @diary_books = @customer.diary_books.order(created_at: :desc).page(params[:page]).per(10)
         flash[:notice] = "タグが設定されていませんので、すべて表示します。"
@@ -26,22 +28,22 @@ class Admin::DiaryBooksController < ApplicationController
   end
 
   def show
-    @diary_book =DiaryBook.find(params[:id])
+    @diary_book = DiaryBook.find(params[:id])
   end
 
   def update
     @diary_book = DiaryBook.find(params[:id])
-      if @diary_book.update(diary_book_params)
+    if @diary_book.update(diary_book_params)
       flash[:notice] = "日記帳の公開ステータスを更新しました。"
       redirect_to admin_diary_book_path(@diary_book)
-      else
+    else
       render :edit
-      end
+    end
   end
 
 
   private
     def diary_book_params
-      params.require(:diary_book).permit(:title,:status,:status_admin, tag_ids: [])
+      params.require(:diary_book).permit(:title, :status, :status_admin, tag_ids: [])
     end
 end

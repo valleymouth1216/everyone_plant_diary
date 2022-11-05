@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDiaryTagRelations < ActiveRecord::Migration[6.1]
   def change
     create_table :diary_tag_relations do |t|

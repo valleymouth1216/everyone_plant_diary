@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -18,11 +20,11 @@ module EveryonePlantDiary
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-      config.time_zone = 'Tokyo'
-      config.i18n.default_locale = :ja
-  config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
-  config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag } #レイアウト崩れ
-  config.beginning_of_week = :sunday
-  config.active_storage.replace_on_assign_to_many = false
+    config.time_zone = "Tokyo"
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join("config/locales/*.yml").to_s]
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag } # レイアウト崩れ
+    config.beginning_of_week = :sunday
+    config.active_storage.replace_on_assign_to_many = false
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!
 
@@ -5,10 +7,10 @@ class Admin::TagsController < ApplicationController
     @tags = Tag.page(params[:page]).per(10)
     @tag = Tag.new(tag_params)
     if @tag.save
-    redirect_to admin_tags_path
-    flash[:notice] = "タグを追加しました."
+      redirect_to admin_tags_path
+      flash[:notice] = "タグを追加しました."
     else
-    render :index
+      render :index
     end
   end
 
@@ -24,24 +26,23 @@ class Admin::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-    redirect_to admin_tags_path
-    flash[:notice] = "タグ名を変更しました。"
+      redirect_to admin_tags_path
+      flash[:notice] = "タグ名を変更しました。"
     else
-    render :edit
+      render :edit
     end
   end
 
   def destroy
-     tag =  Tag.find(params[:id])
-     @tag_destroy = Tag.find(params[:id])
-     tag.destroy
+    tag = Tag.find(params[:id])
+    @tag_destroy = Tag.find(params[:id])
+    tag.destroy
     redirect_to admin_tags_path
     flash[:notice] = " ”#{@tag_destroy.name}”のタグを削除しました。"
   end
 
   private
-
-  def tag_params
-    params.require(:tag).permit(:name)
-  end
+    def tag_params
+      params.require(:tag).permit(:name)
+    end
 end
