@@ -92,6 +92,23 @@ class Public::DiaryDatesController < ApplicationController
     end
   end
 
+  def search_date
+    search_date = params[:search_date].to_date
+    @diary_book = DiaryBook.find(params[:diary_book_id])
+    if search_date.present?
+     @diary_book = DiaryBook.find(params[:diary_book_id])
+     @search_date = @diary_book.diary_dates.where(start_time: search_date.beginning_of_day .. search_date.end_of_day ).first
+     if @search_date.present?
+      redirect_to diary_book_diary_date_path(@diary_book.id,@search_date.id)
+     else
+      redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
+      flash[:notice] = "その日付はありません。"
+     end
+    else
+      redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
+      flash[:alert] = "その日付を選択してください。"
+    end
+  end
 
   private
     def set_diary_book

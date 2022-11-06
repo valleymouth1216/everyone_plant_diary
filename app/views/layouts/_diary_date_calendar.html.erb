@@ -21,6 +21,15 @@
         <% end %>
       <% end %>
 
+      <% if customer_signed_in? %>
+        <% if current_customer.id == diary_book.customer.id %>
+        <%= form_tag(diary_book_search_date_path(@diary_book.id) ,method: :get) do %>
+          <span style="vertical-align: middle;">日付検索</span>
+          <%= date_field_tag :search_date ,class:"form_middle mx-3" %>
+          <%= submit_tag '検索', class: 'btn_size btn btn-primary m-1' %>
+        <% end %>
+        <% end %>
+      <% end %>
 
           <div class="row justify-content-center character_underline  my-2">
             <% if diary_date_latest_date.present? %>

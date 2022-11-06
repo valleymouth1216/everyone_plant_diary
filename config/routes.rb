@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     get "diary_books/diaries" => "diary_dates#index"
     resources :diary_books  do
       resources :diary_dates, only: [:edit, :show, :destroy, :update, :new, :create,]
+      get "search_date" => "diary_dates#search_date", as: "search_date"
     end
     get "about" => "homes#about"
     get "favorite_diary" => "favorites#index", as: "favorite"
