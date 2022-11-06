@@ -2,7 +2,7 @@
 
 class Public::DiaryDatesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update]
+  before_action :set_diary_book, only: [:new, :create, :show, :edit, :destroy, :update,:search_date]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def new
@@ -93,20 +93,15 @@ class Public::DiaryDatesController < ApplicationController
   end
 
   def search_date
-    search_date = params[:search_date].to_date
-    @diary_book = DiaryBook.find(params[:diary_book_id])
-    if search_date.present?
      @diary_book = DiaryBook.find(params[:diary_book_id])
-     @search_date = @diary_book.diary_dates.where(start_time: search_date.beginning_of_day .. search_date.end_of_day ).first
-     if @search_date.present?
-      redirect_to diary_book_diary_date_path(@diary_book.id,@search_date.id)
-     else
-      redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
-      flash[:notice] = "その日付はありません。"
-     end
-    else
+    if params[:start_date] == "" || params[:end_date] == ""
       redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
       flash[:alert] = "その日付を選択してください。"
+    else
+      @start_date = params[:start_date]
+      @end_date = params[:end_date]
+      @search_diary_dates = @diary_book.diary_dates.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day).order("start_time DESC").page(params[:page]).per(10)
+      @search_diary_dates_count = @diary_book.diary_dates.joins(:diary_book).where(start_time: Time.zone.parse(@start_date).at_beginning_of_day...Time.zone.parse(@end_date).at_end_of_day)
     end
   end
 

@@ -23,10 +23,12 @@
 
       <% if customer_signed_in? %>
         <% if current_customer.id == diary_book.customer.id %>
-        <%= form_tag(diary_book_search_date_path(@diary_book.id) ,method: :get) do %>
+        <%= form_with url: diary_book_search_date_path(@diary_book.id), method: :get do |f| %>
           <span style="vertical-align: middle;">日付検索</span>
-          <%= date_field_tag :search_date ,class:"form_middle mx-3" %>
-          <%= submit_tag '検索', class: 'btn_size btn btn-primary m-1' %>
+          <%= f.date_field :start_date ,class:"form_middle mx-3" %>
+          ～
+          <%= f.date_field :end_date,class:"form_middle mx-3" %>
+          <%= f.submit '検索', class: 'btn_size btn btn-primary m-1' %>
         <% end %>
         <% end %>
       <% end %>

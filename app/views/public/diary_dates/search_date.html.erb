@@ -1,0 +1,44 @@
+<div class='container'>
+
+  <div class="content my_content">
+
+
+    <div class="card d-block index rounded-0 my-1" >
+
+      <div class="card-header_design2">
+        <h2 class="section-ttl count">"<%= @diary_book.title %>"日記の日付検索</h2>
+            <% if @search_diary_dates.present? %><h5 class="section-ttl count_position_right">全<%=@search_diary_dates_count.count %>件</h5><% end %>
+      </div>
+
+      <div class="stitch">
+      <% if @search_diary_dates.present? %>
+          <div class="card-body character_underline">
+            <h5 class="card-title"><span class="px-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>までの検索結果</span></h5>
+          </div>
+          <% @search_diary_dates.each do |diary_date|%>
+                <%= link_to diary_book_diary_date_path(@diary_book.id,diary_date.id),class:"card_hover col-lg-3" do %>
+                <div class="card d-block index rounded-0" >
+                    <div style="text-align:left" >
+                      <span class="px-2">記録日付:</span><%= diary_date.start_time.strftime('%Y/%m/%d') %>
+                      <span class="pl-1 pr-1">内容:</span><%= diary_date.body.truncate(16, omission: '...続き') %>
+                    </div>
+                </div>
+                <% end %>
+          <% end %>
+          <p style="text-align:center;"><span><%= paginate @search_diary_dates %></span></p>
+      <% else %>
+        <p class="my-2"><%=Time.zone.parse(@start_date).strftime('%Y年%m月%d日') %>から<%=Time.zone.parse(@end_date).strftime('%Y年%m月%d日') %>まで検索結果がありません。</p>
+      <% end %>
+        <%= link_to " #{@diary_book.title}の日記帳一覧に戻る",diary_books_diaries_path(diary_book: @diary_book.id),class: "btn btn-primary m-3" %>
+        <%= link_to new_diary_book_diary_date_path(@diary_book), class: "btn btn-success m-2" do %>
+          <i class="fa-solid fa-pen-to-square"></i>日記を作成する
+        <% end %>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
