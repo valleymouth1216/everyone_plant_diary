@@ -96,7 +96,7 @@ class Public::DiaryDatesController < ApplicationController
      @diary_book = DiaryBook.find(params[:diary_book_id])
     if params[:start_date] == "" || params[:end_date] == ""
       redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
-      flash[:alert] = "その日付を選択してください。"
+      flash[:alert] = "日付が選択されていません。"
     else
       @start_date = params[:start_date]
       @end_date = params[:end_date]
