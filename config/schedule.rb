@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 # ログの出力先を設定
-set :output, 'log/cron.log'
+set :output, 'var/log/cron.log'
 # production 環境で cron 実行
 set :environment, :production
 ENV.each { |k, v| env(k, v) } #追加
