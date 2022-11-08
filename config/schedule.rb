@@ -23,7 +23,7 @@ set :output, 'var/log/cron.log'
 # production 環境で cron 実行
 set :environment, :production
 ENV.each { |k, v| env(k, v) } #追加
-every 2.minute do
+every 2400.minute do
   begin
     runner "Batch::DataReset.data_reset", :environment => :development
   rescue => e
