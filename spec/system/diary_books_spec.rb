@@ -9,7 +9,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
     end
 
     context 'ログアウト機能のテスト' do
-      it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する' do
+      it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在するffffff' do
         expect(page).to have_link '', href: '/home/about'
       end
       it 'ログアウト後のリダイレクト先が、トップになっている' do
