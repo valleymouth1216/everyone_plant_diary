@@ -22,9 +22,10 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 rails_env = Rails.env.to_sym
 set :environment, rails_env
 set :output, 'log/cron.log'
+ENV.each { |k, v| env(k, v) } #追加
 every 2.minute do
   begin
-    runner "Batch::DataReset.data_reset"
+    runner "Batch::DataReset.data_reset", :environment => :development
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e
