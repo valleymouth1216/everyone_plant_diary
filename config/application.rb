@@ -26,5 +26,6 @@ module EveryonePlantDiary
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag } # レイアウト崩れ
     config.beginning_of_week = :sunday
     config.active_storage.replace_on_assign_to_many = false
+    config.paths.add 'lib', eager_load: true
   end
 end
