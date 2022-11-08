@@ -18,10 +18,10 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-require File.expand_path(File.dirname(__FILE__) + "/environment")
-rails_env = Rails.env.to_sym
-set :environment, rails_env
-set :output, 'log/cron.log'
+# ログの出力先を設定
+set :output, '/usr/src/app/log/crontab.log'
+# production 環境で cron 実行
+set :environment, :production
 ENV.each { |k, v| env(k, v) } #追加
 every 2.minute do
   begin
