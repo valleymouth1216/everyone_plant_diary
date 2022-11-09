@@ -34,7 +34,7 @@ set :output, "#{Rails.root}/log/cron.log"
 
 every 2.minute do
   begin
-    runner "Batch::DataReset.data_reset", :environment => :development
+    runner "Batch::DataReset.data_reset"
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e
