@@ -11,7 +11,7 @@
         <% if @customer.profile_image.attached? %>
           <div class="row justify-content-center character_underline">
             <p class="col-lg-10 col-sm-10 col-10 col-md-10"><span class="px-3">現在のプロフィール画像</span></p>
-            <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= image_tag @customer.profile_image.representation(resize_to_limit: [200, 180]).processed %></p>
+            <p class="col-lg-10 col-sm-10 col-10 col-md-10"><%= image_tag @customer.profile_image.representation(resize_to_limit: [200, 180]).processed ,accept: 'image/jpeg, image/png' %></p>
           </div>
         <% end %>
         <%= form_with model:@customer, url: update_information_path, method: :patch do |f| %>

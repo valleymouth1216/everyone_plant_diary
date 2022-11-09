@@ -31,7 +31,7 @@ class DiaryDate < ApplicationRecord
 
   def image_type
     if diary_images.each do |diary_image|
-      if !diary_image.content_type.in?(%('image/jpg image/png'))
+      if !diary_image.content_type.in?(%('image/jpeg image/png'))
         errors.add(:diary_images, "JPEGまたはPNG形式を選択してアップロードしてください")
       end
       end

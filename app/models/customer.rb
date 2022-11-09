@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   has_many :diary_books, dependent: :destroy
   has_many :diary_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
+  validate :profile_image_type
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -30,6 +30,17 @@ class Customer < ApplicationRecord
       user.name = "ゲスト"
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+
+   private
+
+
+  def profile_image_type
+    if !profile_image.blob
+      errors.add(:profile_image, 'をアップロードしてください')
+    elsif !profile_image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:profile_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
     end
   end
 end
