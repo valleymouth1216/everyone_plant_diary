@@ -59,7 +59,7 @@
             <div class="side_scroll">
             <% @diary_date.diary_images.each do |image| %>
               <%= f.check_box :image_ids, {:multiple => true}, image.id, false %>
-              <%= image_tag image.representation(resize_to_limit: [200, 180]).processed,class:"pr-5 py-1" %>
+              <%= image_tag image.representation(resize_to_limit: [200, 180]).processed, accept: 'image/jpeg, image/png',class:"pr-5 py-1" %>
             <% end %>
             </div>
           </div>

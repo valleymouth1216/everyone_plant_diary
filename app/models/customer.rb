@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   has_many :diary_books, dependent: :destroy
   has_many :diary_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  validate :profile_image_type
+  #validate :profile_image_type
 
   def get_profile_image(width, height)
     unless profile_image.attached?
