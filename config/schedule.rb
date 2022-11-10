@@ -33,7 +33,7 @@ set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 
 
-every 1.day do
+every 1.day, at: '4:30 am' do
   begin
     runner "Batch::DataReset.data_reset"
   rescue => e

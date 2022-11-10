@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   has_many :diary_books, dependent: :destroy
   has_many :diary_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  #validate :profile_image_type
+  validate :profile_image_type
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -37,10 +37,12 @@ class Customer < ApplicationRecord
 
 
   def profile_image_type
-    if !profile_image.blob
-      errors.add(:profile_image, 'をアップロードしてください')
-    elsif !profile_image.blob.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:profile_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
+    if profile_image.present?
+      if !profile_image.blob
+       errors.add(:profile_image, 'をアップロードしてください')
+      elsif !profile_image.blob.content_type.in?(%('image/jpeg image/png'))
+       errors.add(:profile_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
+      end
     end
   end
 end
