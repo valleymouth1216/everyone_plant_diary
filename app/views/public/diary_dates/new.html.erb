@@ -30,20 +30,18 @@
 
           <div class="m-1 p-1 arbitrary_data py-2 vertical-align: middle ">
             <span class="px-1">日記の公開</span>
-              <%= f.radio_button :status, true %>
-              <%= f.label :status, '公開する', value: true %>
-              <%= f.radio_button :status, false %>
-              <%= f.label :status, '公開しない', value: false %>
+              <div>
+                <%= f.radio_button :status, true %>
+                <%= f.label :status, '公開する', value: true %>
+              </div>
+              <div>
+                <%= f.radio_button :status, false %>
+                <%= f.label :status, '公開しない', value: false %>
+              </div>
               <p class="help-block no_margins text_position_left_cetnter px-2">※公開を選択すると他のユーザに日記帳を公開することができます。</p>
           </div>
-
-          <div class="m-1 p-1 arbitrary_data py-2 vertical-align: middle ">
-            <span class="px-1"><%= f.label :diary_images, '画像' %></span>
-            <%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png' %>
-            <p class="help-block no_margins text_position_left_cetnter px-2">JPEGまたはPNG形式を選択してアップロードしてください
-            </br>※サポートされていない形式のファイルは投稿しないでください。</p>
-          </div>
         </div>
+
 
         <div class="character_underline col-lg-7">
           <div class="m-1 p-1 required_frame py-2 vertical-align: middle " >
@@ -51,6 +49,14 @@
             <%= f.text_area :body ,placeholder:"入力してください",class: "",rows:"15"%>
           </div>
         </div>
+
+          <div class="character_underline m-1 p-1 arbitrary_data py-2 vertical-align: middle col-lg-12">
+            <span class="px-1"><%= f.label :diary_images, '画像' %></span>
+            <div><%= f.file_field :diary_images, multiple: true, accept: 'image/jpeg, image/png', onchange: 'loadImage(this);' %></div>
+            <p class="help-block no_margins vertical-align: middle  px-2 py-1">JPEGまたはPNG形式を選択してアップロードしてください
+            </br>※サポートされていない形式のファイルは投稿しないでください。</p>
+            <div id="preview"></div>
+          </div>
 
         <div class="character_underline col-lg-12 arbitrary_data">
           <%= f.submit '日記を作成',class:"m-3 btn btn-success" %>
@@ -66,3 +72,18 @@
   </div>
 
 </div>
+
+<script>
+function loadImage(obj)
+{
+	document.getElementById('preview').innerHTML = '<p><strong>選択された画像を表示します。</strong></p>';
+
+	for (i = 0; i < obj.files.length; i++) {
+		var fileReader = new FileReader();
+		fileReader.onload = (function (e) {
+			document.getElementById('preview').innerHTML += '<img src="' + e.target.result + '" class="img-size p-1">';
+		});
+		fileReader.readAsDataURL(obj.files[i]);
+	}
+}
+</script>

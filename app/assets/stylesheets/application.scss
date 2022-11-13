@@ -52,6 +52,11 @@ background-color: #fff;
 /*@media screen and (min-width: 993px) and (max-width: 1200px) { body, html { font-size: 100%; } }*/
 /*@media screen and (min-width: 1201px) { body, html { font-size: 100%; } }*/
 
+#box{
+  height: 200px;
+}
+
+
 #error_explanation {
   margin : 10px 0;
   padding: 20px 10px;
@@ -829,3 +834,13 @@ textarea{
 }
 
 // 極小デバイスここまで
+
+.swiper {
+  width: auto;
+  height: 300px;
+}
+
+.img-size {
+ max-width: 20%;
+ height: auto;
+}
