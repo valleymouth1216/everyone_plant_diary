@@ -53,7 +53,7 @@ class Public::DiaryDatesController < ApplicationController
       @diary_date = @diary_book.diary_dates.find(params[:id])
     else
       redirect_to calendar_diaries_path
-      flash[:notice] = "この日付はこの日記帳ではありません。"
+      flash[:notice] = "この日付はこの日記帳ではありません。この日付はこの日記帳ではありません。"
     end
     @diary_comment = DiaryComment.new
   end
@@ -88,6 +88,7 @@ class Public::DiaryDatesController < ApplicationController
       flash[:notice] = "日記を更新しました。"
       redirect_to diary_book_diary_date_path(@diary_book, @diary_date)
     else
+      @diary_date.reload
       render :edit
     end
   end
@@ -96,7 +97,7 @@ class Public::DiaryDatesController < ApplicationController
      @diary_book = DiaryBook.find(params[:diary_book_id])
     if params[:start_date] == "" || params[:end_date] == ""
       redirect_to diary_books_diaries_path(diary_book: @diary_book.id)
-      flash[:alert] = "日付が選択されていません。"
+      flash[:alert] = "その日付を選択してください。"
     else
       @start_date = params[:start_date]
       @end_date = params[:end_date]
