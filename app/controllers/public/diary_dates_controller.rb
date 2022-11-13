@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+#JavaScript　追加
 
 class Public::DiaryDatesController < ApplicationController
   before_action :authenticate_customer!
