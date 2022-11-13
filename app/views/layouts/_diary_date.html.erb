@@ -132,10 +132,11 @@
     </div>
 
     <script>
+    $(document).on('turbolinks:load', function(){
       const swiper = new Swiper('.swiper', {
         // Optional parameters
-        loop: true,
-
+        //loop: true,
+          rewind: true,
         // If we need pagination
         pagination: {
           el: '.swiper-pagination',
@@ -152,4 +153,6 @@
           el: '.swiper-scrollbar',
         },
       });
+     });
+
     </script>
