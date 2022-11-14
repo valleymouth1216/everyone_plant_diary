@@ -31,8 +31,8 @@ end
 
 
 customers = [
-             { email: "aa@a", name: "令和", password: "123456" },
-             { email: "okei@test.com", name: "okei", password: "123456" },
+             { email: "aa@a", name: "令和", password: "1234567" },
+             { email: "okei@test.com", name: "okei", password: "1234567" },
              { email: "tarou@test.com", name: "太郎", password: "123456" }
             ]
 
