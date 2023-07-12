@@ -144,7 +144,6 @@ GEM
     mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.6.0)
-    mysql2 (0.5.4)
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -341,7 +340,6 @@ DEPENDENCIES
   kaminari (~> 1.2.1)
   listen (~> 3.3)
   mini_magick (~> 4.8)
-  mysql2
   net-imap
   net-pop
   net-smtp
