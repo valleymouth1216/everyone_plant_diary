@@ -1,0 +1,56 @@
+current directory: /home/ec2-user/environment/everyone_plant_diary/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230712-3104-9il8lc.rb extconf.rb --with-ldflags\=-L/usr/local/opt/openssl/lib --with-cppflags\=-I/usr/local/opt/openssl/include
+checking for rb_absint_size()... yes
+checking for rb_absint_singlebit_p()... yes
+checking for rb_gc_mark_movable()... yes
+checking for rb_wait_for_single_fd()... yes
+checking for rb_enc_interned_str() in ruby.h... yes
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/$(RUBY_BASE_NAME)
+	--with-openssl-dir
+	--without-openssl-dir
+	--with-mysql-dir
+	--without-mysql-dir
+	--with-mysql-include
+	--without-mysql-include=${mysql-dir}/include
+	--with-mysql-lib
+	--without-mysql-lib=${mysql-dir}/lib
+	--with-mysql-config
+	--without-mysql-config
+	--with-mysqlclient-dir
+	--without-mysqlclient-dir
+	--with-mysqlclient-include
+	--without-mysqlclient-include=${mysqlclient-dir}/include
+	--with-mysqlclient-lib
+	--without-mysqlclient-lib=${mysqlclient-dir}/lib
+	--with-mysqlclientlib
+	--without-mysqlclientlib
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `block in find_library': undefined method `split' for nil:NilClass (NoMethodError)
+
+    paths = paths.flat_map {|path| path.split(File::PATH_SEPARATOR)}
+                                       ^^^^^^
+	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `each'
+	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `flat_map'
+	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `find_library'
+	from extconf.rb:131:in `<main>'
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/ec2-user/environment/everyone_plant_diary/vendor/bundle/ruby/3.1.0/extensions/x86_64-linux/3.1.0/mysql2-0.5.5/mkmf.log
+
+extconf failed, exit code 1
